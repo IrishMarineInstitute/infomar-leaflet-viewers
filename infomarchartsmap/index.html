@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Standard Charts</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+	<link rel="stylesheet" href="libs/leaflet-1.3.1/leaflet.css" />
+	<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+	<script src="libs/esri-leaflet-v2.0.0-beta.5/dist/esri-leaflet.js"></script>
+	   <link rel="stylesheet" href="libs/jquery-ui-1.11.4/jquery-ui.css" />
+	   	   <script src="libs/MousePosition/L.Control.MousePosition.js" type="text/javascript"></script>
+			   <script src="libs/jquery-3.1.1/jquery-3.1.1.min.js"></script>
+		<script src="libs/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+</head>
+<style>
+  #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+#chartimageDiv{
+width: 95%;
+height: 85%;
+overflow-y: hidden;
+}
+		#lookup {
+		display: inline-block;
+		padding: 0.5em;
+		position: absolute;
+		float: left;
+		width: 240px;
+		left:60px;
+		top:10px;
+		z-index: 800;
+		background: #F6F5F5;
+		}
+.pointer {
+cursor: pointer;
+text-decoration: underline;
+}
+.previewWindow {
+	z-index: 1000;
+	display: none;
+	position: fixed;
+	margin-top: 80px;
+}
+.previewWindow.show {
+  display: block;
+}
+#previewImg{
+    color: black;
+    border: 1px solid #bbb;
+	border-radius: 4px;
+    text-align: center;
+	text-font-size: 10;
+    text-decoration: none;
+    display: inline-block;
+	margin-bottom: 5px;
+}	
+#modalMask {
+  background: rgba(0, 0, 0, 0.45) none repeat scroll 0% 0%;
+  background-color: #4286f4;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 1999;
+  -webkit-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  -ms-transition: all 0.25s ease-out;
+  -o-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+}
+#modalMask.show {
+  display: block;
+}
+#pdferror {
+	width: 250px;
+	height: 240px;
+	border: 1px solid #bbb;
+	border-radius: 4px;
+	padding: 5px 10px;
+	text-font-size: 14;
+}
+.fancyModal {
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  overflow-y: hidden;
+  padding: 10px 15px 0;
+  background: #fff;
+  z-index: 2000;
+  max-width: 100%;
+  max-height: 100%;
+  z-index: 1500;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  border: 1px solid #bbb;
+  background: -webkit-linear-gradient(top, #ffffff, #dddddd);
+  background: -moz-linear-gradient(top, #ffffff, #dddddd);
+  background: linear-gradient(top, #ffffff, #dddddd);
+  -webkit-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  -ms-transition: all 0.25s ease-out;
+  -o-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+.fancyModal.show {
+  opacity: 1;
+  pointer-events: auto;
+  -webkit-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  -ms-transform: translateY(0%);
+  -o-transform: translateY(0%);
+  transform: translateY(0%);
+}
+.btnSmallClose{
+ border: 0px;
+ padding: 0px;
+ background: #fff;
+ position: relative;
+ float: right;
+}
+.btnSmallClose:hover, .btnSmallClose:active{
+  background-color: #999;
+	color: white;
+}
+#btnSmall{
+ border-radius: 5px;
+ padding: 0px;
+ background: #fff;
+ position: relative;
+ border-width: 1px;
+}
+btnSmall:hover, .btnSmallClose:active{
+  background-color: #999;
+}
+.toolTip {
+ background-color: #ffffff;
+    color: black;
+    border: 1px solid #bbb;
+	border-radius: 4px;
+    padding: 5px 10px;
+    text-align: center;
+	text-font-size: 10;
+    text-decoration: none;
+    display: inline-block;
+}
+a.button:link, a.button:visited {
+    background-color: #ffffff;
+    color: black;
+    border: 1px solid #bbb;
+	border-radius: 4px;
+    padding: 5px 10px;
+    text-align: center;
+	text-font-size: 10;
+    text-decoration: none;
+    display: inline-block;
+	margin-bottom: 5px;
+	  -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+.btn{
+ background-color: #ffffff;
+    color: black;
+    border: 1px solid #bbb;
+	border-radius: 4px;
+    padding: 5px 10px;
+    text-align: center;
+	text-font-size: 10;
+    text-decoration: none;
+    display: inline-block;
+	margin-bottom: 5px;
+	margin-right:15px;
+	  -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+.btn:hover, .btn:active {
+    background-color: #bbb;
+   }
+.hoverBtn {
+  background-color: #999;
+	color: white;
+  }   
+.mediumModal {
+	width: 743px;
+	height: 670px;
+	padding: 5px 15px 0px 15px;
+}
+.iframeModal {
+  margin-left: -339px;
+  margin-top: -395px;
+  width: 600px;
+  height: 450px;
+} 
+.smallModal {
+ 	width: 180px;
+	height: 175px;
+}	
+.mobileModal {
+ 	width: 180px;
+	height: 325px;
+}	
+@media screen and (max-width: 1000px) {
+  .mediumModal {
+    left: 2%;
+  }
+}
+@media screen and (max-height: 850px) {
+  .mediumModal {
+    top: 0;
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 778px) {
+  .mediumModal {
+  left: 0;
+    margin-left: 0;
+    margin-top: -10px;
+  width: 600px;
+  height: 450px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .mediumModal {
+	width: 400px;
+	height: 300px;
+  }
+}
+@media screen and (max-height: 440px) {
+  .mediumModal {
+    top: 0;
+    margin-top: 0;
+	 width: 200px;
+	height: 300px;
+  }
+}
+.popupTitle {
+	color: #0078a8;
+	font-weight: 600;
+	font-size: large;
+	display: inline-block;
+	margin-top: 5px;
+}
+.popupLabel {
+	color: #0078a8;
+	font-weight: 600;
+	display: inline-block;
+	margin-top: 5px;
+}
+</style>
+<body>
+	<div id="container">
+	<div id="map">
+	<div>
+	<script src="data/1_50k_Charts.js" type="text/javascript"></script>
+	<script src="data/1_100k_Charts_v6.js" type="text/javascript"></script>
+	<script src="data/100k_Coastal_v2.js" type="text/javascript"></script>
+	<script src="map/buttons.js" type="text/javascript"></script> 
+	<script src="map/charts_v2.js" type="text/javascript"></script> 
+	<script src="map/mapLayers.js" type="text/javascript"></script> 
+		<script src="map/map.js" type="text/javascript"></script> 
+ 	<script src="map/pdfCheck.js" type="text/javascript"></script> 
+</div>	
+ 	<div id="pdferror" class="fancyModal"></div>
+    <div id="shipwreckModal" class="fancyModal mediumModal">
+    </div>
+	<div id="preview" class="previewWindow"><img id="previewImg" src='data/Charts_50k_png/INF10_Wx_BY_50_1of2_R01.png'></div>				
+</body>
+</html>
+
