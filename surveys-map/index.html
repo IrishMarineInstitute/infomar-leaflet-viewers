@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+	   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title> INFOMAR Bathymetry & Contours</title>
+    <link rel="stylesheet" href="libs/jquery-ui-1.11.4/jquery-ui.css" />
+    <script src="libs/jquery/jquery-1.11.3.min.js"></script>
+    <script src="libs/jquery-ui-1.11.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="libs/myButtons.css" />
+    <link rel="stylesheet" href="libs/leaflet-1.0.3/leaflet.css" />
+    <script src="libs/leaflet-1.0.3/leaflet-src.js" type="text/javascript"></script>
+    <script src="libs/esri-leaflet-v2.0.8/esri-leaflet.js" type="text/javascript"></script>
+		<script src="libs/Spin.js" type="text/javascript"></script> 
+	 <link rel="stylesheet" href="libs/compass/leaflet-compass.css" />
+    <script src="libs/compass/leaflet-compass.js" type="text/javascript"></script>
+	    <script src="libs/leaflet.boatmarker/leaflet.boatmarker.js" type="text/javascript"></script>
+ 	<link rel="stylesheet" href="libs/Leaflet-areaselect.css" />
+    <script src="libs/Leaflet-areaselect.js" type="text/javascript"></script>
+<!-- 	<script src="data/SEAI_Survey_Areas_WM.js" type="text/javascript"></script> -->
+		<script src="data/IHO_Std_Surveys_Jan2016_v3.js" type="text/javascript"></script> 
+     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            background: #A4C7FF;
+            overflow: hidden;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+
+        #format {
+            margin-top: 2em;
+        }
+		.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;}
+.tg .tg-9hbo{font-weight:bold;vertical-align:top}
+.tg .tg-yw4l{vertical-align:top}
+    </style>
+			<style>
+		@media only screen and (max-device-width: 480px) {
+		a.leaflet-control-layers-toggle{F
+			width:28px  !important;
+			height:28px  !important;
+		}
+		a.leaflet-control-measure-toggle{
+			width:32px  !important;
+			height:32px  !important;
+		}
+ 		div.leaflet-credits-control{
+			height:	38px  !important;
+			padding-right: 38px  !important;
+			background-image: url("images/INFOMAR_logo_S.png")  !important;
+		}
+		a.leaflet-credits-showlink {
+		font-size: 6px !important;
+		line-height: 7px !important;
+		}
+		a.locateMeButtonWatch.myButton{
+			width:28px  !important;
+			height:28px  !important;
+		}
+		div.leafletcontrol{
+			width:28px  !important;
+			height:28px  !important;
+			}
+			div.compass-icon{
+			width:28px  !important;
+			height:28px  !important;
+			}
+		}
+		@media screen and (max-width: 378px) {
+  .tg th {
+		padding: 5px 5px;
+		font-size: 12px;
+	}
+	.tg td{
+		padding: 5px 5px;
+		font-size: 12px;
+	}
+	div.leaflet-popup-content{
+	width: 250px;
+	}
+}
+		</style>
+</head> 
+<body > 
+    <div id="container">
+        <div id="map"></div>
+    </div>
+	<script src="mapLayers.js" type="text/javascript"></script> 
+    <script src="controls.js"> </script>
+    <script src="index.js"> </script>
+    </body > 
+</html >
+        
