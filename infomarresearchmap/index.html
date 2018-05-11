@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="libs/leaflet-1.0.0-b1/leaflet.css" />
+	<script src="libs/leaflet-1.0.0-b1/leaflet.js"></script>
+	<script src="libs/esri-leaflet-v2.0.0-beta.5/dist/esri-leaflet.js"></script>
+	   <link rel="stylesheet" href="libs/jquery-ui-1.11.4/jquery-ui.css" />
+	   	   <script src="libs/MousePosition/L.Control.MousePosition.js" type="text/javascript"></script>
+		   	   <script src="libs/markercluster/dist/leaflet.markercluster-src.js" type="text/javascript"></script>
+			   <link rel="stylesheet" href="libs/markercluster/dist/MarkerCluster.css" />
+			   <link rel="stylesheet" href="libs/markercluster/dist/MarkerCluster.Default.css" />
+	  <!-- <script src="libs/jquery-ui-1.11.4/jquery-ui.min.js"></script> 
+		<script src="https://code.jquery.com/jquery-3.1.0.js"></script>-->
+	<script src="libs/jquery-3.1.0/jquery-3.1.0.min.js"></script>
+	
+</head>
+<style>
+  #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+		#lookup {
+		display: inline-block;
+		padding: 0.5em;
+		position: absolute;
+		float: left;
+		width: 240px;
+		left:60px;
+		top:10px;
+		z-index: 800;
+		background: #F6F5F5;
+		}
+.pointer {
+cursor: pointer;
+text-decoration: underline;
+}
+#modalMask {
+  background: rgba(0, 0, 0, 0.45) none repeat scroll 0% 0%;
+  /*background-color: rgba(38, 55, 69, 0.9);*/
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 1999;
+  -webkit-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  -ms-transition: all 0.25s ease-out;
+  -o-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+}
+#modalMask.show {
+  display: block;
+}
+.fancyModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  overflow-y: auto;
+  padding: 1em;
+  background: #fff;
+  z-index: 2000;
+  max-width: 100%;
+  max-height: 100%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  border: 1px solid #bbb;
+  border-radius: 5px;
+ background: -webkit-linear-gradient(top, #ffffff, #e5e5e5);
+  background: -moz-linear-gradient(top, #ffffff, #e5e5e5);
+  background: linear-gradient(top, #ffffff, #e5e5e5); 
+  -webkit-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  -ms-transition: all 0.25s ease-out;
+  -o-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+.fancyModal.show {
+  opacity: 1;
+  pointer-events: auto;
+  -webkit-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  -ms-transform: translateY(0%);
+  -o-transform: translateY(0%);
+  transform: translateY(0%);
+}
+.largeModal {
+  margin-left: -500px;
+  margin-top: -337.5px;
+  width: 1000px;
+  height: 675px;
+}
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;}
+.tg .tg-9hbo{font-weight:bold;vertical-align:top}
+.tg .tg-yw4l{vertical-align:top}
+
+@media screen and (max-width: 1000px) {
+  .largeModal {
+    left: 0;
+    margin-left: 0;
+  }
+}
+@media screen and (max-height: 675px) {
+  .largeModal {
+    top: 0;
+    margin-top: 0;
+  }
+}
+.mediumModal {
+  margin-left: -339px;
+  margin-top: -295px;
+  width: 643px;
+  height: 550px;
+}
+@media screen and (max-width: 678px) {
+  .mediumModal {
+    left: 0;
+    margin-left: 0;
+  }
+}
+@media screen and (max-height: 590px) {
+  .mediumModal {
+    top: 0;
+    margin-top: 0;
+  }
+}
+.smallModal {
+  margin-left: -335px;
+  margin-top: -220px;
+  width: 670px;
+  height: 440px;
+}
+@media screen and (max-width: 670px) {
+  .smallModal {
+    left: 0;
+    margin-left: 0;
+  }
+}
+@media screen and (max-height: 440px) {
+  .smallModal {
+    top: 0;
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 378px) {
+  .tg th {
+		padding: 5px 5px;
+		font-size: 12px;
+	}
+	.tg td{
+		padding: 5px 5px;
+		font-size: 12px;
+	}
+	div.leaflet-popup-content{
+	width: 250px;
+	}
+}
+.popupTitle {
+	color: #0078a8;
+	font-weight: 600;
+	font-size: large;
+	display: inline-block;
+	margin-top: 5px;
+}
+.popupLabel {
+	color: #0078a8;
+	font-weight: 600;
+	display: inline-block;
+	margin-top: 5px;
+}
+
+</style>
+<body>
+	<div id="container">
+	<div id="map">
+			
+		<script src="data/geojson/ResearchCalls_v6.js" type="text/javascript"></script>
+		<script src="map/mapLayers.js" type="text/javascript"></script> 
+	</div>	
+    <div id="shipwreckModal" class="fancyModal mediumModal">
+    </div>
+
+
+</body>
+</html>
+
