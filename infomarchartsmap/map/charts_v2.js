@@ -158,7 +158,7 @@ function highlightFeature(e) {
 		return false;
 	} else {
 	var pnglink = layer.feature.properties.Online_BY +".png";
-	var newImage = 'data/pngs/' + pnglink; 
+	var newImage = '//maps.marine.ie/infomarData/chartsmap/pngs/' + pnglink; 
 
 	$("#previewImg").attr("src", newImage);
 	$(".previewWindow").css("display", "block");
