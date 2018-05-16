@@ -33,7 +33,7 @@
 			onEachFeature: function (feature, layer) {
 				var downloadLink = feature.properties.Publication;
 				if (feature.properties.Year != "2015"){
-						downloadLink = "data/reports/"+feature.properties.Year + '/'+feature.properties.Publication;
+						downloadLink = "//maps.marine.ie/infomarData/researchmap/reports/"+feature.properties.Year + '/'+feature.properties.Publication;
 				}
 		
 				if (feature.properties && feature.properties.REF) {
