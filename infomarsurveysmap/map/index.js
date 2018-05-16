@@ -12,7 +12,7 @@
 		});
 		
 		function popup(feature, layer) {
-			var baseLink = "data/reports";
+			var baseLink = "//maps.marine.ie/infomarData/surveysmap/reports";
 			var execSumLink = feature.properties.ExecutiveS;
 			var surveyRepLink = "Explorer";
 			
