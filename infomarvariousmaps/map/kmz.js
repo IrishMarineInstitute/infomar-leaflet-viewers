@@ -15,17 +15,17 @@ function createkmzPopup(feature, layer) {
 		}); 
 		
 		layer.on('mouseover', function(e){
-			highlightCoverageFeature(e);
+			highlightkmzFeature(e);
 		});
 		
 		layer.on({
-            mouseout: resetCoverageHighlight,
+            mouseout: resetkmzHighlight,
     });		
     }
 
 	var fullPageLink;
 		
-function resetCoverageHighlight(e) {
+function resetkmzHighlight(e) {
 	$(".previewWindow").css("display", "none");
 	$("#previewImg").css("border", "1px solid #bbb");
 	kmzOutline.setStyle(style300);
@@ -37,7 +37,7 @@ function touchScreenkmzModal(kmzname){
 
 	$(".previewWindow").css("display", "none");
 	var kmzLink = 'https://jetstream.gsi.ie/iwdds/delivery/INFOMAR_Google/' +kmzname+ '.kmz';
-	var newImage = 'data/kmz_pngs/' + kmzname +".png";
+	var newImage = '//maps.marine.ie/infomarData/variousmaps/kmz_pngs/' + kmzname +".png";
 	
 		var popup =  "<div><button id=\"btnSmall\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary ui-icon ui-icon-close\"><span class=\"ui-icon ui-icon-close\"></span></button></div><div><img src="+newImage+" width=100%; height=100%; style= \"margin-top:5px;\"></div><div><a class=\"button\" href =\""+kmzLink+"\" target=\"blank\">Download Google Earth kmz file</a></div>";
 	
@@ -58,7 +58,7 @@ function touchScreenkmzModal(kmzname){
 function downloadkmzModal(kmzname){
 	var linkStr = JSON.stringify(kmzname);
 	$(".previewWindow").css("display", "none");
-	var newImage = 'data/kmz_pngs/' + kmzname +".png";
+	var newImage = '//maps.marine.ie/infomarData/variousmaps/kmz_pngs/' + kmzname +".png";
 	
 		var popup =  "<div><button id=\"btnSmall\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary ui-icon ui-icon-close\"><span class=\"ui-icon ui-icon-close\"></span></button></div><div><img src="+newImage+" width=100%; height=100%; style= \"margin-top:5px;\"></div><div><button id=\"btnSmall\" onclick='downloadkmz("+linkStr+")' style=\"float:left; margin:10px;\ class=\"ui-button-text-icon-primary\">Download Google Earth kmz file</button></div>";
 											
@@ -74,7 +74,7 @@ function downloadkmzModal(kmzname){
 
 			modalCoverageAction();
 }
-function highlightCoverageFeature(e) {
+function highlightkmzFeature(e) {
     var layer = e.target;
 
     layer.setStyle({
@@ -85,7 +85,7 @@ function highlightCoverageFeature(e) {
     });
 	var pngString = layer.feature.properties.KMZName;
 	
-	var newImage = 'data/kmz_pngs/' + pngString +".png"; 
+	var newImage = '//maps.marine.ie/infomarData/variousmaps/kmz_pngs/' + pngString +".png"; 
 	if(modalOpen){
 		return false;
 	}else {

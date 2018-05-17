@@ -72,7 +72,7 @@ var modalOpen = false;
 function touchScreenCoverageModal(polygons, coverage, png){
 		$(".previewWindow").css("display", "none");
 				
-		var popup =  "<div><button id=\"btnSmall\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary ui-icon ui-icon-close\"><span class=\"ui-icon ui-icon-close\"></span></button></div><div><img src=\"data/PDFs/Coverage/"+png+"\" width=100%; height=100%;\ style= \"margin-top:5px;\"></div><div><p style=\"font-size: 12px; font-weight: strong; margin: 5px; color: #4A4A4A;\">Download a Map:</span></p></div><div><a class=\"button\" href =\""+polygons+"\" target=\"blank\">Survey Areas</a></div><div><a class=\"button\" href =\""+coverage+"\" target=\"blank\">Survey Bathymetry</a><\div>";
+		var popup =  "<div><button id=\"btnSmall\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary ui-icon ui-icon-close\"><span class=\"ui-icon ui-icon-close\"></span></button></div><div><img src=\"//maps.marine.ie/infomarData/variousmaps/PDFs/Coverage/"+png+"\" width=100%; height=100%;\ style= \"margin-top:5px;\"></div><div><p style=\"font-size: 12px; font-weight: strong; margin: 5px; color: #4A4A4A;\">Download a Map:</span></p></div><div><a class=\"button\" href =\""+polygons+"\" target=\"blank\">Survey Areas</a></div><div><a class=\"button\" href =\""+coverage+"\" target=\"blank\">Survey Bathymetry</a><\div>";
 	
 											
 			 $('#shipwreckModal').html(popup);
@@ -90,15 +90,15 @@ function touchScreenCoverageModal(polygons, coverage, png){
 
 function highlightCoverageFeature(e) {
     var layer = e.target;
-		
+
     layer.setStyle({
         weight: 2,
         color: '#a8a8a8',
         dashArray: '',
         fillOpacity: 0.7
     });
-	
-	var newImage = 'data/PDFs/Coverage/' + layer.feature.properties.PNG; 
+
+	var newImage = '//maps.marine.ie/infomarData/variousmaps/PDFs/Coverage/' + layer.feature.properties.PNG; 
 
 	if(modalOpen){
 		return false;

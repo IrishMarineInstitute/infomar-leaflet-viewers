@@ -97,7 +97,7 @@ function highlightFeature(e) {
 	} else {
 	var a = layer.feature.properties.PDF.split(".")[0]
 	var pnglink = a +".png";
-	var newImage = 'data/PDFs/Greyscale/png/' + pnglink; 
+	var newImage = '//maps.marine.ie/infomarData/variousmaps/PDFs/Greyscale/png/' + pnglink; 
 
 	$("#previewImg").attr("src", newImage);
 	$(".previewWindow").css("display", "block");
@@ -132,7 +132,7 @@ function touchScreenModal(chart, name){
 		var baseURL = "https://jetstream.gsi.ie/iwdds/delivery/INFOMAR_Charts/Greyscale_Charts/" + chart;
 		var a = chart.split(".")[0]
 		var pnglink = a +".png";
-		var newImage = 'data/PDFs/Greyscale/png/' + pnglink; 
+		var newImage = '//maps.marine.ie/infomarData/variousmaps/PDFs/Greyscale/png/' + pnglink; 
 	
 		var popup =  "<div><img src="+newImage+" width=100%; height=100%;\"><div><a class=\"button\" href ="+baseURL+" target=\"blank\">Click to download map</a></div></div>";
 									

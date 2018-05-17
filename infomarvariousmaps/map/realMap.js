@@ -64,7 +64,7 @@ function highlightRealMapFeature(e){
 		return false;
 	} else {
 
-	var newImage = 'data/PDFs/RealMap/' + layer.feature.properties.PNG; 
+	var newImage = '//maps.marine.ie/infomarData/variousmaps/PDFs/RealMap/' + layer.feature.properties.PNG; 
 	
 	$("#previewImg").attr("src", newImage);
 	$(".previewWindow").css("display", "block");
@@ -85,7 +85,7 @@ function touchScreenRealMap(pdfname, irishpdf, LessonPlans, png){
 	$(".previewWindow").css("display", "none");
 		map.closePopup();
 		
-		var popup =  "<div><button id=\"btnSmall\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary ui-icon ui-icon-close\"><span class=\"ui-icon ui-icon-close\"></span></button></div><div><img src=\"data/PDFs/RealMap/"+png+"\" width=100%; height=100%;\ style= \"margin-top:5px;\"></div><div><p style=\"font-size: 12px; font-weight: strong; margin: 5px; color: #4A4A4A;\">Download the Real Map of Ireland:</span></p></div><div><a class=\"button\" href =\""+pdfname+"\" target=\"blank\">English</a></div><div><a class=\"button\" href =\""+irishpdf+"\" target=\"blank\">Gaeilge</a><\div><div><a href =\""+LessonPlans+"\" target=\"blank\">View Lesson Plans</a></div>";
+		var popup =  "<div><button id=\"btnSmall\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary ui-icon ui-icon-close\"><span class=\"ui-icon ui-icon-close\"></span></button></div><div><img src=\"//maps.marine.ie/infomarData/variousmaps/PDFs/RealMap/"+png+"\" width=100%; height=100%;\ style= \"margin-top:5px;\"></div><div><p style=\"font-size: 12px; font-weight: strong; margin: 5px; color: #4A4A4A;\">Download the Real Map of Ireland:</span></p></div><div><a class=\"button\" href =\""+pdfname+"\" target=\"blank\">English</a></div><div><a class=\"button\" href =\""+irishpdf+"\" target=\"blank\">Gaeilge</a><\div><div><a href =\""+LessonPlans+"\" target=\"blank\">View Lesson Plans</a></div>";
 	
 								
 			 $('#shipwreckModal').html(popup);
