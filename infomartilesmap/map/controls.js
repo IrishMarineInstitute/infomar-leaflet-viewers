@@ -183,6 +183,7 @@ L.Control.syncMap = L.Control.extend({
         controlUI.title = 'Split Screen View';
         controlUI.href = '#';
 		controlUI.style.width = "35px";
+		controlUI.style.height = "35px";
 		
         L.DomEvent.addListener(controlUI, 'click', function () {
            controlUIClear.style.display = 'block';
@@ -195,11 +196,14 @@ L.Control.syncMap = L.Control.extend({
         controlUIClear.title = 'Remove split screen';
         controlUIClear.href = '#';
         controlUIClear.style.display = 'none';
-		
+		controlUIClear.style.width = "35px";
+		controlUIClear.style.height = "35px";
+			
         L.DomEvent.addListener(controlUIClear, 'click', function () {
 			hideMapBK();
             controlUIClear.style.display = 'none';
 			controlUI.style.display = 'block';
+		
 			
          });
 		

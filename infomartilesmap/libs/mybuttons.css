@@ -157,7 +157,8 @@ background-image: url(images/redmymarker-icon_x.png);
 	}
 .splitScreenButton a:hover {
 	background-image: url(images/Split2.png);
-
+	width: 36px;
+	height: 36px;
 	}
 
 .expandScreenButton {
@@ -166,7 +167,7 @@ background-image: url(images/redmymarker-icon_x.png);
 
 .expandScreenButton a:hover {
 	background-image: url(images/Expand.png);
-		width: 36px;
+	width: 36px;
 	height: 36px;
 	}
 .splitScreenDiv{
