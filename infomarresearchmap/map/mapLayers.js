@@ -15,12 +15,12 @@
 		var base_EsriImagery = L.tileLayer('//server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         noWrap: true,
 		attribution: '<a href="//www.esri.com">ESRI</a>'
-		});
+		}).addTo(map);
 
 
 		var OpenStreetMap = L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		attribution: '<a href="//openstreetmap.org/copyright">OpenStreetMap contributors</a> ',
-		}).addTo(map);
+		});
 
 	var baseMap = {
     "Oceans": base_EsriOceans,

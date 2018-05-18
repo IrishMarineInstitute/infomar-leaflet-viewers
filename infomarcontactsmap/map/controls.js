@@ -183,7 +183,6 @@ L.Control.syncMap = L.Control.extend({
         controlUI.title = 'Split Screen View';
         controlUI.href = '#';
 		controlUI.style.width = "35px";
-		controlUI.style.height = "35px";
 		
         L.DomEvent.addListener(controlUI, 'click', function () {
            controlUIClear.style.display = 'block';
@@ -196,14 +195,11 @@ L.Control.syncMap = L.Control.extend({
         controlUIClear.title = 'Remove split screen';
         controlUIClear.href = '#';
         controlUIClear.style.display = 'none';
-		controlUIClear.style.width = "35px";
-		controlUIClear.style.height = "35px";
-			
+		
         L.DomEvent.addListener(controlUIClear, 'click', function () {
 			hideMapBK();
             controlUIClear.style.display = 'none';
 			controlUI.style.display = 'block';
-		
 			
          });
 		
@@ -222,10 +218,9 @@ function splitScreen(){
 	var mapLeftHTML = "<div id=\"mapleft\" style=\"width:100%; height: 100%;\"></div>";
 	document.getElementById('mapBK').innerHTML = mapLeftHTML;
 
-var base_EsriOceans2 = L.tileLayer('//services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}.png', {
-        noWrap: true,
-		attribution: '<a href="//www.esri.com">ESRI</a>'
-		});
+var openStreetMap2 = L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+});
 	
 var backscatter_split = L.tileLayer('https://maps.marine.ie/INFOMAR_Tiles/backscatter/{z}/{x}/{y}.png', {
             maxZoom: 13,
@@ -235,7 +230,7 @@ var backscatter_split = L.tileLayer('https://maps.marine.ie/INFOMAR_Tiles/backsc
         });
  	
 	var mapBK = L.map('mapleft', {
-			layers: [base_EsriOceans2, backscatter_split],
+			layers: [openStreetMap2, backscatter_split],
             layersControl: true,
 			zoomControl: false,
 			zoom: zoomLevel,
