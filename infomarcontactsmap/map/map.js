@@ -14,15 +14,13 @@ var baseMap = {
  var locationPts = L.geoJson(locations, {
 			onEachFeature: function (feature, layer) {
 				if (feature.properties) {
-				 var popupHTML ="<table class=\"tg\"><tr><th class=\"tg-9hbo\">"+ feature.properties.Name + "</th><th class=\"tg-yw4l\"></th></tr><tr><td class=\"tg-9hbo\">Eircode</td><td class=\"tg-yw4l\">"+ feature.properties.EirCode+ "</td></tr></table>";
+				 var popupHTML ="<table class=\"tg\"><tr><th class=\"tg-9hbo\">"+ feature.properties.Name + "</th><th class=\"tg-yw4l\"></th></tr><tr><td class=\"tg-yw4l\">"+ feature.properties.Address_1+ "</td></tr><tr><td class=\"tg-yw4l\">"+ feature.properties.Address_2+ "</td></tr><tr><td class=\"tg-yw4l\">"+ feature.properties.County+ "</td></tr><tr><td class=\"tg-yw4l\">"+ feature.properties.EirCode+ "</td></tr></table>";
 				}
 			layer.bindPopup(popupHTML);		
 			}
 		}).addTo(mapBY);
 		
  var Overlays ={
-	 'Bathymetry' : bathy_Contours,
-	 'Backscatter' : backscatter_int,
 	 'Locations' : locationPts
  }
  
@@ -31,7 +29,4 @@ var baseMap = {
 	L.control.scale().addTo(mapBY);
 	L.control.mousePosition().addTo(mapBY);
 	
-	if (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0)){
-		mapBY.addControl(new L.Control.locateMeWatch());	
-		mapBY.addControl(new L.Control.Compass());
-	 }
+
