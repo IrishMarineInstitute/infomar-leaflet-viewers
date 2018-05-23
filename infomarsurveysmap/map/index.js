@@ -43,6 +43,11 @@
 
 		};
 		
+		function popupPlanned (feature, layer){
+			var popupHTML = "<table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">Planned Survey Area 2018</th></tr><tr><td class=\"tg-9hbo\">Survey Platform</td><td class=\"tg-yw4l\">"+ feature.properties.Vessel+ "</td></tr></table>";
+			layer.bindPopup(popupHTML);
+		};
+		
 		<!-- var to load GeoJSON in overlays -->
 		var Surveys = L.geoJson (SurveyBdrys, {
 		onEachFeature: popup,
@@ -73,12 +78,21 @@
 		//filter: mapFilter
 		}).addTo(map);
 		
+		var plannedSurveys = L.geoJson (plannedSurveys2018, {
+		onEachFeature: popupPlanned,
+		style:  {color: "#9d00f9",'weight': 1,'opacity': 1, dashArray: '3'},
+		simplifyFactor: 5,
+		zIndex: 1000,
+		precision: 1
+		}).addTo(map);
+		
 			
 		<!-- var to load overlays into Layer Control -->
 		var overlays = {
 		"Bathymetry" : 	bathy_Contours,
 		"Backscatter": backscatter_int,
-		"Surveys": Surveys
+		"Surveys": Surveys,
+		"Planned Surveys": plannedSurveys
 		};
 		
 		var baseMap = {
@@ -92,3 +106,5 @@
 		}).addTo(map);	
 		map.addLayer(base_EsriOceans);
 		map.addLayer(bathy_Contours);
+		
+		
