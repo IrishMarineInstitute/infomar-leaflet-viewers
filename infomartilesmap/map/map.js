@@ -29,7 +29,40 @@ var samplePoints = L.geoJson(samplePts, {
 		var markers = L.markerClusterGroup();
 		markers.addLayer(samplePoints);
 		mapBY.addLayer(markers);
+	
+var seabedClass = L.esri.dynamicMapLayer({
+	url: 'https://maps.marine.ie/arcgis/rest/services/Infomar/SeabedClassificationAllAreas/MapServer',
+	opacity: 0.7
+});	
+
+var highlightBdry;
+mapBY.on('click', function(e){
+seabedClass.identify().on(mapBY).at(e.latlng)
+	 .run(function(error, featureCollection, response){
+		if (featureCollection.features.length > 0) { 
+      var popupSeabed = L.popup()
+		.setLatLng(e.latlng)
+		.setContent("<table class=\"tg\"><tr><td class=\"tg-9hbo\">Folk Class</td><td>" + featureCollection.features[0].properties.Folk_modif + "</td></tr><tr><td class=\"tg-9hbo\">EUNIS Class</td><td>" + featureCollection.features[0].properties.EUNIS + "</td></tr><tr><td class=\"tg-9hbo\">Comment</td><td>" + featureCollection.features[0].properties.Comment + "</td></tr><tr><td class=\"tg-9hbo\">Classification Method</td><td>" + featureCollection.features[0].properties.Clsfcation + "</td></tr><tr><td class=\"tg-9hbo\">Survey Code</td><td>" + featureCollection.features[0].properties.SurveyCode + "</td></tr><tr><td class=\"tg-9hbo\">Data Source</td><td>" + featureCollection.features[0].properties.Dat_source + "</td></tr><tr><td class=\"tg-9hbo\">Data Owner</td><td>" + featureCollection.features[0].properties.Dat_owner + "</td></tr></table>")
+		.openOn(mapBY);
 		
+	var boundaryPts = [];
+	for(var i = 0; i < featureCollection.features[0].geometry.coordinates[0].length; i++){
+		boundaryPts.push([featureCollection.features[0].geometry.coordinates[0][i][1],featureCollection.features[0].geometry.coordinates[0][i][0]]);
+	}
+
+	 highlightBdry = L.polygon(boundaryPts, {
+		 color: 'red'
+		});
+	mapBY.addLayer(highlightBdry);	
+	mapBY.flyToBounds(highlightBdry.getBounds());	
+		}
+	 });
+		
+});
+
+mapBY.on('popupclose', function(e){
+	mapBY.removeLayer(highlightBdry);
+});
 
 var baseMap = {
 		"Oceans": base_EsriOceans,
@@ -40,7 +73,8 @@ var baseMap = {
  var Overlays ={
 	 'Bathymetry' : bathy_Contours,
 	 'Backscatter' : backscatter_int,
-	 'Sample Points' : markers
+	 'Sample Points' : markers,
+	 'Seabed Classification' : seabedClass
  }
  
  
