@@ -252,7 +252,9 @@ var backscatter_split = L.tileLayer('https://maps.marine.ie/INFOMAR_Tiles/backsc
 
 		mapBY.sync(mapBK);
         mapBK.sync(mapBY); 
-}
+
+		$("div leaflet-popup-content").css('max-width', '180px');
+		}
 
 function hideMapBK(){
 	document.getElementById('mapBK').style.display = "none";
