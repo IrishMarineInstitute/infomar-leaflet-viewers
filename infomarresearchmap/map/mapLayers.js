@@ -9,13 +9,13 @@
 		var base_EsriOceans = L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}.png', {
         noWrap: true,
 		attribution: '<a href="//www.esri.com">ESRI</a>'
-		});
+		}).addTo(map);
 
  
 		var base_EsriImagery = L.tileLayer('//server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         noWrap: true,
 		attribution: '<a href="//www.esri.com">ESRI</a>'
-		}).addTo(map);
+		});
 
 
 		var OpenStreetMap = L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -39,15 +39,15 @@
 				if (feature.properties && feature.properties.REF) {
 				  if (feature.properties.Publication != "" ){
 				layer.bindPopup(
-				"<table class=\"tg\"><tr><th class=\"tg-9hbo\">Reference</th><th class=\"tg-yw4l\">" + feature.properties.REF + "</th></tr><tr><td class=\"tg-9hbo\">Title</td><td class=\"tg-yw4l\">"+ feature.properties.Title+ "</td></tr><tr><td class=\"tg-9hbo\">Project Leader</td><td class=\"tg-yw4l\">" + feature.properties.Project_Leader +"</td></tr><tr><td class=\"tg-9hbo\">Organisation</td><td class=\"tg-yw4l\">"+ feature.properties.Organisation + "</td></tr><tr><td class=\"tg-9hbo\">Publication</td><td class=\"tg-yw4l\"><a target='blank' href=\'" + downloadLink + "\'> Download Publication</a></td></tr></table>")
+				"<table class=\"tg\"><tr><th class=\"tg-9hbo\">Reference</th><th class=\"tg-yw4l\">" + feature.properties.REF + "</th></tr><tr><td class=\"tg-9hbo\">Title</td><td class=\"tg-yw4l\">"+ feature.properties.Title+ "</td></tr><tr><td class=\"tg-9hbo\">Organisation</td><td class=\"tg-yw4l\">"+ feature.properties.Organisation + "</td></tr><tr><td class=\"tg-9hbo\">Publication</td><td class=\"tg-yw4l\"><a target='blank' href=\'" + downloadLink + "\'> Download Publication</a></td></tr></table>")
 				  } else {
 				layer.bindPopup(
-				"<table class=\"tg\"><tr><th class=\"tg-9hbo\">Reference</th><th class=\"tg-yw4l\">" + feature.properties.REF + "</th></tr><tr><td class=\"tg-9hbo\">Title</td><td class=\"tg-yw4l\">"+ feature.properties.Title+ "</td></tr><tr><td class=\"tg-9hbo\">Project Leader</td><td class=\"tg-yw4l\">" + feature.properties.Project_Leader +"</td></tr><tr><td class=\"tg-9hbo\">Organisation</td><td class=\"tg-yw4l\">"+ feature.properties.Organisation + "</td></tr></table>")
+				"<table class=\"tg\"><tr><th class=\"tg-9hbo\">Reference</th><th class=\"tg-yw4l\">" + feature.properties.REF + "</th></tr><tr><td class=\"tg-9hbo\">Title</td><td class=\"tg-yw4l\">"+ feature.properties.Title+ "</td></tr><tr><td class=\"tg-9hbo\">Organisation</td><td class=\"tg-yw4l\">"+ feature.properties.Organisation + "</td></tr></table>")
 				  }
 				}
 				}
 		});
-			
+/* 			<tr><td class=\"tg-9hbo\">Project Leader</td><td class=\"tg-yw4l\">" + feature.properties.Project_Leader +"</td></tr> */
 		var markers = L.markerClusterGroup();
 		markers.addLayer(researchCallpts);
 		map.addLayer(markers);

@@ -97,7 +97,7 @@ function highlightCoverageFeature(e) {
         dashArray: '',
         fillOpacity: 0.7
     });
-
+	console.log(layer);
 	var newImage = '//maps.marine.ie/infomarData/variousmaps/PDFs/Coverage/' + layer.feature.properties.PNG; 
 
 	if(modalOpen){
