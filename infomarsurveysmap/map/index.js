@@ -8,7 +8,7 @@
 		var isTouchDevice = 'ontouchstart' in document.documentElement;
 
 			if ($(window).width() < 480 ||isTouchDevice == true) {
-					map.setView([53.5, -8.5],6);
+					map.setView([53.5, -8.5],5);
 		}
 			if ($(window).width() < 780 ||isTouchDevice == true) {
 					map.setView([53.5, -8.5],7);
