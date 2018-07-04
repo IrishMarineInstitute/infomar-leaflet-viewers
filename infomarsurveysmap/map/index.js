@@ -1,16 +1,24 @@
- $('a').click(function(e) {
+	//	<!-- var to initiate map only basmap is initiated -->
+		var map = L.map('map', {
+			center: [53.5, -13.1],
+			zoom: 7,
+			layersControl: true
+		});
+	
+		var isTouchDevice = 'ontouchstart' in document.documentElement;
+
+			if ($(window).width() < 480 ||isTouchDevice == true) {
+					map.setView([53.5, -8.5],6);
+		}
+			if ($(window).width() < 780 ||isTouchDevice == true) {
+					map.setView([53.5, -8.5],7);
+		}
+		
+	 $('a').click(function(e) {
     e.preventDefault();  //stop the browser from following
     window.location.href = 'uploads/file.doc';
 });
  
-
-	//	<!-- var to initiate map only basmap is initiated -->
-		var map = L.map('map', {
-			center: [53.5, -13.1],
-			zoom: 6,
-			layersControl: true
-		});
-		
 		function popup(feature, layer) {
 			var baseLink = "//maps.marine.ie/infomarData/surveysmap/reports";
 			var execSumLink = feature.properties.ExecutiveS;
@@ -102,8 +110,9 @@
 		};
 
 		L.control.layers(baseMap, overlays, {
-		collapsed: false
-		}).addTo(map);	
+		collapsed: true
+		}).addTo(map);
+		
 		map.addLayer(base_EsriOceans);
 		map.addLayer(bathy_Contours);
 		
