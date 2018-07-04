@@ -47,7 +47,7 @@ var seabedClass = L.esri.dynamicMapLayer({
 
 var highlightBdry;
 mapBY.on('click', function(e){
-	if(seabedClass){
+	if(mapBY.hasLayer(seabedClass)){
 	seabedClass.identify().on(mapBY).at(e.latlng)
 	 .run(function(error, featureCollection, response){
 		if (featureCollection.features.length > 0) { 
