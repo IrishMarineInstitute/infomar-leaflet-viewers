@@ -6,6 +6,14 @@
 		});
 		map.attributionControl.addAttribution("&copy; <a href=http://www.infomar.ie>INFOMAR</a>");
 	
+	var isTouchDevice = 'ontouchstart' in document.documentElement;
+
+	if ($(window).width() < 480 ||isTouchDevice == true) {
+			map.setView([53.5, -8.5],6);
+}
+	if ($(window).width() < 780 ||isTouchDevice == true) {
+			map.setView([53.5, -8.5],7);
+}
 		var base_EsriOceans = L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}.png', {
         noWrap: true,
 		attribution: '<a href="//www.esri.com">ESRI</a>'
