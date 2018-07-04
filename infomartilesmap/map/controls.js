@@ -214,6 +214,7 @@ L.Control.syncMap = L.Control.extend({
 function minimiseBathy(){
 	document.getElementById('mapBY').style.width = '49.5%';	
 	mapBY.invalidateSize(true);
+	
 	splitScreen();
 }
 

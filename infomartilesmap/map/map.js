@@ -5,6 +5,15 @@ var mapBY = L.map('mapBY', {
             layersControl: true,
         });
 	
+var isTouchDevice = 'ontouchstart' in document.documentElement;
+
+	if ($(window).width() < 480 ||isTouchDevice == true) {
+			mapBY.setView([53.5, -8.5],6);
+}
+	if ($(window).width() < 780 ||isTouchDevice == true) {
+			mapBY.setView([53.5, -8.5],7);
+}
+	
 var samplePoints = L.geoJson(samplePts, {
 			onEachFeature: function (feature, layer) {
 				var imageLink = "//maps.marine.ie/infomar/" + feature.properties.IMG_URL;
