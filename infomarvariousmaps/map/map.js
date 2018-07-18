@@ -63,6 +63,16 @@ function style400(feature) {
         fillOpacity: 0.05
     };
 }
+function style500(feature) {
+    return {
+        weight: 2,
+        opacity: 1,
+        color: '#FFFF00  ',
+        dashArray: '3',
+        fillOpacity: 0.05
+    };
+}
+
 
 		
 		var surveyCoveragePoly = L.geoJson (coveragePoly, {
@@ -90,6 +100,11 @@ function style400(feature) {
 		style: style400
 		});
 		
+		var PADINSSINFOMARmaps = L.geoJson (PADINSSINFOMAR, {
+		onEachFeature: createPADChartPopup,
+		style: style500
+		});
+		
 		var baseMap = {
 		"Oceans": base_EsriOceans,
 		"Street Map": OpenStreetMap,
@@ -101,7 +116,8 @@ function style400(feature) {
 		"Google Earth Overview KMZ" : kmzOverview,
 		"Greyscale Maps": greyscaleMaps,
 		"Survey Coverage Map": surveyCoveragePoly,
-		"Real Map of Ireland" : realMapIrePoly
+		"Real Map of Ireland" : realMapIrePoly,
+		"PAD INSS INFOMAR Map": PADINSSINFOMARmaps
 		};
 		
 		map.addLayer(base_EsriOceans);

@@ -8,9 +8,9 @@ function createCoveragePopup(feature, layer) {
 					map.flyToBounds(e.target.getBounds());
 					if (isTouchDevice == true) {
 							map.closePopup();
-							touchScreenCoverageModal(props.Polygons, props.Coverage, props.PNG);
+							touchScreenCoverageModal(props.OnlineFolder, props.Polygons, props.Coverage, props.PNG);
 					}else{ 
-							showCovMapImageWindow(props.Polygons, props.Coverage);
+							showCovMapImageWindow(props.OnlineFolder, props.Polygons, props.Coverage);
 					}
 					}); 
 		
@@ -25,9 +25,9 @@ function createCoveragePopup(feature, layer) {
 
 	var fullPageLink;
 	
-function showCovMapImageWindow(polygons, coverage) {
+function showCovMapImageWindow(onlineFolder, polygons, coverage) {
 
-	var imageIframe = "<div><p style=\"font-size: 16px; font-weight: strong; margin: 5px; color: #4A4A4A;\">Maps showing Infomar Coverage<button id=\"btnCloseShipwreck\" onclick='closeShipwreckWindowNoZoom()' style=\"float:right;\ class=\"ui-button-text-icon-primary\"><span class=\"ui-icon ui-icon-close\"></span></button></p></div><div id=\"chartimageDiv\" \"><embed id=\"chartimage\" src='" + polygons + "' width=\"100%;\" height=\"100%;\" type=\"application/pdf\"></div><div><button id=\"backscatter\" type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\" onclick='openCoverageImage(\"" + polygons+ "\")'>Survey Coverage Polygons</button><button id=\"backscatter\" type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\" onclick='openCoverageImage(\"" + coverage+ "\")'>Survey Coverage Bathymetry</button><button type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\"class=\"ui-button-text-icon-primary\" onclick='openNewImageCoverageLink(fullPageLink)'><span class=\"ui-icon ui-icon-extlink\"></span></button></div>";
+	var imageIframe = "<div><p style=\"font-size: 16px; font-weight: strong; margin: 5px; color: #4A4A4A;\">Maps showing Infomar Coverage<button id=\"btnCloseShipwreck\" onclick='closeShipwreckWindowNoZoom()' style=\"float:right;\ class=\"ui-button-text-icon-primary\"><span class=\"ui-icon ui-icon-close\"></span></button></p></div><div id=\"chartimageDiv\" \"><embed id=\"chartimage\" src='"+ onlineFolder + polygons + "' width=\"100%;\" height=\"100%;\" type=\"application/pdf\"></div><div><button id=\"backscatter\" type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\" onclick='openCoverageImage(\""+ onlineFolder + polygons+ "\")'>Survey Coverage Polygons</button><button id=\"backscatter\" type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\" onclick='openCoverageImage(\""+onlineFolder + coverage+ "\")'>Survey Coverage Bathymetry</button><button type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\"class=\"ui-button-text-icon-primary\" onclick='openNewImageCoverageLink(fullPageLink)'><span class=\"ui-icon ui-icon-extlink\"></span></button></div>";
 			
 						
 			 $('#shipwreckModal').html(imageIframe);
@@ -69,10 +69,10 @@ function resetCoverageHighlight(e) {
 }			
 var modalOpen = false;
 
-function touchScreenCoverageModal(polygons, coverage, png){
+function touchScreenCoverageModal(onlineFolder, polygons, coverage, png){
 		$(".previewWindow").css("display", "none");
 				
-		var popup =  "<div><button id=\"btnSmall\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary ui-icon ui-icon-close\"><span class=\"ui-icon ui-icon-close\"></span></button></div><div><img src=\"//maps.marine.ie/infomarData/variousmaps/PDFs/Coverage/"+png+"\" width=100%; height=100%;\ style= \"margin-top:5px;\"></div><div><p style=\"font-size: 12px; font-weight: strong; margin: 5px; color: #4A4A4A;\">Download a Map:</span></p></div><div><a class=\"button\" href =\""+polygons+"\" target=\"blank\">Survey Areas</a></div><div><a class=\"button\" href =\""+coverage+"\" target=\"blank\">Survey Bathymetry</a><\div>";
+		var popup =  "<div><button id=\"btnSmall\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary ui-icon ui-icon-close\"><span class=\"ui-icon ui-icon-close\"></span></button></div><div><img src=\"//maps.marine.ie/infomarData/variousmaps/PDFs/Coverage/"+png+"\" width=100%; height=100%;\ style= \"margin-top:5px;\"></div><div><p style=\"font-size: 12px; font-weight: strong; margin: 5px; color: #4A4A4A;\">Download a Map:</span></p></div><div><a class=\"button\" href =\""+onlineFolder +polygons+"\" target=\"blank\">Survey Areas</a></div><div><a class=\"button\" href =\""+onlineFolder +coverage+"\" target=\"blank\">Survey Bathymetry</a><\div>";
 	
 											
 			 $('#shipwreckModal').html(popup);
