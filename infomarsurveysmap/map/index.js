@@ -14,10 +14,10 @@
 					map.setView([53.5, -8.5],7);
 		}
 		
-	 $('a').click(function(e) {
+/* 	 $('a').click(function(e) {
     e.preventDefault();  //stop the browser from following
     window.location.href = 'uploads/file.doc';
-});
+}); */
  
 		function popup(feature, layer) {
 			var baseLink = "//maps.marine.ie/infomarData/surveysmap/reports";

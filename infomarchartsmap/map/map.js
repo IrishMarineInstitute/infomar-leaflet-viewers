@@ -63,11 +63,17 @@ function style200(feature) {
 		style: style50
 		});
 		
+		var seabedLayer = L.geoJson (seabedClass, {
+		onEachFeature: createSeabedChartPopup,
+		style: style50
+		});
+		
 		var overlays = {
 		"Bathymetry" : 	bathy_Contours,
 		"Coastal Chart Series: 1:100k": coastal100k,
 		"Priority Bay Charts: 1:100k": chartsLayer100,
 		"Priority Bay Charts: 1:50k" : chartsLayer50,
+		"Seabed Classification Charts" : seabedLayer
 		};
 		
 		var baseMap = {

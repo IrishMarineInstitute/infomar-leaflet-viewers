@@ -37,8 +37,8 @@ layer.on('mouseover', function(e){
 	function showChartImageWindow(bathymetry, folder, title, backscatter, shadedNW, shadedNE){
 		pdflist = bathymetry;
 		
-		var baseURL = "https://jetstream.gsi.ie/iwdds/delivery/INFOMAR_Charts/" + folder;
-		var linkString = "https://jetstream.gsi.ie/iwdds/delivery/INFOMAR_Charts/" + folder +bathymetry;
+		var baseURL = stdChartsURL + folder;
+		var linkString = stdChartsURL + folder +bathymetry;
 		
 		fullPageLink = baseURL +bathymetry;
 		
@@ -72,10 +72,10 @@ layer.on('mouseover', function(e){
       }
 
 function touchScreenModal(bathymetry, folder, title, backscatter, shadedNW, shadedNE){
-		var baseURL = "https://jetstream.gsi.ie/iwdds/delivery/INFOMAR_Charts/" + folder;
+		var baseURL = stdChartsURL + folder;
 		fullPageLink = baseURL +bathymetry;
 		var pnglink = bathymetry +".png";
-		var newImage = 'data/pngs/' + pnglink; 
+		var newImage = previewImg + pnglink; 
 		pdflist = bathymetry;
 	
 			var popup =  "<div><button id=\"btnSmall\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary ui-icon ui-icon-close\"><span class=\"ui-icon ui-icon-close\"></span></button></div><div><img src="+newImage+" width=100%; height=100%;\"><div><p style=\"font-size: 12px; font-weight: strong; margin: 5px; color: #4A4A4A;\">Download a Map:</span></p></div><div><a class=\"button\" href ="+baseURL+"/"+ bathymetry+".pdf target=\"blank\">Bathymetry</a></div><div><a class=\"button\" href ="+baseURL+"/"+ backscatter+".pdf target=\"blank\">Backscatter</a></div><div><a class=\"button\" href ="+baseURL+"/"+ shadedNE+".pdf target=\"blank\">Shaded Relief North East</a></div><div><a class=\"button\" href ="+baseURL+"/"+ shadedNW+".pdf target=\"blank\">Shaded Relief North West</a></div>";
@@ -158,7 +158,7 @@ function highlightFeature(e) {
 		return false;
 	} else {
 	var pnglink = layer.feature.properties.Online_BY +".png";
-	var newImage = '//maps.marine.ie/infomarData/chartsmap/pngs/' + pnglink; 
+	var newImage = previewImg + pnglink; 
 
 	$("#previewImg").attr("src", newImage);
 	$(".previewWindow").css("display", "block");

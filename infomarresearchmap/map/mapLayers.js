@@ -14,19 +14,19 @@
 	if ($(window).width() < 780 ||isTouchDevice == true) {
 			map.setView([53.5, -8.5],7);
 }
-		var base_EsriOceans = L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}.png', {
+		var base_EsriOceans = L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}.png', {
         noWrap: true,
 		attribution: '<a href="//www.esri.com">ESRI</a>'
 		}).addTo(map);
 
  
-		var base_EsriImagery = L.tileLayer('//server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+		var base_EsriImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         noWrap: true,
 		attribution: '<a href="//www.esri.com">ESRI</a>'
 		});
 
 
-		var OpenStreetMap = L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		var OpenStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		attribution: '<a href="//openstreetmap.org/copyright">OpenStreetMap contributors</a> ',
 		});
 
@@ -41,7 +41,7 @@
 			onEachFeature: function (feature, layer) {
 				var downloadLink = feature.properties.Publication;
 				if (feature.properties.Year != "2015"){
-						downloadLink = "//maps.marine.ie/infomarData/researchmap/reports/"+feature.properties.Year + '/'+feature.properties.Publication;
+						downloadLink = "https://maps.marine.ie/infomarData/researchmap/reports/"+feature.properties.Year + '/'+feature.properties.Publication;
 				}
 		
 				if (feature.properties && feature.properties.REF) {
