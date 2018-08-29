@@ -13,11 +13,6 @@
 			if ($(window).width() < 780 ||isTouchDevice == true) {
 					map.setView([53.5, -8.5],7);
 		}
-		
-/* 	 $('a').click(function(e) {
-    e.preventDefault();  //stop the browser from following
-    window.location.href = 'uploads/file.doc';
-}); */
  
 		function popup(feature, layer) {
 			var baseLink = "//maps.marine.ie/infomarData/surveysmap/reports";
@@ -78,12 +73,12 @@
             case 2015: return {color: "#808080",'weight': 1,'opacity': 1};
 			case 2016: return {color: "#35B0AB",'weight': 1,'opacity': 1};
             case 2017: return {color: "#C40018",'weight': 1,'opacity': 1};
+			case 2018: return {color: "#2243B6",'weight': 1,'opacity': 1};
         }
     },
 		simplifyFactor: 5,
 		zIndex: 1000,
 		precision: 1,
-		//filter: mapFilter
 		}).addTo(map);
 		
 		var plannedSurveys = L.geoJson (plannedSurveys2018, {
