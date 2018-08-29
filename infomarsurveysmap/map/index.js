@@ -13,6 +13,11 @@
 			if ($(window).width() < 780 ||isTouchDevice == true) {
 					map.setView([53.5, -8.5],7);
 		}
+		
+/* 	 $('a').click(function(e) {
+    e.preventDefault();  //stop the browser from following
+    window.location.href = 'uploads/file.doc';
+}); */
  
 		function popup(feature, layer) {
 			var baseLink = "//maps.marine.ie/infomarData/surveysmap/reports";
@@ -79,6 +84,7 @@
 		simplifyFactor: 5,
 		zIndex: 1000,
 		precision: 1,
+		//filter: mapFilter
 		}).addTo(map);
 		
 		var plannedSurveys = L.geoJson (plannedSurveys2018, {
