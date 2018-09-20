@@ -40,37 +40,69 @@ var samplePoints = L.geoJson(samplePts, {
 		markers.addLayer(samplePoints);
 		mapBY.addLayer(markers);
 	
-
-var seabedClassOut = L.geoJson(INF_Sub, {
- 		style: {weight: 0, fillOpacity: 0, stroke : 0},		
-		simplifyFactor: 5,
-		zIndex: 0,
-		precision: 1
-}).addTo(mapBY); 
-
-
-seabedClass.on('add', (e)=>{
-	setTimeout(function(){seabedClassOut.addTo(mapBY);}, 500)
-});
-
-mapBY.on('layerremove', (e)=>{
-	if (e.layer.options.id == 'seabedClassID'){
-		setTimeout(function(){mapBY.removeLayer(seabedClassOut);}, 500)
-	}
-});
-
+var seabedClass = L.esri.dynamicMapLayer({
+	url: 'https://maps.marine.ie/arcgis/rest/services/Infomar/INFOMAR_Seabed_Substrate/MapServer',
+	opacity: 0.7
+});	
+//'https://maps.marine.ie/arcgis/rest/services/Infomar/SeabedClassificationAllAreas/MapServer',
+//'https://maps.marine.ie/arcgis/rest/services/Infomar/INFOMAR_Seabed_Substrate/MapServer',
+var highlightBdry;
+var substrateType;
 mapBY.on('click', function(e){
+//	console.log(e.target);
+//mapBY.flyToBounds(e.target.getBounds());
+
 	if(mapBY.hasLayer(seabedClass)){
-	seabedClass.identify().on(mapBY).at(e.latlng).returnGeometry(false)
+	seabedClass.identify().on(mapBY).at(e.latlng)
 	 .run(function(error, featureCollection, response){
 		if (featureCollection.features.length > 0) { 
-		var popupSeabed = L.popup().setLatLng(e.latlng)
+
+      var popupSeabed = L.popup()
+		.setLatLng(e.latlng)
 		.setContent("<table class=\"tg\"><tr><td class=\"tg-9hbo\">Substrate Class</td><td>" + featureCollection.features[0].properties.INF_Class + "</td></tr><tr><td class=\"tg-9hbo\">Area</td><td>" + featureCollection.features[0].properties.Area + "</td></tr><tr></td></tr></table>")
 		.openOn(mapBY); 
 		mapBY.flyTo(e.latlng, 10);
-	}	});
+
+	/* 	console.log(featureCollection.features[0].geometry);
+		var boundaryPts = [];
+		for(var i = 0; i < featureCollection.features[0].geometry.coordinates[0].length; i++){
+			//boundaryPts.push([featureCollection.features[0].geometry.coordinates[0][i][1],featureCollection.features[0].geometry.coordinates[0][i][0]]);
+			boundaryPts.push([featureCollection.features[0].geometry.coordinates[0][i][1],featureCollection.features[0].geometry.coordinates[0][i][0]]);
+		}
+	 */
+ //	highlightBdry = L.geoJson(featureCollection.features[0].geometry, {
+	//	 color: 'red'
+	//	});
+		//.addTo(mapBY);
+		//mapBY.addLayer(highlightBdry);	
+	//	mapBY.flyToBounds(highlightBdry.getBounds()); 
+	//	var substrateType = JSON.stringify(featureCollection.features[0].properties.INF_Class);
+	}	
+});
+
 }
-});  
+/* var find = L.esri.find({
+	url: 'https://maps.marine.ie/arcgis/rest/services/Infomar/INFOMAR_Seabed_Substrate/MapServer'
+});
+
+find.layers('0')
+    .text(substrateType);
+
+find.run(function(error, featureCollection, response){
+    console.log(featureCollection);
+	highlightBdry = L.geoJson(featureCollection.features.geometry, {
+		 color: 'red'
+		}).addTo(mapBY);
+}); */
+
+});
+
+
+mapBY.on('popupclose', function(e){
+	if(highlightBdry){
+	mapBY.removeLayer(highlightBdry);
+	}
+});
 
 var baseMap = {
 		"Oceans": base_EsriOceans,
@@ -110,4 +142,11 @@ function highlightFeature(e) {
         layer.bringToFront();
     }
 }
+/* 
+function resetHighlight(e) {
+    geojson.resetStyle(e.target);
+}
 
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+} */
