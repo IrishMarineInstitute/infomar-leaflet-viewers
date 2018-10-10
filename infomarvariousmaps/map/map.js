@@ -85,6 +85,11 @@ function style500(feature) {
 		style: style100
 		});
 		
+		var realMapSmallPoly = L.geoJson (realMapSmallPoly, {
+		onEachFeature: createRealMapPopup,
+		style: style100
+		});		
+		
 		var greyscaleMaps = L.geoJson (greyscaleMaps, {
 		onEachFeature: createChartPopup,
 		style: style200
@@ -117,6 +122,7 @@ function style500(feature) {
 		"Greyscale Maps": greyscaleMaps,
 		"Survey Coverage Map": surveyCoveragePoly,
 		"Real Map of Ireland" : realMapIrePoly,
+		"Small Area 3d Maps" :	realMapSmallPoly,
 		"PAD INSS INFOMAR Map": PADINSSINFOMARmaps
 		};
 		

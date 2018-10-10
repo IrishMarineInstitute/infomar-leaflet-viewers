@@ -19,16 +19,26 @@ var samplePoints = L.geoJson(samplePts, {
 				var imageLink = "//maps.marine.ie/infomar/" + feature.properties.IMG_URL;
 						
 				if (feature.properties && feature.properties.VESSELYEAR) {
-				 var popupHTML ="<table class=\"tg\"><tr><th class=\"tg-9hbo\">Vessel Year</th><th class=\"tg-yw4l\">" + feature.properties.VESSELYEAR + "</th></tr><tr><td class=\"tg-9hbo\">Label</td><td class=\"tg-yw4l\">"+ feature.properties.LABEL+ "</td></tr><tr><td class=\"tg-9hbo\">Date</td><td class=\"tg-yw4l\">" + feature.properties.DATE +"</td></tr><tr><td class=\"tg-9hbo\">Latitude</td><td class=\"tg-yw4l\">"+ Math.round(feature.properties.LAT * 100)/100+ "</td></tr><tr><td class=\"tg-9hbo\">Longitude</td><td class=\"tg-yw4l\">"+ Math.round(feature.properties.LONG * 100)/100 + "</td></tr><tr><td class=\"tg-9hbo\">Depth</td><td class=\"tg-yw4l\">"+ feature.properties.DEPTH + "m</td></tr>";
-				
+				 var popupHTML ="<table class=\"tg\"><tr><th class=\"tg-9hbo\">Vessel Year</th><th class=\"tg-yw4l\">" + feature.properties.VESSELYEAR + "</th></tr>"
+				 if(feature.properties.LABEL != 'undefined' && feature.properties.LABEL != ""){
+				 popupHTML += "<tr><td class=\"tg-9hbo\">Label</td><td class=\"tg-yw4l\">"+ feature.properties.LABEL+ "</td></tr>"
+				}
+				 if(feature.properties.DATE != 'undefined' && feature.properties.DATE != ""){
+				 popupHTML += "<tr><td class=\"tg-9hbo\">Date</td><td class=\"tg-yw4l\">" + feature.properties.DATE +"</td></tr>"
+				 }
+				 popupHTML += "<tr><td class=\"tg-9hbo\">Latitude</td><td class=\"tg-yw4l\">"+ Math.round(feature.properties.LAT * 100)/100+ "</td></tr><tr><td class=\"tg-9hbo\">Longitude</td><td class=\"tg-yw4l\">"+ Math.round(feature.properties.LONG * 100)/100 + "</td></tr>"
+				 
+				 	if(feature.properties.DEPTH != 'undefined' && feature.properties.DEPTH != "" && feature.properties.DEPTH != "0"){
+					popupHTML +=  "<tr><td class=\"tg-9hbo\">Depth</td><td class=\"tg-yw4l\">"+ feature.properties.DEPTH + "m</td></tr>";
+					}
 					if(feature.properties.DESCRIPT != 'undefined' && feature.properties.DESCRIPT != ""){
-						popupHTML += "<tr><td class=\"tg-9hbo\">Description</td><td class=\"tg-yw4l\">"+ feature.properties.DESCRIPT + "</td></tr>";
+						popupHTML += "<tr><td class=\"tg-9hbo\">Description</td><td class=\"tg-dddd\">"+ feature.properties.DESCRIPT + "</td></tr>";
 				 }
 					if(feature.properties.COMMENT != 'undefined' && feature.properties.COMMENT != ""){
-				 		popupHTML += "<tr><td class=\"tg-9hbo\">Comment</td><td class=\"tg-yw4l\">"+ feature.properties.COMMENT + "</td></tr>";
+				 		popupHTML += "<tr><td class=\"tg-9hbo\">Comment</td><td class=\"tg-dddd\">"+ feature.properties.COMMENT + "</td></tr>";
 					}
 				 	if(feature.properties.IMG_URL != 'undefined' && feature.properties.IMG_URL != ""){
-						popupHTML += "<tr><td colspan=\"2\"><img src='" + imageLink + "' width='100%' /></td></tr>";
+						popupHTML += "<tr><td class=\"tg-img\" colspan=\"2\"><img src='" + imageLink + "' width='100%' /></td></tr>";
 				  }
 					popupHTML +="</table>"
 				}

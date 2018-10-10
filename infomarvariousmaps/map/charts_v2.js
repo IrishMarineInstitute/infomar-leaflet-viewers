@@ -55,7 +55,7 @@ function showShipwreckImageWindow(pdfname, title) {
 function closeShipwreckWindow() {
             $("div#shipwreckModal").removeClass("show");
 			$("div#modalMask").removeClass("show");
-			console.log("test");
+		
 		if ($(window).width() < 480 ||isTouchDevice == true) {
 			map.flyToBounds([[53.5, -5.5],[53.5, -12.5]]);
 		}else if ($(window).width() < 780 ||isTouchDevice == true) {

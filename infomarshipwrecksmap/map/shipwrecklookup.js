@@ -23,7 +23,7 @@ if(typeof shipwreckmarker !== 'undefined'){
 	}
 
 for(i=0; i<myshipwreckObject.length; i++){
-	
+	console.log(myshipwreckObject[i].properties.PDF);
 	if(myshipwreckObject[i].properties.VESSEL_NAM == marker && myshipwreckObject[i].properties.VESSEL_NAM != " "){
 		
 		var popupContent = "<label class='popupTitle'>" + myshipwreckObject[i].properties.VESSEL_NAM + "</label><br/>";
@@ -37,7 +37,11 @@ for(i=0; i<myshipwreckObject.length; i++){
 			popupContent += "<div><img src='" + myshipwreckObject[i].properties.IMAGE + "' width='150px' /></div>";
 			popupContent += "<br/><div><a class='pointer' onclick='showShipwreckImageWindow(\"" + myshipwreckObject[i].properties.IMAGE + "\",\""+myshipwreckObject[i].properties.VESSEL_NAM + "\");'>View Full Size Image</a></div>";
         }
-		if (myshipwreckObject[i].properties.REPORT == "PDF") {
+/* 		if (myshipwreckObject[i].properties.REPORT == "PDF") {
+            popupContent += "<br/><div><a href='" + myshipwreckObject[i].properties.PDF + "' target='_blank'>View Wreck Report</a></div>";
+        }  */
+				if (myshipwreckObject[i].properties.PDF != "No") {
+					
             popupContent += "<br/><div><a href='" + myshipwreckObject[i].properties.PDF + "' target='_blank'>View Wreck Report</a></div>";
         } 
 		

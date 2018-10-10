@@ -36,7 +36,7 @@ function createWreckPopup(feature, layer) {
 			popupHTML += "<div><a class='pointer' onclick='showShipwreckImageWindow(\"" + props.IMAGE + "\",\""+vesselName + "\");'><img src='" + props.IMAGE + "' width='100%' /></a></div>";
 		//	popupHTML += "<br/><div><a class='pointer' onclick='showShipwreckImageWindow(\"" + props.IMAGE + "\",\""+vesselName + "\");'>View Full Size Image</a></div>"; 
         }
-		if (typeof props.PDF != 'undefined' && props.PDF != "") {
+		if (typeof props.PDF != 'undefined' && props.PDF != "No") {
             popupHTML += "<br/><div><a href='" + props.PDF + "' target='_blank'>View Wreck Report</a></div>";
         } 
 		

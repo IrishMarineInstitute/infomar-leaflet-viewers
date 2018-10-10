@@ -67,8 +67,8 @@ var renderingRule = {
     },
     "variableName": "DEM"
 };
-var serviceURL = 'http://maps.marine.ie/arcgis/rest/services/Infomar/Atlantic_Bathy/ImageServer'
-var InfomarserviceURL = 'http://maps.marine.ie/arcgis/rest/services/Infomar/All_BathySurveys/ImageServer/'
+var serviceURL = '//maps.marine.ie/arcgis/rest/services/Infomar/Atlantic_Bathy/ImageServer'
+var InfomarserviceURL = '//maps.marine.ie/arcgis/rest/services/Infomar/All_BathySurveys/ImageServer/'
 //var serviceURL = 'http://miags03:6080/arcgis/rest/services/Infomar/All_BathySurveys/ImageServer/'
 			
 var Bathy = L.esri.imageMapLayer({
@@ -109,16 +109,16 @@ var overviews = {
 	//"INFOMAR & INSS Bathy" : IBathy,
 	"INFOMAR & INSS Shaded Relief" : IBathyShaded
 };
-var base_EsriOceans = L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}.png', {
+var base_EsriOceans = L.tileLayer('//services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}.png', {
         noWrap: true,
     }).addTo(map);;
-var base_MapSurfer = L.tileLayer('http://openmapsurfer.uni-hd.de/tiles/roads/x={x}&y={y}&z={z}', {
+var base_MapSurfer = L.tileLayer('//openmapsurfer.uni-hd.de/tiles/roads/x={x}&y={y}&z={z}', {
         noWrap: true,
     });
-var OpenStreetMap = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+var OpenStreetMap = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '<a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 });
-var base_EsriImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+var base_EsriImagery = L.tileLayer('//server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         noWrap: true,
 });
 var shadedrelief = L.esri.basemapLayer('ShadedRelief');

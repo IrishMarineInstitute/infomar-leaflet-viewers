@@ -14,7 +14,7 @@
 					map.setView([53.5, -8.5],7);
 		}
 		
-var surveyTiles = L.tileLayer('//localhost/INFOMAR_Tiles/surveys/{z}/{x}/{y}.png', {
+var surveyTiles = L.tileLayer('//m/INFOMAR_Tiles/surveys/{z}/{x}/{y}.png', {
             maxZoom: 14,
             minZoom: 6,
             opacity: 0.9,
@@ -49,7 +49,8 @@ var surveyTiles = L.tileLayer('//localhost/INFOMAR_Tiles/surveys/{z}/{x}/{y}.png
 			  if (props.SurveyRep !='undefined' && props.SurveyRep!=""){
 				 popupHTML +=  "<tr><td class=\"tg-9hbo\">Full Report</td><td class=\"tg-yw4l\"><a target='blank' href=\'" + baseLink + "/SurveyReport/"+surveyRepLink+"/"+ props.SurveyRep+"'>"+ props.SURVEY + "</a></td></tr>";
 			 }
-	map.flyTo(e.latlng, 10,{
+		
+		map.flyTo(e.latlng, 10,{
 			animate: true,
 			duration: 1.5
 		});

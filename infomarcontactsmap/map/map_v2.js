@@ -36,9 +36,9 @@ var miIcon = L.icon({
 		
 
 
- L.marker ([53.336, -6.235], {icon: gsiIcon}).addTo(mapBY).bindPopup("<table class=\"tg\"><tr><th class=\"tg-9hbo\">Geological Survey, Ireland</th><th class=\"tg-yw4l\"></th></tr><tr><td class=\"tg-yw4l\">Beggars Bush</td></tr><tr><td class=\"tg-yw4l\">Haddington Road</td></tr><tr><td class=\"tg-yw4l\">Dublin 4</td></tr><tr><td class=\"tg-yw4l\">D04 K7X4</td></tr></table>");
+ L.marker ([53.336, -6.235], {icon: gsiIcon}).addTo(mapBY).bindPopup("<table class=\"tg\"><tr><th class=\"tg-9hbo\">Geological Survey Ireland</th><th class=\"tg-yw4l\"></th></tr><tr><td class=\"tg-yw4l\">Beggars Bush</td></tr><tr><td class=\"tg-yw4l\">Haddington Road</td></tr><tr><td class=\"tg-yw4l\">Dublin 4</td></tr><tr><td class=\"tg-yw4l\">D04 K7X4</td></tr></table>");
  
- L.marker ([53.248, -8.978], {icon: miIcon}).addTo(mapBY).bindPopup("<table class=\"tg\"><tr><th class=\"tg-9hbo\">Marine Institute</th><th class=\"tg-yw4l\"></th></tr><tr><td class=\"tg-yw4l\">Renville West</td></tr><tr><td class=\"tg-yw4l\">Oranmore</td></tr><tr><td class=\"tg-yw4l\">Co. Galway</td></tr><tr><td class=\"tg-yw4l\">H91 R673</td></tr></table>");
+ L.marker ([53.248, -8.978], {icon: miIcon}).addTo(mapBY).bindPopup("<table class=\"tg\"><tr><th class=\"tg-9hbo\">Marine Institute</th><th class=\"tg-yw4l\"></th></tr><tr><td class=\"tg-yw4l\">Renville</td></tr><tr><td class=\"tg-yw4l\">Oranmore</td></tr><tr><td class=\"tg-yw4l\">Co. Galway</td></tr><tr><td class=\"tg-yw4l\">H91 R673</td></tr></table>");
 				
 	L.control.layers(baseMap, null).addTo(mapBY);
 	L.control.scale().addTo(mapBY);
