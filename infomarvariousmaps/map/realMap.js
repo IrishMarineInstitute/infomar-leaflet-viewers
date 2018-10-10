@@ -125,7 +125,7 @@ function openNewRealImage(newChart){
 	
 function showSmall3dImageWindow(pdfname, place, Other) {
 			
-		var imageIframe = "<div><p style=\"font-size: 16px; font-weight: strong; margin: 5px; color: #4A4A4A;\">3d Map of "+ place +"<button id=\"btnCloseShipwreck\" onclick='closeShipwreckWindowNoZoom()' style=\"float:right;\ class=\"ui-button-text-icon-primary\"><span class=\"ui-icon ui-icon-close\"></span></button></p></div><div id=\"chartimageDiv\" \"><embed id=\"chartimage\" src='" +chartURL+ pdfname + "' width=\"100%;\" height=\"100%;\" type=\"application/pdf\"></div><div><button type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\"class=\"ui-button-text-icon-primary\" onclick='openNewImageRealMapLink(fullPageLink)'><span class=\"ui-icon ui-icon-extlink\"></span></button>";
+		var imageIframe = "<div><p style=\"font-size: 16px; font-weight: strong; margin: 5px; color: #4A4A4A;\">3d Map of "+ place +"<button id=\"btnCloseShipwreck\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary\"><span class=\"ui-icon ui-icon-close\"></span></button></p></div><div id=\"chartimageDiv\" \"><embed id=\"chartimage\" src='" +chartURL+ pdfname + "' width=\"100%;\" height=\"100%;\" type=\"application/pdf\"></div><div><button type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\"class=\"ui-button-text-icon-primary\" onclick='openNewImageRealMapLink(fullPageLink)'><span class=\"ui-icon ui-icon-extlink\"></span></button>";
 		
 		if (Other =="Yes"){
 		
