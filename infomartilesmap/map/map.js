@@ -50,14 +50,45 @@ var samplePoints = L.geoJson(samplePts, {
 		markers.addLayer(samplePoints);
 		mapBY.addLayer(markers);
 	
+function style200(feature) {
+    return {
+        weight: 2,
+        opacity: 1,
+        color: '#FCFF33',
+        dashArray: '3',
+        fillOpacity: 0.05
+    };
+}
+function style50(feature) {
+    return {
+        weight: 2,
+        opacity: 1,
+         color: '#990000',
+        dashArray: '3',
+        fillOpacity: 0.05
+    };
+}
+
+var EEZ_bdry = L.geoJson(EEZbdry, {
+ 		style: style200,		
+		simplifyFactor: 5,
+		zIndex: 0,
+		precision: 1
+}); 
+
+var DesigArea_bdry = L.geoJson(DesigArea, {
+ 		style: style50,		
+		simplifyFactor: 5,
+		zIndex: 0,
+		precision: 1
+}); 
 
 var seabedClassOut = L.geoJson(INF_Sub, {
  		style: {weight: 0, fillOpacity: 0, stroke : 0},		
 		simplifyFactor: 5,
 		zIndex: 0,
 		precision: 1
-}).addTo(mapBY); 
-
+}); 
 
 seabedClass.on('add', (e)=>{
 	setTimeout(function(){seabedClassOut.addTo(mapBY);}, 500)
@@ -92,7 +123,9 @@ var baseMap = {
 	 'Bathymetry' : bathy_Contours,
 	 'Backscatter' : backscatter_int,
 	 'Sample Points' : markers,
-	 'Seabed Classification' : seabedClass
+	 'Seabed Classification' : seabedClass,
+	 'EEZ Boundary' : EEZ_bdry,
+	 'Designated Area Boundary' : DesigArea_bdry
  }
  
  
