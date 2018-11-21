@@ -14,7 +14,7 @@
 					map.setView([53.5, -8.5],7);
 		}
 		
-var surveyTiles = L.tileLayer('//m/INFOMAR_Tiles/surveys/{z}/{x}/{y}.png', {
+var surveyTiles = L.tileLayer('//maps.marine.ie/INFOMAR_Tiles/surveys/{z}/{x}/{y}.png', {
             maxZoom: 14,
             minZoom: 6,
             opacity: 0.9,
@@ -72,11 +72,11 @@ var surveyTiles = L.tileLayer('//m/INFOMAR_Tiles/surveys/{z}/{x}/{y}.png', {
 		}).addTo(map);
 
 
-		surveyTiles.on('add', (e)=>{
+		surveyTiles.on('add', function(e){
 			setTimeout(function(){surveysOutline.addTo(map);}, 500)
 		});
 
-			map.on('layerremove', (e)=>{
+			map.on('layerremove', function(e){
 				if (e.layer._url == '//maps.marine.ie/INFOMAR_Tiles/surveys/{z}/{x}/{y}.png'){
 				setTimeout(function(){map.removeLayer(surveysOutline);}, 500)
 			}

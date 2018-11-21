@@ -1,3 +1,7 @@
+if (isTouchDevice == true) {
+	$('#lookup').css('display', 'none');
+//	$('#lookupFeature').css('display', 'none');
+} else {	 
 //autogenerate dropdown list from shipwrecks geojson file
 var lookupContent = "<div>Select from the list  of identified shipwrecks:<div><select name=\"lookupFeature\" id=\"lookupFeature\">	<option value=\"dummy\">Clear Map</option>";
 document.getElementById('lookup').innerHTML = lookupContent;
@@ -10,8 +14,17 @@ for(i=0; i<myshipwreckObject.length; i++){
 		var shipwreckOption = "<option value=" + shipwreckName +">" + shipwreckNameClean +"</option>";
 		$("#lookupFeature").append(shipwreckOption);
 	}
-}	
+	}
+	sortList();
+}
 
+function sortList(){
+	var select = $("#lookupFeature");
+	select.html(select.find('option').sort(function(x,y){
+		return $(x).text() > $(y).text() ? 1 : -1;
+	}));
+	$('select').val("dummy");
+}
 //open and zoom to shipwreck from dropdown
 var shipwreckmarker;
 $('#lookupFeature').change(function(e){
@@ -23,7 +36,7 @@ if(typeof shipwreckmarker !== 'undefined'){
 	}
 
 for(i=0; i<myshipwreckObject.length; i++){
-	console.log(myshipwreckObject[i].properties.PDF);
+
 	if(myshipwreckObject[i].properties.VESSEL_NAM == marker && myshipwreckObject[i].properties.VESSEL_NAM != " "){
 		
 		var popupContent = "<label class='popupTitle'>" + myshipwreckObject[i].properties.VESSEL_NAM + "</label><br/>";

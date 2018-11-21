@@ -27,14 +27,13 @@ function createChartPopup(feature, layer) {
     });		
     }
 	
-var baseURL;
 var pdflist;
 function showShipwreckImageWindow(pdfname, title) {
 	pdflist = pdfname;
 	
-		baseURL = "https://jetstream.gsi.ie/iwdds/delivery/INFOMAR_Charts/Greyscale_Charts/" + pdfname;
+		var baseURLGrey = stdChartsURL + "/Greyscale_Charts/" + pdfname;
 				
-		var imageIframe = "<div><p style=\"font-size: 16px; font-weight: strong; margin: 5px; color: #4A4A4A;\">"+ title +"<button id=\"btnCloseShipwreck\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary\"><span class=\"ui-icon ui-icon-close\"></span></button></p></div><div id=\"chartimageDiv\" \"><embed id=\"chartimage\" src='" + baseURL + "' width=\"100%;\" height=\"100%;\" type=\"application/pdf\"></div><button type=\"button\" title=\"Open high resolution image in new browser window\"; class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\"class=\"ui-button-text-icon-primary\" onclick='openNewImageLink(baseURL, title)'><span class=\"ui-icon ui-icon-extlink\"></span></button></div>";
+		var imageIframe = "<div><p style=\"font-size: 16px; font-weight: strong; margin: 5px; color: #4A4A4A;\">"+ title +"<button id=\"btnCloseShipwreck\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary\"><span class=\"ui-icon ui-icon-close\"></span></button></p></div><div id=\"chartimageDiv\" \"><embed id=\"chartimage\" src='" + baseURLGrey + "' width=\"100%;\" height=\"100%;\" type=\"application/pdf\"></div><button type=\"button\" title=\"Open high resolution image in new browser window\"; class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\"class=\"ui-button-text-icon-primary\" onclick='openNewImageLink(baseURLGrey, title)'><span class=\"ui-icon ui-icon-extlink\"></span></button></div>";
 			
 						
 			 $('#shipwreckModal').html(imageIframe);
@@ -129,12 +128,12 @@ function modalAction(){
 } 
 
 function touchScreenModal(chart, name){
-		var baseURL = "https://jetstream.gsi.ie/iwdds/delivery/INFOMAR_Charts/Greyscale_Charts/" + chart;
+		var baseURLGrey = stdChartsURL + "/Greyscale_Charts/" + chart;
 		var a = chart.split(".")[0]
 		var pnglink = a +".png";
-		var newImage = '//maps.marine.ie/infomarData/variousmaps/PDFs/Greyscale/png/' + pnglink; 
+		var newImage = varChartsURL +'/Greyscale/png/' + pnglink; 
 	
-		var popup =  "<div><img src="+newImage+" width=100%; height=100%;\"><div><a class=\"button\" href ="+baseURL+" target=\"blank\">Click to download map</a></div></div>";
+		var popup =  "<div><button id=\"btnSmall\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary ui-icon ui-icon-close\"><span class=\"ui-icon ui-icon-close\"></span></button></div><div><img src="+newImage+" width=100%; height=100%;\"><div><a class=\"button\" href ="+baseURLGrey+" target=\"blank\">Click to download map</a></div></div>";
 									
 		$('#shipwreckModal').html(popup);
 		$('#shipwreckModal').removeClass("mediumModal").addClass('greyscalesmallModal');
@@ -150,8 +149,8 @@ function touchScreenModal(chart, name){
 
 
 
-function openNewImage(baseURL, name){
-		 var newImage = "<embed id=\"chartimage\" src='" + baseURL + "'  width=\"100%\" height=\"100%\" type=\"application/pdf\">" 
+function openNewImage(baseURLGrey, name){
+		 var newImage = "<embed id=\"chartimage\" src='" + baseURLGrey + "'  width=\"100%\" height=\"100%\" type=\"application/pdf\">" 
 
 		$("#chartimage").replaceWith(newImage);
 		$("button").removeClass("hoverBtn");

@@ -90,11 +90,11 @@ var seabedClassOut = L.geoJson(INF_Sub, {
 		precision: 1
 }); 
 
-seabedClass.on('add', (e)=>{
+seabedClass.on('add', function(e){
 	setTimeout(function(){seabedClassOut.addTo(mapBY);}, 500)
 });
 
-mapBY.on('layerremove', (e)=>{
+mapBY.on('layerremove', function(e){
 	if (e.layer.options.id == 'seabedClassID'){
 		setTimeout(function(){mapBY.removeLayer(seabedClassOut);}, 500)
 	}
@@ -134,10 +134,10 @@ var baseMap = {
 	L.control.mousePosition().addTo(mapBY);
 	mapBY.addControl(new L.Control.syncMap());
 	
-	if (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0)){
+/* 	if (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0)){
 		mapBY.addControl(new L.Control.locateMeWatch());	
 		mapBY.addControl(new L.Control.Compass());
-	 }
+	 } */
 
 function highlightFeature(e) {
     var layer = e.target;

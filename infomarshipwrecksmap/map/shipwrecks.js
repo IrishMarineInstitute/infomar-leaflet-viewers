@@ -49,7 +49,10 @@ function createWreckPopup(feature, layer) {
     }
 
  function showShipwreckWindow(sketchfabID, name) {
-	 console.log(sketchfabID);
+	if (isTouchDevice == true) {
+		var url = sketchfabID+ '?utm_medium=embed&utm_source=website&utm_campain=share-popup';
+			window.open(url, '_blank');
+	}else{
 	 var sketchfabIframe = "<div class=\"sketchfab-embed-wrapper\"><iframe class=\"3diframe\" width=\"100%;\" height=\"100%;\" src="+ sketchfabID +" frameborder=\"0\" allowvr allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" onmousewheel=\"\"></iframe><p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\"><a href="+ sketchfabID +"?utm_medium=embed&utm_source=website&utm_campain=share-popup\" target=\"_blank\" style=\"font-weight: bold; color: #1CAAD9;\">"+name+"</a>on <a href=\"https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campain=share-popup\" target=\"_blank\" style=\"font-weight: bold; color: #1CAAD9;\">Sketchfab</a></p><button id=\"btnCloseShipwreck\" type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; float:right;\" onclick=\"closeShipwreckWindow()\">Close</button></div>"; 
 	 
 	 
@@ -63,7 +66,7 @@ function createWreckPopup(feature, layer) {
 		}
 				return false;
 			}
-
+ }
 			function closeShipwreckWindow() {
 				$("div#shipwreckModal").removeClass("show");
 				$("div#modalMask").removeClass("show");

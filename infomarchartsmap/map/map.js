@@ -20,7 +20,6 @@ function style100(feature) {
         weight: 2,
         opacity: 1,
 		color: '#00b300',
-       // color: '#52AD1F',
         dashArray: '3',
         fillOpacity: 0.05
     };
@@ -35,6 +34,17 @@ function style50(feature) {
         fillOpacity: 0.05
     };
 }
+ 
+function style300(feature) {
+    return {
+        weight: 2,
+        opacity: 1,
+		color: '#d80808',
+        dashArray: '3',
+        fillOpacity: 0.05
+    };
+} 
+ 
 function style200(feature) {
     return {
         weight: 2,
@@ -65,15 +75,15 @@ function style200(feature) {
 		
 		var seabedLayer = L.geoJson (seabedClass, {
 		onEachFeature: createSeabedChartPopup,
-		style: style50
-		});
+		style: style300
+		}).addTo(map);
 		
 		var overlays = {
 		"Bathymetry" : 	bathy_Contours,
 		"Coastal Chart Series: 1:100k": coastal100k,
 		"Priority Bay Charts: 1:100k": chartsLayer100,
 		"Priority Bay Charts: 1:50k" : chartsLayer50,
-		"Seabed Classification Charts" : seabedLayer
+		"Sediment Classification Charts" : seabedLayer
 		};
 		
 		var baseMap = {

@@ -154,7 +154,7 @@ function showSmall3dImageWindow(pdfname, place, Other) {
 function touchSmall3dImageWindow(pdfname, place, Other, png) {
 		$(".previewWindow").css("display", "none");
 		
-		var imageIframe = "<div><button id=\"btnCloseShipwreck\" onclick='closeShipwreckWindowNoZoom()' style=\"float:right;\ class=\"ui-button-text-icon-primary\"><span class=\"ui-icon ui-icon-close\"></span></button></p></div><div><img src=" +chartURL + png+" width=100%; height=100%;\ style= \"margin-top:5px;\"></div><div><div><a class=\"button\" href =\""+chartURL+ pdfname+"\" target=\"blank\">Download Map</a></div>";
+		var imageIframe = "<div><button id=\"btnSmall\" onclick='closeShipwreckWindowNoZoom()' style=\"float:right;\ class=\"ui-button-text-icon-primary\"><span class=\"ui-icon ui-icon-close\"></span></button></p></div><div><img src=" +chartURL + png+" width=100%; height=100%;\ style= \"margin-top:5px;\"></div><div><div><a class=\"button\" href =\""+chartURL+ pdfname+"\" target=\"blank\">Download Map</a></div>";
 		
 		if (Other =="Yes"){
 				imageIframe += "<div><a id=\"alessonPlans\" href =\""+IWDDSLink+"\" target=\"blank\">Alternative print size</a></div></div>";

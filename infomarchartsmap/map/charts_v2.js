@@ -3,6 +3,8 @@ function createChartPopup(feature, layer) {
 	
  	var props = feature.properties;
 	layer.on('click', function(e){
+		var downloadType = 'Chart';
+		googleAnalyticsDownload(downloadType, e.target.feature.properties.Online_BY);
 		var touchscreen = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
 		
 		if (pdflist == e.target.feature.properties.PDF && modalOpen == true){
@@ -123,6 +125,8 @@ function closeShipwreckWindowNoZoom() {
             return false;
         }
 function openNewImage(baseURL, newChart, name){
+		var downloadType = 'Chart';
+		googleAnalyticsDownload(downloadType, newChart);
 			 var newImage = "<embed id=\"chartimage\" src='" + baseURL + "/" + newChart + ".pdf'\" width=\"100%\" height=\"100%\" type=\"application/pdf\">" 
 
 			$("#chartimage").replaceWith(newImage);

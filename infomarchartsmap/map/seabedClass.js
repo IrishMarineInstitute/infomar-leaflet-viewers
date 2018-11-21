@@ -4,6 +4,8 @@ function createSeabedChartPopup(feature, layer) {
  	var props = feature.properties;
 	layer.on('click', function(e){
 		var touchscreen = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
+		var downloadType = 'Chart';
+		googleAnalyticsDownload(downloadType, e.target.feature.properties.Chart_Name);
 		
 		if (pdflist == e.target.feature.properties.Chart_Name && modalOpen == true){
 					L.DomEvent.stop(e);
@@ -122,21 +124,7 @@ function closeShipwreckWindowNoZoom() {
 			map.flyToBounds([[55.5, -5.5], [51, -14.5]]);
             return false;
         }
-/* function openNewImage(baseURL, newChart, name){
-			 var newImage = "<embed id=\"chartimage\" src='" + baseURL + "/" + newChart + ".pdf'\" width=\"100%\" height=\"100%\" type=\"application/pdf\">" 
 
-			$("#chartimage").replaceWith(newImage);
-			$("button").removeClass("hoverBtn");
-			setTimeout(
-			  function() 
-			  {
-				$(name).addClass("hoverBtn");	
-			  }, 100);
-			  
-			 fullPageLink = $('embed#chartimage')[0].src;
-		
-			 return false;
-			}	 */
 			
 function openNewImageLink(url){
 				var win = window.open(url, '_blank');
@@ -170,7 +158,7 @@ function highlightSeabedFeature(e) {
 
 function resetSeabedHighlight(e) {
 	$(".previewWindow").css("display", "none");
-	seabedLayer.setStyle(style50);
+	seabedLayer.setStyle(style300);
 }
 
 function modalReplace(e){

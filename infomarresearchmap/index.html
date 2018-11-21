@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" href="//maps.marine.ie/mapjslibs/leaflet-1.0.0-b1/leaflet.css" />
+	<link rel="stylesheet" href="//maps.marine.ie/mapjslibs/infomarStyles.css" />
 	<script src="//maps.marine.ie/mapjslibs/leaflet-1.0.0-b1/leaflet.js"></script>
 	<script src="//maps.marine.ie/mapjslibs/esri-leaflet-v2.0.0-beta.5/dist/esri-leaflet.js"></script>
 	   <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/jquery-ui-1.11.4/jquery-ui.css" />
@@ -14,10 +15,18 @@
 		   	   <script src="//maps.marine.ie/mapjslibs/markercluster/dist/leaflet.markercluster-src.js" type="text/javascript"></script>
 			   <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/markercluster/dist/MarkerCluster.css" />
 			   <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/markercluster/dist/MarkerCluster.Default.css" />
-	  <!-- <script src="libs/jquery-ui-1.11.4/jquery-ui.min.js"></script> 
-		<script src="https://code.jquery.com/jquery-3.1.0.js"></script>-->
+
 	<script src="//maps.marine.ie/mapjslibs/jquery-3.1.0/jquery-3.1.0.min.js"></script>
-	
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128883598-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-128883598-1');
+</script>
+
 </head>
 <style>
   #map {
@@ -105,11 +114,6 @@ text-decoration: underline;
   width: 1000px;
   height: 675px;
 }
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;}
-.tg .tg-9hbo{font-weight:bold;vertical-align:top}
-.tg .tg-yw4l{vertical-align:top}
 
 @media screen and (max-width: 1000px) {
   .largeModal {
@@ -191,7 +195,7 @@ text-decoration: underline;
 	<div id="container">
 	<div id="map">
 			
-		<script src="//maps.marine.ie/infomarData/researchmap/geojson/ResearchCalls_v6.js" type="text/javascript"></script>
+		<script src="//maps.marine.ie/infomarData/researchmap/geojson/ResearchCalls.js" type="text/javascript"></script>
 		<script src="map/mapLayers.js" type="text/javascript"></script> 
 	</div>	
     <div id="shipwreckModal" class="fancyModal mediumModal">

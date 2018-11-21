@@ -16,6 +16,16 @@
 			   <script src="//maps.marine.ie/mapjslibs/jquery-3.1.1/jquery-3.1.1.min.js"></script>
 		<script src="//maps.marine.ie/mapjslibs/jquery-ui-1.11.4/jquery-ui.min.js"></script>
 			<script src="//maps.marine.ie/mapjslibs/config.js" type="text/javascript"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128883598-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-128883598-1');
+ 
+</script>
+		
 </head>
 <style>
   #map {
@@ -177,7 +187,7 @@ a.button:link, a.button:visited {
     transition-duration: 0.4s;
 }
 .btn{
-	background-color: #ffffff;
+ background-color: #ffffff;
     color: black;
     border: 1px solid #bbb;
 	border-radius: 4px;
@@ -190,11 +200,6 @@ a.button:link, a.button:visited {
 	margin-right:15px;
 	  -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
-}
-.chartbtn{
-	margin-top: 10px; 
-	margin-right: 10px; 
-	float:left; 
 }
 .btn:hover, .btn:active {
     background-color: #bbb;
@@ -239,30 +244,19 @@ a.button:link, a.button:visited {
 }
 @media screen and (max-width: 778px) {
   .mediumModal {
-	left: 0;
+  left: 0;
     margin-left: 0;
     margin-top: -10px;
-	width: 600px;
-	height: 450px;
+  width: 600px;
+  height: 450px;
   }
-.chartbtn{
-	margin-top: 5px; 
-	margin-right: 5px; 
-	float:left; 
-}
-  .btn{
-	padding: 2px 5px;
-}
 }
 
 @media screen and (max-width: 580px) {
   .mediumModal {
 	width: 400px;
+	height: 300px;
   }
-  #chartimageDiv{
-	height: 75%;
-	overflow-y: hidden;
-}
 }
 @media screen and (max-height: 440px) {
   .mediumModal {
@@ -290,8 +284,8 @@ a.button:link, a.button:visited {
 	<div id="container">
 	<div id="map">
 	<div>
-	<script src="//maps.marine.ie/infomarData/chartsmap/geojson/1_50k_Charts.js" type="text/javascript"></script> 
-	<script src="//maps.marine.ie/infomarData/chartsmap/geojson/1_100k_Charts.js" type="text/javascript"></script> 
+	<script src="//maps.marine.ie/infomarData/chartsmap/geojson/1_50k_Charts.js" type="text/javascript"></script>
+	<script src="//maps.marine.ie/infomarData/chartsmap/geojson/1_100k_Charts.js" type="text/javascript"></script>
 	<script src="//maps.marine.ie/infomarData/chartsmap/geojson/100k_Coastal.js" type="text/javascript"></script> 
 	<script src="//maps.marine.ie/infomarData/chartsmap/geojson/SeabedClass.js" type="text/javascript"></script> 
 	<script src="map/buttons.js" type="text/javascript"></script> 
