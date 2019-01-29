@@ -1,10 +1,12 @@
 function createCoveragePopup(feature, layer) {
 	layer.bindTooltip('Click to open', {className: 'toolTip'});
-	
+
  	var props = feature.properties;
 	
 		layer.on('click', function(e){
-
+			var downloadType = 'Chart';
+			var label = 'Coverage Polygons Map';
+			googleAnalyticsDownload(downloadType, label);
 					map.flyToBounds(e.target.getBounds());
 					if (isTouchDevice == true) {
 							map.closePopup();
@@ -97,7 +99,7 @@ function highlightCoverageFeature(e) {
         dashArray: '',
         fillOpacity: 0.7
     });
-	console.log(layer);
+
 	var newImage = '//maps.marine.ie/infomarData/variousmaps/PDFs/Coverage/' + layer.feature.properties.PNG; 
 
 	if(modalOpen){

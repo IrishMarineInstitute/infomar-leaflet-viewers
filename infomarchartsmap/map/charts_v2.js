@@ -167,9 +167,6 @@ function highlightFeature(e) {
 	$("#previewImg").attr("src", newImage);
 	$(".previewWindow").css("display", "block");
 	}					   
-/*     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-        layer.bringToFront();
-    } */
 }
 
 function resetHighlight(e) {

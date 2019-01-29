@@ -4,7 +4,8 @@ function createkmzPopup(feature, layer) {
  	var props = feature.properties;
 	
 		layer.on('click', function(e){
-				
+			var downloadType = 'KMZ';
+			googleAnalyticsDownload(downloadType, props.KMZName);
 					map.flyToBounds(e.target.getBounds());
 					 if (isTouchDevice == true) {
 						 	

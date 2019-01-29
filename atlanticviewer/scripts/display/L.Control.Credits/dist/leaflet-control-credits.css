@@ -30,3 +30,8 @@
     margin-top:5px;
     line-height:15px;
 }
+
+/* @media only screen and (max-device-width: 480px) {
+.leaflet-credits-control a.leaflet-credits-showlink {
+	
+} */

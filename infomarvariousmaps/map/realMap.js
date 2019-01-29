@@ -2,7 +2,6 @@
 	
 function createRealMapPopup(feature, layer) {
 	layer.bindTooltip('Click to open', {className: 'toolTip'});
-
 	
  	var props = feature.properties;
 		layer.on('click', function(e){
@@ -34,7 +33,10 @@ function createRealMapPopup(feature, layer) {
     }
 		var fullPageLink;
 function showRealMapImageWindow(pdfname, irishpdf, LessonPlans) {
-			
+			var downloadType = 'Chart';
+			var label = 'Real Map of Ireland';
+			googleAnalyticsDownload(downloadType, label);
+		
 		var imageIframe = "<div><p style=\"font-size: 16px; font-weight: strong; margin: 5px; color: #4A4A4A;\">Real Map of Ireland<button id=\"btnCloseShipwreck\" onclick='closeShipwreckWindowNoZoom()' style=\"float:right;\ class=\"ui-button-text-icon-primary\"><span class=\"ui-icon ui-icon-close\"></span></button></p></div><div id=\"chartimageDiv\" \"><embed id=\"chartimage\" src='" +chartURL+ pdfname + "' width=\"100%;\" height=\"100%;\" type=\"application/pdf\"></div><div><button id=\"bathymetry\" type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\" onclick='openNewRealImage(\""+chartURL + pdfname+"\")'>English</button><button id=\"bathymetry\" type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\" onclick='openNewRealImage(\"" +chartURL+ irishpdf + "\")'>Gaeilge</button></div><div><button type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\"class=\"ui-button-text-icon-primary\" onclick='openNewImageRealMapLink(fullPageLink)'><span class=\"ui-icon ui-icon-extlink\"></span></button><div><a id=\"alessonPlans\" href =\""+LessonPlans+"\" target=\"blank\">View Lesson Plans</a></div></div>";
 			
 						
@@ -124,6 +126,8 @@ function openNewRealImage(newChart){
 	
 	
 function showSmall3dImageWindow(pdfname, place, Other) {
+			var downloadType = 'Chart';
+			googleAnalyticsDownload(downloadType, pdfname);
 			
 		var imageIframe = "<div><p style=\"font-size: 16px; font-weight: strong; margin: 5px; color: #4A4A4A;\">3d Map of "+ place +"<button id=\"btnCloseShipwreck\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary\"><span class=\"ui-icon ui-icon-close\"></span></button></p></div><div id=\"chartimageDiv\" \"><embed id=\"chartimage\" src='" +chartURL+ pdfname + "' width=\"100%;\" height=\"100%;\" type=\"application/pdf\"></div><div><button type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\"class=\"ui-button-text-icon-primary\" onclick='openNewImageRealMapLink(fullPageLink)'><span class=\"ui-icon ui-icon-extlink\"></span></button>";
 		

@@ -18,7 +18,7 @@ function createWreckPopup(feature, layer) {
 	//myshipwreckObject.push(feature.properties);
 	myshipwreckObject.push(feature);
 	var props = feature.properties;
-
+	var downloadType = 'Wreck Sheet';
         var vesselName = "Unidentified Vessel";
         if (typeof props.VESSEL_NAM != 'undefined' && props.VESSEL_NAM != " ") {
             vesselName = props.VESSEL_NAM;
@@ -37,7 +37,7 @@ function createWreckPopup(feature, layer) {
 		//	popupHTML += "<br/><div><a class='pointer' onclick='showShipwreckImageWindow(\"" + props.IMAGE + "\",\""+vesselName + "\");'>View Full Size Image</a></div>"; 
         }
 		if (typeof props.PDF != 'undefined' && props.PDF != "No") {
-            popupHTML += "<br/><div><a href='" + props.PDF + "' target='_blank'>View Wreck Report</a></div>";
+            popupHTML += "<br/><div><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+vesselName + "\");' href='" + props.PDF + "' target='_blank'>View Wreck Report</a></div>";
         } 
 		
        if (typeof props.Link3d != 'undefined' && props.Link3d != "") {

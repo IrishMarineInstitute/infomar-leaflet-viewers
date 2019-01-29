@@ -123,7 +123,7 @@ var baseMap = {
 	 'Bathymetry' : bathy_Contours,
 	 'Backscatter' : backscatter_int,
 	 'Sample Points' : markers,
-	 'Seabed Classification' : seabedClass,
+	 'Sediment Classification' : seabedClass,
 	 'EEZ Boundary' : EEZ_bdry,
 	 'Designated Area Boundary' : DesigArea_bdry
  }

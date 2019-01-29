@@ -34,7 +34,8 @@ var surveyTiles = L.tileLayer('//maps.marine.ie/INFOMAR_Tiles/surveys/{z}/{x}/{y
 		 	var baseLink = "//maps.marine.ie/infomarData/surveysmap/reports";
 			var surveyRepLink = "Explorer";
 			var props = featureCollection.features["0"].properties;
-		
+			var downloadType = 'Report';
+			
 		if (featureCollection.features.length > 0) { 
 			 var popupHTML ="<table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">" + props.SURVEY + "</th></tr><tr><td class=\"tg-9hbo\">Project</td><td class=\"tg-yw4l\">"+ props.PROJECT+ "</td></tr><tr><td class=\"tg-9hbo\">Vessel</td><td class=\"tg-yw4l\">" + props.VESSEL_NAM  +"</td></tr><tr><td class=\"tg-9hbo\">Year</td><td class=\"tg-yw4l\">"+  Math.round(props.YEAR) + "</td></tr>";
 			 if(props.VESSEL_NAM == "Celtic Voyager"){
@@ -44,10 +45,10 @@ var surveyTiles = L.tileLayer('//maps.marine.ie/INFOMAR_Tiles/surveys/{z}/{x}/{y
 				}
 				
 			  if (props.ExecutiveS !='undefined' && props.ExecutiveS!=""){
-				popupHTML +=  "<tr><td class=\"tg-9hbo\">Summary Report</td><td class=\"tg-yw4l\"><a target='blank' href=\'" + baseLink + "/ExecutiveReport/"+ props.ExecutiveS+".pdf'>"+ props.SURVEY + "</a></td></tr>";
+				popupHTML +=  "<tr><td class=\"tg-9hbo\">Summary Report</td><td class=\"tg-yw4l\"><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+props.ExecutiveS + "\");'target='blank' href=\'" + baseLink + "/ExecutiveReport/"+ props.ExecutiveS+".pdf'>"+ props.SURVEY + "</a></td></tr>";
 			 }
 			  if (props.SurveyRep !='undefined' && props.SurveyRep!=""){
-				 popupHTML +=  "<tr><td class=\"tg-9hbo\">Full Report</td><td class=\"tg-yw4l\"><a target='blank' href=\'" + baseLink + "/SurveyReport/"+surveyRepLink+"/"+ props.SurveyRep+"'>"+ props.SURVEY + "</a></td></tr>";
+				 popupHTML +=  "<tr><td class=\"tg-9hbo\">Full Report</td><td class=\"tg-yw4l\"><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+props.SurveyRep + "\");' target='blank' href=\'" + baseLink + "/SurveyReport/"+surveyRepLink+"/"+ props.SurveyRep+"'>"+ props.SURVEY + "</a></td></tr>";
 			 }
 		
 		map.flyTo(e.latlng, 10,{
@@ -96,7 +97,7 @@ var surveyTiles = L.tileLayer('//maps.marine.ie/INFOMAR_Tiles/surveys/{z}/{x}/{y
 		precision: 1
 		}).addTo(map);
 		
-		var tracklines = L.esri.dynamicMapLayer({url: 'http://maps.marine.ie/arcgis/rest/services/Infomar/Tracklines/MapServer'}); 
+		var tracklines = L.esri.dynamicMapLayer({url: 'https://maps.marine.ie/arcgis/rest/services/Infomar/Tracklines/MapServer'}); 
 		
 		<!-- var to load overlays into Layer Control -->
 		var overlays = {

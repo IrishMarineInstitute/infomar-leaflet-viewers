@@ -3,6 +3,8 @@ function createChartPopup(feature, layer) {
 	layer.bindTooltip('Click to preview pdf', {className: 'toolTip'});
 		
 		layer.on('click', function(e){
+					var downloadType = 'Chart';
+					googleAnalyticsDownload(downloadType, e.target.feature.properties.PDF);
 				if (pdflist == e.target.feature.properties.PDF && modalOpen == true){
 					L.DomEvent.stop(e);
 					return false;

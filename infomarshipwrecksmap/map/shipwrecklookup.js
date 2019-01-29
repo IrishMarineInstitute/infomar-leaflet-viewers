@@ -30,7 +30,7 @@ var shipwreckmarker;
 $('#lookupFeature').change(function(e){
 
 var marker = $('#lookupFeature').val();
-
+var downloadType = 'Wreck Sheet';
 if(typeof shipwreckmarker !== 'undefined'){
 	shipwreckmarker.removeFrom(map);
 	}
@@ -55,7 +55,7 @@ for(i=0; i<myshipwreckObject.length; i++){
         }  */
 				if (myshipwreckObject[i].properties.PDF != "No") {
 					
-            popupContent += "<br/><div><a href='" + myshipwreckObject[i].properties.PDF + "' target='_blank'>View Wreck Report</a></div>";
+            popupContent += "<br/><div><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+myshipwreckObject[i].properties.VESSEL_NAM + "\");' href='" + myshipwreckObject[i].properties.PDF + "' target='_blank'>View Wreck Report</a></div>";
         } 
 		
        if (typeof myshipwreckObject[i].properties.Link3d != 'undefined' && myshipwreckObject[i].properties.Link3d != "") {

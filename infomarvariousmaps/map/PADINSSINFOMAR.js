@@ -1,9 +1,14 @@
 function createPADChartPopup(feature, layer) {
 	var props = feature.properties;
 	layer.bindTooltip('Click to preview pdf', {className: 'toolTip'});
+
 		
 		layer.on('click', function(e){
-				if (pdflist == e.target.feature.properties.PDF && modalOpen == true){
+			var downloadType = 'Chart';
+			var label = 'PAD INSS INFOMAR';
+			googleAnalyticsDownload(downloadType, label);
+			
+			if (pdflist == e.target.feature.properties.PDF && modalOpen == true){
 					L.DomEvent.stop(e);
 					return false;
 				} else {

@@ -12,7 +12,7 @@ L.CreditsControl = L.Control.extend({
     },
     initialize: function(options) {
         if (! options.text)  throw "L.CreditsControl missing required option: text";
-        if (! options.image) throw "L.CreditsControl missing required option: image";
+     //   if (! options.image) throw "L.CreditsControl missing required option: image";
         if (! options.link)  throw "L.CreditsControl missing required option: link";
 
         L.setOptions(this,options);
@@ -22,7 +22,7 @@ L.CreditsControl = L.Control.extend({
 
         // create our container, and set the background image
         var container = L.DomUtil.create('div', 'leaflet-credits-control', container);
-        container.style.backgroundImage = 'url(' + this.options.image + ')';
+        //container.style.backgroundImage = 'url(' + this.options.image + ')';
         
 		if (this.options.width)  container.style.paddingRight = this.options.width + 'px';
         if (this.options.height) container.style.height       = this.options.height + 'px';
@@ -30,6 +30,7 @@ L.CreditsControl = L.Control.extend({
         // generate the hyperlink to the left-hand side
         var link        = L.DomUtil.create('a', '', container);
         link.href       = this.options.link;
+		link.target		= "_blank";
         link.innerHTML  = this.options.text;
 		link.onclick = 'close_link()';
 		
@@ -42,7 +43,12 @@ L.CreditsControl = L.Control.extend({
         .addListener(container, 'click', L.DomEvent.stopPropagation)
         .addListener(container, 'dblclick', L.DomEvent.stopPropagation)
         .addListener(container, 'click', close_link);
-        return container;
+       		var viewportWidth = $(window).width();
+if (viewportWidth < 480){
+			link.innerHTML = "<img src = \"images/AORA_CreditsMobile.png\" />";
+			
+	} 
+	return container;
     }
 });
 
@@ -54,3 +60,7 @@ function close_link() {
                 L.DomUtil.addClass(link, 'leaflet-credits-showlink');
             }
         }
+
+
+
+		

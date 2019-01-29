@@ -14,28 +14,8 @@
 	if ($(window).width() < 780 ||isTouchDevice == true) {
 			map.setView([53.5, -8.5],7);
 }
-		var base_EsriOceans = L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}.png', {
-        noWrap: true,
-		attribution: '<a href="//www.esri.com">ESRI</a>'
-		}).addTo(map);
 
- 
-		var base_EsriImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        noWrap: true,
-		attribution: '<a href="//www.esri.com">ESRI</a>'
-		});
-
-
-		var OpenStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		attribution: '<a href="//openstreetmap.org/copyright">OpenStreetMap contributors</a> ',
-		});
-
-	var baseMap = {
-    "Oceans": base_EsriOceans,
-	"Street Map": OpenStreetMap,
-    "Imagery": base_EsriImagery,
-};
-
+var downloadType = 'Report';
 		
 		var researchCallpts = L.geoJson(researchCalls, {
 			onEachFeature: function (feature, layer) {
@@ -47,7 +27,7 @@
 				if (feature.properties && feature.properties.REF) {
 				  if (feature.properties.Publication != "" ){
 				layer.bindPopup(
-				"<table class=\"tg\"><tr><th class=\"tg-9hbo\">Reference</th><th class=\"tg-yw4l\">" + feature.properties.REF + "</th></tr><tr><td class=\"tg-9hbo\">Title</td><td class=\"tg-yw4l\">"+ feature.properties.Title+ "</td></tr><tr><td class=\"tg-9hbo\">Organisation</td><td class=\"tg-yw4l\">"+ feature.properties.Organisation + "</td></tr><tr><td class=\"tg-9hbo\">Publication</td><td class=\"tg-yw4l\"><a target='blank' href=\'" + downloadLink + "\'> Download Publication</a></td></tr></table>")
+				"<table class=\"tg\"><tr><th class=\"tg-9hbo\">Reference</th><th class=\"tg-yw4l\">" + feature.properties.REF + "</th></tr><tr><td class=\"tg-9hbo\">Title</td><td class=\"tg-yw4l\">"+ feature.properties.Title+ "</td></tr><tr><td class=\"tg-9hbo\">Organisation</td><td class=\"tg-yw4l\">"+ feature.properties.Organisation + "</td></tr><tr><td class=\"tg-9hbo\">Publication</td><td class=\"tg-yw4l\"><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+feature.properties.REF + "\");'target='blank' href=\'" + downloadLink + "\'> Download Publication</a></td></tr></table>")
 				  } else {
 				layer.bindPopup(
 				"<table class=\"tg\"><tr><th class=\"tg-9hbo\">Reference</th><th class=\"tg-yw4l\">" + feature.properties.REF + "</th></tr><tr><td class=\"tg-9hbo\">Title</td><td class=\"tg-yw4l\">"+ feature.properties.Title+ "</td></tr><tr><td class=\"tg-9hbo\">Organisation</td><td class=\"tg-yw4l\">"+ feature.properties.Organisation + "</td></tr></table>")
@@ -61,6 +41,13 @@
 		map.addLayer(markers);
 		
 		<!-- var to load overlays into Layer Control -->
+		var baseMap = {
+		"Oceans": base_EsriOceans, 
+		"Street Map": OpenStreetMap,
+		"Imagery": base_EsriImagery,
+};
+		map.addLayer(base_EsriOceans);
+		
 		var overlays = {
 		"Research Centers": markers
 		};
