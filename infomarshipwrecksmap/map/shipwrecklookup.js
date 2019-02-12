@@ -47,15 +47,15 @@ for(i=0; i<myshipwreckObject.length; i++){
         popupContent += "<div><label class='popupLabel'>Depth: </label>"+" " + myshipwreckObject[i].properties.WATER_DEPT + " m</div>";
 
         if (typeof myshipwreckObject[i].properties.IMAGE != 'undefined' && myshipwreckObject[i].properties.IMAGE != "") {
-			popupContent += "<div><img src='" + myshipwreckObject[i].properties.IMAGE + "' width='150px' /></div>";
-			popupContent += "<br/><div><a class='pointer' onclick='showShipwreckImageWindow(\"" + myshipwreckObject[i].properties.IMAGE + "\",\""+myshipwreckObject[i].properties.VESSEL_NAM + "\");'>View Full Size Image</a></div>";
+			popupContent += "<div><img src='"+shipURL+ myshipwreckObject[i].properties.IMAGE + "' width='150px' /></div>";
+			popupContent += "<br/><div><a class='pointer' onclick='showShipwreckImageWindow(\""+shipURL+ myshipwreckObject[i].properties.IMAGE + "\",\""+myshipwreckObject[i].properties.VESSEL_NAM + "\");'>View Full Size Image</a></div>";
         }
 /* 		if (myshipwreckObject[i].properties.REPORT == "PDF") {
             popupContent += "<br/><div><a href='" + myshipwreckObject[i].properties.PDF + "' target='_blank'>View Wreck Report</a></div>";
         }  */
 				if (myshipwreckObject[i].properties.PDF != "No") {
 					
-            popupContent += "<br/><div><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+myshipwreckObject[i].properties.VESSEL_NAM + "\");' href='" + myshipwreckObject[i].properties.PDF + "' target='_blank'>View Wreck Report</a></div>";
+            popupContent += "<br/><div><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+myshipwreckObject[i].properties.VESSEL_NAM + "\");' href='"+shipURL + myshipwreckObject[i].properties.PDF + "' target='_blank'>View Wreck Report</a></div>";
         } 
 		
        if (typeof myshipwreckObject[i].properties.Link3d != 'undefined' && myshipwreckObject[i].properties.Link3d != "") {

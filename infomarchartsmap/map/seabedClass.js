@@ -54,7 +54,7 @@ layer.on('mouseover', function(e){
 			modalOpen = true;
 			
 		} else {
-			var imageIframe = "<div><p style=\"font-size: 16px; font-weight: strong; margin: 5px; color: #4A4A4A;\">"+ title + " Seabed Classification" + "<button id=\"btnCloseShipwreck\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary ui-icon ui-icon-close\"><span class=\"ui-icon ui-icon-close\"></span></button></p></div><div id=\"chartimageDiv\"><embed id=\"chartimage\" src='" + baseURL + "/" + seabedClass + ".pdf'\" width=\"100%;\" height=\"100%;\" type=\"application/pdf\"></div><div><button type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\"class=\"ui-button-text-icon-primary\" onclick='openNewImageLink(fullPageLink)'><span class=\"ui-icon ui-icon-extlink\"></span></button></div>";
+			var imageIframe = "<div><p style=\"font-size: 16px; font-weight: strong; margin: 5px; color: #4A4A4A;\">"+ title + " Sediment Classification" + "<button id=\"btnCloseShipwreck\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary ui-icon ui-icon-close\"><span class=\"ui-icon ui-icon-close\"></span></button></p></div><div id=\"chartimageDiv\"><embed id=\"chartimage\" src='" + baseURL + "/" + seabedClass + ".pdf'\" width=\"100%;\" height=\"100%;\" type=\"application/pdf\"></div><div><button type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\"class=\"ui-button-text-icon-primary\" onclick='openNewImageLink(fullPageLink)'><span class=\"ui-icon ui-icon-extlink\"></span></button></div>";
 									
 			$('#shipwreckModal').html(imageIframe);
 			fullPageLink = ($('#chartimage').attr("src"));
@@ -80,7 +80,7 @@ function touchScreenSeabedModal(seabedClass, folder, title){
 		var newImage = previewImg + pnglink; 
 		pdflist = seabedClass;
 	
-			var popup =  "<div><button id=\"btnSmall\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary ui-icon ui-icon-close\"><span class=\"ui-icon ui-icon-close\"></span></button></div><div><img src="+newImage+" width=100%; height=100%;\"><div><p style=\"font-size: 12px; font-weight: strong; margin: 5px; color: #4A4A4A;\">Download a Map:</span></p></div><div><a class=\"button\" href ="+baseURL+"/"+ seabedClass+".pdf target=\"blank\">Seabed Classification</a></div><div></div>";
+			var popup =  "<div><button id=\"btnSmall\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary ui-icon ui-icon-close\"><span class=\"ui-icon ui-icon-close\"></span></button></div><div><img src="+newImage+" width=100%; height=100%;\"><div><p style=\"font-size: 12px; font-weight: strong; margin: 5px; color: #4A4A4A;\">Download a Map:</span></p></div><div><a class=\"button\" href ="+baseURL+"/"+ seabedClass+".pdf target=\"blank\">Sediment Classification</a></div><div></div>";
 						
 			 $('#shipwreckModal').html(popup);
 			 $('#shipwreckModal').removeClass("mediumModal").addClass('mobileSeabedModal');

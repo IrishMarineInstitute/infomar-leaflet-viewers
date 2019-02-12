@@ -229,7 +229,7 @@ var base_EsriOceans2 = L.tileLayer('//services.arcgisonline.com/ArcGIS/rest/serv
 		});
 	
 var backscatter_split = L.tileLayer('https://maps.marine.ie/INFOMAR_Tiles/backscatter/{z}/{x}/{y}.png', {
-            maxZoom: 13,
+            maxZoom: 14,
             minZoom: 6,
             opacity: 1,
             attribution: '<a href="http://www.infomar.ie">INFOMAR</a>'

@@ -33,11 +33,10 @@ function createWreckPopup(feature, layer) {
         popupHTML += "<div><label class='popupLabel'>Depth: </label>"+" " + props.WATER_DEPT + " m</div>";
 
         if (typeof props.IMAGE != 'undefined' && props.IMAGE != "") {
-			popupHTML += "<div><a class='pointer' onclick='showShipwreckImageWindow(\"" + props.IMAGE + "\",\""+vesselName + "\");'><img src='" + props.IMAGE + "' width='100%' /></a></div>";
-		//	popupHTML += "<br/><div><a class='pointer' onclick='showShipwreckImageWindow(\"" + props.IMAGE + "\",\""+vesselName + "\");'>View Full Size Image</a></div>"; 
-        }
+			popupHTML += "<div><a class='pointer' onclick='showShipwreckImageWindow(\"" +shipURL+ props.IMAGE + "\",\""+vesselName + "\");'><img src='"+shipURL + props.IMAGE + "' width='100%' /></a></div>";
+	        }
 		if (typeof props.PDF != 'undefined' && props.PDF != "No") {
-            popupHTML += "<br/><div><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+vesselName + "\");' href='" + props.PDF + "' target='_blank'>View Wreck Report</a></div>";
+            popupHTML += "<br/><div><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+vesselName + "\");' href='"+shipURL + props.PDF + "' target='_blank'>View Wreck Report</a></div>";
         } 
 		
        if (typeof props.Link3d != 'undefined' && props.Link3d != "") {
@@ -74,8 +73,8 @@ function createWreckPopup(feature, layer) {
 			}
 
 function showShipwreckImageWindow(shipwreckimage, name) {
-			
-		 var imageIframe = "<div class=\"imgFrame\" style=\"text-align: center\"><img id=\"shipwreckimg\"src=\'" + shipwreckimage + "\' width=\'100%\' height=\'100%\'/></div><div style=\"text-align: center\"><p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\">"+name+" <div><button id=\"btnCloseShipwreck\" type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; float:right;\" onclick=\"closeShipwreckWindow()\">Close</button></div>";	
+			console.log(shipwreckimage)
+		 var imageIframe = "<div class=\"imgFrame\" style=\"text-align: center\"><img id=\"shipwreckimg\"src=\'"+ shipwreckimage + "\' width=\'100%\' height=\'100%\'/></div><div style=\"text-align: center\"><p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\">"+name+" <div><button id=\"btnCloseShipwreck\" type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; float:right;\" onclick=\"closeShipwreckWindow()\">Close</button></div>";	
 			
 			
 			 $('#shipwreckModal').html(imageIframe);

@@ -35,7 +35,7 @@ function showShipwreckImageWindow(pdfname, title) {
 	
 		var baseURLGrey = stdChartsURL + "/Greyscale_Charts/" + pdfname;
 				
-		var imageIframe = "<div><p style=\"font-size: 16px; font-weight: strong; margin: 5px; color: #4A4A4A;\">"+ title +"<button id=\"btnCloseShipwreck\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary\"><span class=\"ui-icon ui-icon-close\"></span></button></p></div><div id=\"chartimageDiv\" \"><embed id=\"chartimage\" src='" + baseURLGrey + "' width=\"100%;\" height=\"100%;\" type=\"application/pdf\"></div><button type=\"button\" title=\"Open high resolution image in new browser window\"; class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\"class=\"ui-button-text-icon-primary\" onclick='openNewImageLink(baseURLGrey, title)'><span class=\"ui-icon ui-icon-extlink\"></span></button></div>";
+		var imageIframe = "<div><p style=\"font-size: 16px; font-weight: strong; margin: 5px; color: #4A4A4A;\">"+ title +"<button id=\"btnCloseShipwreck\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary\"><span class=\"ui-icon ui-icon-close\"></span></button></p></div><div id=\"chartimageDiv\" \"><embed id=\"chartimage\" src='" + baseURLGrey + "' width=\"100%;\" height=\"100%;\" type=\"application/pdf\"></div><button type=\"button\" title=\"Open high resolution image in new browser window\"; class=\"btn btn-digital\" style=\"margin-top: 10px; margin-right: 10px; float:left;\"class=\"ui-button-text-icon-primary\" onclick='openNewImageLink(\""+baseURLGrey+"\")'><span class=\"ui-icon ui-icon-extlink\"></span></button></div>";
 			
 						
 			 $('#shipwreckModal').html(imageIframe);
@@ -164,9 +164,9 @@ function openNewImage(baseURLGrey, name){
 			 return false;
 			}	
 			
-function openNewImageLink(url){
+/* function openNewImageLink(url){
 		var win = window.open(url, '_blank');
 		win.focus();
 		return false;
 		}
-		
+		 */

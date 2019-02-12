@@ -16,28 +16,27 @@
 		}
 			var shipwreckPts = L.geoJson (shipwrecks, {
 			pointToLayer: function (feature, latlng) {
-
-            var wreckMarker;
-			var vesselTitle = "Unidentified Vessel";
-			if (typeof feature.properties.VESSEL_NAM != 'undefined' && feature.properties.VESSEL_NAM != " ") {
-            vesselTitle = feature.properties.VESSEL_NAM;
-			};
-		
-            if (typeof feature.properties.Link3d != 'undefined' && feature.properties.Link3d != "") {
-                wreckMarker = L.marker(latlng, { 
-				icon: wreckIcon2, 
-				title: vesselTitle,
-				riseOnHover: true
-				});
-            }
-            else {
-                wreckMarker = L.marker(latlng, { 
-				icon: wreckIcon,
-				title: vesselTitle,
-				riseOnHover: true
-				});
-            }
-			return wreckMarker;
+				var wreckMarker;
+				var vesselTitle = "Unidentified Vessel";
+				if (typeof feature.properties.VESSEL_NAM != 'undefined' && feature.properties.VESSEL_NAM != " ") {
+				vesselTitle = feature.properties.VESSEL_NAM;
+				};
+			
+				if (typeof feature.properties.Link3d != 'undefined' && feature.properties.Link3d != "") {
+					wreckMarker = L.marker(latlng, { 
+					icon: wreckIcon2, 
+					title: vesselTitle,
+					riseOnHover: true
+					});
+				}
+				else {
+					wreckMarker = L.marker(latlng, { 
+					icon: wreckIcon,
+					title: vesselTitle,
+					riseOnHover: true
+					});
+				}
+				return wreckMarker;
 			},
 			onEachFeature:  createWreckPopup
 				});

@@ -37,7 +37,8 @@ var modalOpen = false;
 function touchScreenkmzModal(kmzname){
 
 	$(".previewWindow").css("display", "none");
-	var kmzLink = 'https://jetstream.gsi.ie/iwdds/delivery/INFOMAR_Google/' +kmzname+ '.kmz';
+	var kmzLink = kmzURL +kmzname+ '.kmz';
+	console.log(kmzLink);
 	var newImage = '//maps.marine.ie/infomarData/variousmaps/kmz_pngs/' + kmzname +".png";
 	
 		var popup =  "<div><button id=\"btnSmall\" onclick='closeShipwreckWindow()' style=\"float:right;\ class=\"ui-button-text-icon-primary ui-icon ui-icon-close\"><span class=\"ui-icon ui-icon-close\"></span></button></div><div><img src="+newImage+" width=100%; height=100%; style= \"margin-top:5px;\"></div><div><a class=\"button\" href =\""+kmzLink+"\" target=\"blank\">Download Google Earth kmz file</a></div>";
@@ -116,6 +117,6 @@ function modalCoverageAction(){
 }
 
 function downloadkmz(downloadLink){
-	window.location = 'https://jetstream.gsi.ie/iwdds/delivery/INFOMAR_Google/' +downloadLink+ '.kmz';
+	window.location = kmzURL +downloadLink+ '.kmz';
 }
 
