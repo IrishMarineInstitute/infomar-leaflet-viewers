@@ -30,11 +30,11 @@ var surveyTiles = L.tileLayer('//maps.marine.ie/INFOMAR_Tiles/surveys/{z}/{x}/{y
 	if(map.hasLayer(surveyTiles)){
 	surveyID.identify().on(map).at(e.latlng).returnGeometry(false)
 	 .run(function(error, featureCollection, response){
-		 
+		
 		 	var baseLink = "//maps.marine.ie/infomarData/surveysmap/reports";
 			var surveyRepLink = "Explorer";
 			var props = featureCollection.features["0"].properties;
-			var downloadType = 'Report';
+            var downloadType = 'Report';
 			
 		if (featureCollection.features.length > 0) { 
 			 var popupHTML ="<table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">" + props.SURVEY + "</th></tr><tr><td class=\"tg-9hbo\">Project</td><td class=\"tg-yw4l\">"+ props.PROJECT+ "</td></tr><tr><td class=\"tg-9hbo\">Vessel</td><td class=\"tg-yw4l\">" + props.VESSEL_NAM  +"</td></tr><tr><td class=\"tg-9hbo\">Year</td><td class=\"tg-yw4l\">"+  Math.round(props.YEAR) + "</td></tr>";
@@ -84,12 +84,12 @@ var surveyTiles = L.tileLayer('//maps.marine.ie/INFOMAR_Tiles/surveys/{z}/{x}/{y
 		});
 				
 		function popupPlanned (feature, layer){
-			var popupHTML = "<table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">Planned Survey Area 2018</th></tr><tr><td class=\"tg-9hbo\">Survey Platform</td><td class=\"tg-yw4l\">"+ feature.properties.Vessel+ "</td></tr></table>";
+			var popupHTML = "<table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">Planned Survey Area " + feature.properties.Year + "</th></tr><tr><td class=\"tg-9hbo\">Survey Platform</td><td class=\"tg-yw4l\">"+ feature.properties.Vessel+ "</td></tr></table>";
 			layer.bindPopup(popupHTML);
 		};
 
 	
-		var plannedSurveys = L.geoJson (plannedSurveys2018, {
+		var plannedSurveyAreas = L.geoJson (plannedSurveys, {
 		onEachFeature: popupPlanned,
 		style:  {color: "#9d00f9",'weight': 1,'opacity': 1, dashArray: '3'},
 		simplifyFactor: 5,
@@ -104,7 +104,7 @@ var surveyTiles = L.tileLayer('//maps.marine.ie/INFOMAR_Tiles/surveys/{z}/{x}/{y
 		"Bathymetry" : 	bathy_Contours,
 		"Backscatter": backscatter_int,
 		"Surveys": surveyTiles,
-		"Planned Surveys": plannedSurveys,
+		"Planned Surveys": plannedSurveyAreas,
 		"Tracklines" : tracklines
 		};
 		

@@ -47,7 +47,7 @@ layer.on('mouseover', function(e){
 		var info = getAcrobatInfo();
 		
 		if ((info.browser != "firefox") && info.acrobat == false){
-			var pdfError = "<div>It appears your browser pdf previewer is disabled.<br>You can enable the pdf previewer or you can download the maps using the following buttons:<br></div><div><a class=\"button\" href ="+baseURL+"/"+ seabedClass+".pdf target=\"blank\">Seabed Calssification</a></div></div>";
+			var pdfError = "<div>It appears your browser pdf previewer is disabled.<br>You can enable the pdf previewer or you can download the maps using the following buttons:<br></div><div><a class=\"button\" href ="+baseURL+"/"+ seabedClass+".pdf target=\"blank\">Sediment Classification</a></div></div>";
 			
 			$('#pdferror').html(pdfError);
 			$("div#pdferror").addClass("show");
