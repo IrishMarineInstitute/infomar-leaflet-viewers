@@ -2,6 +2,7 @@
 var map = L.map('map', {
 			center: [53.5, -10.397],
 			zoom: 7,
+            maxZoom: 14,
 			layersControl: true
 		});
 		map.attributionControl.addAttribution("&copy; <a href=http://www.infomar.ie>INFOMAR</a>");

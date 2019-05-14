@@ -2,6 +2,7 @@ var mapBY = L.map('mapBY', {
             center: [53.5, -10.397],
 			layers: [base_EsriOceans,bathy_Contours],
             zoom: 7,
+            maxZoom: 14,
             layersControl: true,
         });
 	

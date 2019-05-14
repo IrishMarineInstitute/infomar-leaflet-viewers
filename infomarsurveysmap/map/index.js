@@ -40,8 +40,8 @@ var surveyTiles = L.tileLayer('//maps.marine.ie/INFOMAR_Tiles/surveys/{z}/{x}/{y
 			 var popupHTML ="<table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">" + props.SURVEY + "</th></tr><tr><td class=\"tg-9hbo\">Project</td><td class=\"tg-yw4l\">"+ props.PROJECT+ "</td></tr><tr><td class=\"tg-9hbo\">Vessel</td><td class=\"tg-yw4l\">" + props.VESSEL_NAM  +"</td></tr><tr><td class=\"tg-9hbo\">Year</td><td class=\"tg-yw4l\">"+  Math.round(props.YEAR) + "</td></tr>";
 			 if(props.VESSEL_NAM == "Celtic Voyager"){
 				 surveyRepLink = "Voyager";
-				}else if (props.VESSEL_NAM == "RV Keary"){
-				 surveyRepLink = "Keary";
+				}else if (props.VESSEL_NAM == "RV Keary" || props.VESSEL_NAM == "RV Geo" || props.VESSEL_NAM == "Cosantoir Bradan"){
+				 surveyRepLink = "KRYGeoCBTonn";
 				}
 				
 			  if (props.ExecutiveS !='undefined' && props.ExecutiveS!=""){

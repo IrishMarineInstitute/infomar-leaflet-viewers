@@ -181,7 +181,7 @@ surveys2017.bindPopup(function (layer) {
     return L.Util.template('<p><h4>{LOCATION} </h4>{VESSEL}', layer.feature.properties);
 }); */
 
-var PlannedSurveys = L.geoJSON(PlannedSurveys, {
+var planned_Surveys = L.geoJSON(plannedSurveys, {
 	style: {color: "#2576e8"},
 	onEachFeature: function (feature, layer) {
     // does this feature have a property named popupContent?
@@ -620,7 +620,7 @@ var overlays = [
             "Bathymetry Gridded Data": Bathy,
             "Shaded Relief Gridded Data": BathyShaded,
             "INFOMAR/INSS Surveys": surveys,
-            "Planned 2017 Surveys": PlannedSurveys,
+            "Planned Surveys": planned_Surveys,
 			"50K Charts Priority Bays" : All50k_BayAreas,
 			"100K Charts Priority Bays" : All100k_BayAreas,
 			"100K Chart Series" : a100k_ChartSeries
