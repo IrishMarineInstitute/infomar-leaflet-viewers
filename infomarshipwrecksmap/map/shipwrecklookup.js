@@ -46,21 +46,18 @@ for(i=0; i<myshipwreckObject.length; i++){
         popupContent += "<div><label class='popupLabel'>Wreck Width: </label>"+" " + myshipwreckObject[i].properties.WRECK_WIDT + " m</div>";
         popupContent += "<div><label class='popupLabel'>Depth: </label>"+" " + myshipwreckObject[i].properties.WATER_DEPT + " m</div>";
 
+
         if (typeof myshipwreckObject[i].properties.IMAGE != 'undefined' && myshipwreckObject[i].properties.IMAGE != "") {
-			popupContent += "<div><img src='"+shipURL+ myshipwreckObject[i].properties.IMAGE + "' width='150px' /></div>";
-			popupContent += "<br/><div><a class='pointer' onclick='showShipwreckImageWindow(\""+shipURL+ myshipwreckObject[i].properties.IMAGE + "\",\""+myshipwreckObject[i].properties.VESSEL_NAM + "\");'>View Full Size Image</a></div>";
+            popupContent += "<div><a class='pointer' onclick='showShipwreckImageWindow(\"" +myshipwreckObject[i].properties.IMAGE + "\",\""+myshipwreckObject[i].properties.VESSEL_NAM + "\");'><img src='"+  myshipwreckObject[i].properties.IMAGE + "' width='100%' /></a></div>";
         }
-/* 		if (myshipwreckObject[i].properties.REPORT == "PDF") {
-            popupContent += "<br/><div><a href='" + myshipwreckObject[i].properties.PDF + "' target='_blank'>View Wreck Report</a></div>";
-        }  */
-				if (myshipwreckObject[i].properties.PDF != "No") {
-					
-            popupContent += "<br/><div><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+myshipwreckObject[i].properties.VESSEL_NAM + "\");' href='"+shipURL + myshipwreckObject[i].properties.PDF + "' target='_blank'>View Wreck Report</a></div>";
-        } 
-		
-       if (typeof myshipwreckObject[i].properties.Link3d != 'undefined' && myshipwreckObject[i].properties.Link3d != "") {
-            popupContent += "<br/><div><a class='pointer' onclick='showShipwreckWindow(\"" + myshipwreckObject[i].properties.Link3d + "\",\""+myshipwreckObject[i].properties.VESSEL_NAM + "\");'>View 3D Model</a></div>";
+        if (typeof myshipwreckObject[i].properties.LINK3DMODE != 'undefined' && myshipwreckObject[i].properties.LINK3DMODE != "") {
+            popupContent += "<br/><div><a class='pointer' onclick='showShipwreckWindow(\"" + myshipwreckObject[i].properties.LINK3DMODE + "\",\""+myshipwreckObject[i].properties.VESSEL_NAM + "\");'>View 3D Model</a></div>";
         }	
+ 		if (myshipwreckObject[i].properties.PDF != 'undefined' && myshipwreckObject[i].properties.PDF !="") {
+            popupContent += "<br/><div><a href='" + myshipwreckObject[i].properties.PDF + "' target='_blank'>View Wreck Report</a></div>";
+        }  
+		
+
 	var popup = L.popup().setContent(popupContent);
 	
 	shipwreckmarker = new L.marker([myshipwreckObject[i].geometry.coordinates[1].toFixed(6).toString(), myshipwreckObject[i].geometry.coordinates[0].toFixed(6).toString()], {opacity:1, icon: wreckIcon2}).addTo(map).bindPopup(popup);

@@ -18,7 +18,7 @@ function createWreckPopup(feature, layer) {
 	//myshipwreckObject.push(feature.properties);
 	myshipwreckObject.push(feature);
 	var props = feature.properties;
-	var downloadType = 'Wreck Sheet';
+ 	var downloadType = 'Wreck Sheet';
         var vesselName = "Unidentified Vessel";
         if (typeof props.VESSEL_NAM != 'undefined' && props.VESSEL_NAM != " ") {
             vesselName = props.VESSEL_NAM;
@@ -33,15 +33,17 @@ function createWreckPopup(feature, layer) {
         popupHTML += "<div><label class='popupLabel'>Depth: </label>"+" " + props.WATER_DEPT + " m</div>";
 
         if (typeof props.IMAGE != 'undefined' && props.IMAGE != "") {
-			popupHTML += "<div><a class='pointer' onclick='showShipwreckImageWindow(\"" +shipURL+ props.IMAGE + "\",\""+vesselName + "\");'><img src='"+shipURL + props.IMAGE + "' width='100%' /></a></div>";
-	        }
-		if (typeof props.PDF != 'undefined' && props.PDF != "No") {
-            popupHTML += "<br/><div><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+vesselName + "\");' href='"+shipURL + props.PDF + "' target='_blank'>View Wreck Report</a></div>";
-        } 
-		
-       if (typeof props.Link3d != 'undefined' && props.Link3d != "") {
-            popupHTML += "<br/><div><a class='pointer' onclick='showShipwreckWindow(\"" + props.Link3d + "\",\""+vesselName + "\");'>View 3D Model</a></div>";
+			popupHTML += "<div><a class='pointer' onclick='showShipwreckImageWindow(\"" +props.IMAGE + "\",\""+vesselName + "\");'><img src='"+  props.IMAGE + "' width='100%' /></a></div>";
+	        }		
+        if (typeof props.LINK3DMODE != 'undefined' && props.LINK3DMODE != "") {
+            popupHTML += "<br/><div><a class='pointer' onclick='showShipwreckWindow(\"" + props.LINK3DMODE + "\",\""+vesselName + "\");'>View 3D Model</a></div>";
         }
+		if (typeof props.PDF != 'undefined' && props.PDF != "No") {
+            popupHTML += "<br/><div><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+vesselName + "\");' href='"+ props.PDF + "' target='_blank'>View Wreck Report</a></div>";
+        } 
+      /*  if (typeof props.LinkEUsite != 'undefined' && props.LinkEUsite != "") {   
+            popupHTML += "<br/><div><a href='"+props.LinkEUsite+"' target='_blank');'>WreckSite.eu Report</a></div>";
+        }*/
 
          layer.bindPopup(popupHTML);
 			 
@@ -73,7 +75,7 @@ function createWreckPopup(feature, layer) {
 			}
 
 function showShipwreckImageWindow(shipwreckimage, name) {
-			console.log(shipwreckimage)
+			
 		 var imageIframe = "<div class=\"imgFrame\" style=\"text-align: center\"><img id=\"shipwreckimg\"src=\'"+ shipwreckimage + "\' width=\'100%\' height=\'100%\'/></div><div style=\"text-align: center\"><p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\">"+name+" <div><button id=\"btnCloseShipwreck\" type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; float:right;\" onclick=\"closeShipwreckWindow()\">Close</button></div>";	
 			
 			

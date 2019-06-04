@@ -22,7 +22,7 @@
 				vesselTitle = feature.properties.VESSEL_NAM;
 				};
 			
-				if (typeof feature.properties.Link3d != 'undefined' && feature.properties.Link3d != "") {
+				if (typeof feature.properties.LINK3DMODE != 'undefined' && feature.properties.LINK3DMODE != "") {
 					wreckMarker = L.marker(latlng, { 
 					icon: wreckIcon2, 
 					title: vesselTitle,
