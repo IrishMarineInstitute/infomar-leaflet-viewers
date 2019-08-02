@@ -115,28 +115,29 @@ var openseamap = L.tileLayer('//tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
 });
 
 //OSI Data 
-var OSI_Key = 'P10D7U-aQxRPM2L55sIKL9IlMPtmbd9deXd7lALPU0pmFBRskal3kWlOXtjUEuJwjlaB1bE4hFRLljWpJdCC64Ku_5JAPIC3LLnzeJeB_rk.';
+//var OSI_Key = 'P10D7U-aQxRPM2L55sIKL9IlMPtmbd9deXd7lALPU0pmFBRskal3kWlOXtjUEuJwjlaB1bE4hFRLljWpJdCC64Ku_5JAPIC3LLnzeJeB_rk.';
+var OSI_Key = '7i5Ue9b371Sz2r943FIm0EejItZFwq5cUKZOsw_2M5bCCBPK5OLxykPpk4GE0J5ZqTOVCgmW14v58rGCnTi8i99fsZBwmP6H6UYb1EyHnYM.';
 var OSI_URL = 'https://mapgenie.osi.ie/arcgis/rest/services/WM/';
 
 var OSI_Discovery = L.esri.dynamicMapLayer({
-    url: OSI_URL + 'discovery/MapServer',
+    url: OSI_URL + 'discovery/MapServer/',
     token: OSI_Key,
     f: 'json',
     client: 'referer',
-    referer: 'https://maps.marine.ie/infomar_surveyplanning',
+    referer: 'https://maps.marine.ie/infomar_surveyplanning/',
     pane: 'OSIPane',
     opacity: 0.75,
     attribution: '<a href="//www.osi.ie">Ordinance Survey Ireland</a>'
 }).addTo(map);
 
 var OSI_DigitalGlobe = L.esri.dynamicMapLayer({
-    url: OSI_URL + 'digitalglobe/MapServer',
+    url: OSI_URL + 'digitalglobe/MapServer/',
     token: OSI_Key,
     f: 'json',
     client: 'referer',
     pane: 'OSIPane',
     opacity: 0.75,
-    referer: 'https://maps.marine.ie/infomar_surveyplanning',
+    referer: 'https://maps.marine.ie/infomar_surveyplanning/',
     attribution: '<a href="//www.osi.ie">Ordinance Survey Ireland</a>'
 });
 
@@ -225,11 +226,17 @@ var All100k_BayAreas = L.geoJSON(All100k_BayAreas, {
 });
 
 var a100k_ChartSeries = L.geoJSON(a100k_ChartSeries, {
-	style: {color: "#2576e8"},
+	//style: {color: "#2576e8"},
+    style: function(feature){
+		switch (feature.properties.Status){
+			case 'Complete': return {color: "#1ba80f"};
+			case 'Incomplete' : return {color: "#dd0000"};
+		}
+	},
 	onEachFeature: function (feature, layer) {
     // does this feature have a property named popupContent?
     if (feature.properties && feature.properties.Name) {
-        layer.bindPopup(feature.properties.Chart_Ref +" " + feature.properties.Name);
+        layer.bindPopup(feature.properties.Chart_Ref +" " + feature.properties.Name + '<br>' + "Status:" + feature.properties.Status);
     }
 }
 });
@@ -337,7 +344,7 @@ npwsPNHA.bindPopup(function (layer) {
 });
 npwsPNHA.bringToBack();
 
-var polygonLgd = new L.layerGroup([npwsNHA, npwsPNHA, npwsSPA, npwsSAC, surveys, PlannedSurveys]);
+var polygonLgd = new L.layerGroup([npwsNHA, npwsPNHA, npwsSPA, npwsSAC, surveys, plannedSurveys]);
 
 //Coastal Infrastructure
 var iconlighthouse = L.icon({
