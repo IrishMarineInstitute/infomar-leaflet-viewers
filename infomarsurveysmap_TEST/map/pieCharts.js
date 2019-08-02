@@ -25,7 +25,7 @@ function pieChart(nameVals, timeVals){
          options: {
             title: {
                 display: true,
-                text: "% Time per Activity"
+                text: "% Total Survey Time per Activity"
             },
             legend: {
                 display: true,
