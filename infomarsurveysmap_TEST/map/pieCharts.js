@@ -1,17 +1,17 @@
 function pieChart(nameVals, timeVals){	
     sectorValues = timeVals.split(",");  
     sectorNames = nameVals.split(","); 
-    
-    for(i=0; i<sectorNames.length;i++){
+	
+   /*  for(i=0; i<sectorNames.length;i++){
         if(sectorNames[i].includes("%")){
             break;
         }else{
         sectorNames[i]= sectorNames[i] + " (%)";
         }
-    }
+    } */
 
         var ctx =  document.getElementById('chartContainer').getContext('2d');
-        var pieColors = ["#009245", "#65c994","#0193D9", "#0C04ED","#F8931F", "#FFFF01", "#C2272D", "#612F90"]
+        var pieColors = ["#009245", "#612F90","#0193D9", "#0C04ED","#F8931F", "#FFFF01", "#C2272D", "#65c994" ]
         
 	var myPieChart = new Chart('chartContainer', { 
         type: 'pie',
@@ -23,9 +23,25 @@ function pieChart(nameVals, timeVals){
          }]
         },
          options: {
+            plugins: {
+                labels: {
+                    render: function(options){
+                        var value = options.value; 
+                        if (value > 4 ){
+                        return value + "%"; 
+                        }else{
+                            return "";
+                        }
+                        },
+                    fontColor: '#fff',
+                        textShadow: true,
+                        shadowOffsetX: -5,
+                        shadowOffsetY: 5
+                }
+            }, 
             title: {
                 display: true,
-                text: "% Total Survey Time per Activity"
+                text: "% Total Survey Time"
             },
             legend: {
                 display: true,

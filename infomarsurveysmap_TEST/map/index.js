@@ -29,6 +29,21 @@ function (err, featureCollection, response){
 		if (featureCollection.features.length > 0) { 
 			 var popupHTML ="<div id=\"popupText\"><table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">" + props.SURVEY + "</th></tr><tr><td class=\"tg-9hbo\">Project</td><td class=\"tg-yw4l\">"+ props.PROJECT+ "</td></tr><tr><td class=\"tg-9hbo\">Vessel</td><td class=\"tg-yw4l\">" + props.VesselName  +"</td></tr><tr><td class=\"tg-9hbo\">Start Date</td><td class=\"tg-yw4l\">"+  props.Start_Date + "</td></tr><tr><td class=\"tg-9hbo\">End Date</td><td class=\"tg-yw4l\">"+  props.End_Date + "</td></tr><tr><td class=\"tg-9hbo\">Multibeam System</td><td class=\"tg-yw4l\">"+  props.SYSTEM + "</td></tr><tr><td class=\"tg-9hbo\">IHO Standard Data</td><td class=\"tg-yw4l\">"+  props.IHO_Stand + "</td></tr>";
             
+            var otherD =[];
+            if (props.Maggy == 1){
+                otherD.push("Magnetometer");
+            }
+            if (props.Subbottom ==1){
+                otherD.push(" Subbottom");
+            }
+            if (props.Gravity ==1){
+                otherD.push(" Gravity");
+            }
+            
+            if (otherD.length >=1){
+            popupHTML +="<tr><td class=\"tg-9hbo\">Other Datasets Acquired</td><td class=\"tg-yw4l\">"+  otherD + "</td></tr>";
+            }
+            
 			 if(props.VesselName == "Celtic Voyager"){
 				 surveyRepLink = "Voyager";
 				}else if (props.VesselName == "RV Keary"){
