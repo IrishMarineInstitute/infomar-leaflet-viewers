@@ -14,8 +14,8 @@
 					map.setView([53.5, -8.5],7);
 		}
 			
-  var surveyURL =  'https://maps.marine.ie/arcgis/rest/services/Infomar/SurveyCoverage_TEST/MapServer';
-  var surveyID = L.esri.dynamicMapLayer({url: surveyURL, layers: [0] }).addTo(map); 
+  var surveyURL =  'https://maps.marine.ie/arcgis/rest/services/SurveyCoverage_TEST/MapServer';
+  var surveyID = L.esri.dynamicMapLayer({url: surveyURL, layers: [0], opacity: 0.7 }).addTo(map); 
 
  surveyID.bindPopup(
      function (err, featureCollection, response){
