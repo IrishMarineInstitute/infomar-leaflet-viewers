@@ -17,15 +17,17 @@
   var surveyURL =  'https://maps.marine.ie/arcgis/rest/services/Infomar/SurveyCoverage_TEST/MapServer';
   var surveyID = L.esri.dynamicMapLayer({url: surveyURL, layers: [0] }).addTo(map); 
 
-map.on('click', function(e){
-surveyID.bindPopup(
-function (err, featureCollection, response){
+ surveyID.bindPopup(
+     function (err, featureCollection, response){
+         if(featureCollection.features.length == 0){
+              return false;
+         }else{
         	var baseLink = "//maps.marine.ie/infomarData/surveysmap/reports";
 			var surveyRepLink = "Explorer";
 			var props = featureCollection.features["0"].properties;
 			var downloadType = 'Report';
-			console.log(props);
-        
+
+    
 		if (featureCollection.features.length > 0) { 
 			 var popupHTML ="<div id=\"popupText\"><table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">" + props.SURVEY + "</th></tr><tr><td class=\"tg-9hbo\">Project</td><td class=\"tg-yw4l\">"+ props.PROJECT+ "</td></tr><tr><td class=\"tg-9hbo\">Vessel</td><td class=\"tg-yw4l\">" + props.VesselName  +"</td></tr><tr><td class=\"tg-9hbo\">Start Date</td><td class=\"tg-yw4l\">"+  props.Start_Date + "</td></tr><tr><td class=\"tg-9hbo\">End Date</td><td class=\"tg-yw4l\">"+  props.End_Date + "</td></tr><tr><td class=\"tg-9hbo\">Multibeam System</td><td class=\"tg-yw4l\">"+  props.SYSTEM + "</td></tr><tr><td class=\"tg-9hbo\">IHO Standard Data</td><td class=\"tg-yw4l\">"+  props.IHO_Stand + "</td></tr>";
             
@@ -98,13 +100,11 @@ function (err, featureCollection, response){
                 popupHTML += "<div id=\"divPopup\"><i class=\"arrow down\"></i><a href='#' onClick=\'pieChart(\"" + names + "\",\""+times + "\");return false;\'>View Survey Statistics</a></div><div><canvas id=\"chartContainer\" width=\"260\" height=\"400\"></canvas></div>";
                }
         }
-        var popupSurvey = L.popup().setLatLng(e.latlng)
-		.setContent(popupHTML)
-		.openOn(map); 
-    });
-});
+         return popupHTML;
+    }
+     });
 
-    function popupPlanned (feature, layer){
+function popupPlanned (feature, layer){
 			var popupHTML = "<table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">Planned Survey Area " + feature.properties.Year + "</th></tr><tr><td class=\"tg-9hbo\">Survey Platform</td><td class=\"tg-yw4l\">"+ feature.properties.Vessel+ "</td></tr></table>";
 			layer.bindPopup(popupHTML);
 		};

@@ -1,24 +1,25 @@
 function pieChart(nameVals, timeVals){	
     sectorValues = timeVals.split(",");  
     sectorNames = nameVals.split(","); 
-	
-   /*  for(i=0; i<sectorNames.length;i++){
-        if(sectorNames[i].includes("%")){
-            break;
-        }else{
-        sectorNames[i]= sectorNames[i] + " (%)";
-        }
-    } */
-
+    
+    var sortedArray = sortArray(sectorNames, sectorValues);
+    
+    var sortSectorNames = [];
+    var sortSectorValues = [];
+    for(i=0; i<sortedArray.length;i++){
+        sortSectorNames.push(sortedArray[i][0]);
+        sortSectorValues.push(sortedArray[i][1]);
+    }  
+    
         var ctx =  document.getElementById('chartContainer').getContext('2d');
         var pieColors = ["#009245", "#612F90","#0193D9", "#0C04ED","#F8931F", "#FFFF01", "#C2272D", "#65c994" ]
         
 	var myPieChart = new Chart('chartContainer', { 
         type: 'pie',
         data: {
-            labels: sectorNames,    
+            labels: sortSectorNames,
             datasets: [{
-                data: sectorValues,
+                data: sortSectorValues,
                 backgroundColor: pieColors
          }]
         },
@@ -65,4 +66,16 @@ function closePieChart(names, times){
     $("#chartContainer").css("display","none");
     $("table.tg").css("display","block");
     $("div#divPopup").html("<div id=\"divPopup\"><i class=\"arrow down\"></i><a href='#' onClick=\'pieChart(\"" + names + "\",\"" + times + "\");return false;\'>View Survey Statistics</a></div>");
+}
+
+function sortArray(names, times){
+     var nameSectorArray = [];
+   
+    for(i=0; i<names.length;i++){
+        var tempArray = [names[i], times[i]];
+        nameSectorArray.push(tempArray);
+        nameSectorArray.sort(function(a,b){return b[1]-a[1]});
+    }
+        return(nameSectorArray);
+    
 }
