@@ -53,7 +53,7 @@ for(i=0; i<myshipwreckObject.length; i++){
         if (typeof myshipwreckObject[i].properties.LINK3DMODE != 'undefined' && myshipwreckObject[i].properties.LINK3DMODE != "") {
             popupContent += "<br/><div><a class='pointer' onclick='showShipwreckWindow(\"" + myshipwreckObject[i].properties.LINK3DMODE + "\",\""+myshipwreckObject[i].properties.VESSEL_NAM + "\");'>View 3D Model</a></div>";
         }	
- 		if (myshipwreckObject[i].properties.PDF != 'undefined' && myshipwreckObject[i].properties.PDF !="") {
+ 		if (myshipwreckObject[i].properties.PDF != 'undefined' && myshipwreckObject[i].properties.PDF !="No") {
             popupContent += "<br/><div><a href='" + myshipwreckObject[i].properties.PDF + "' target='_blank'>View Wreck Report</a></div>";
         }  
 		
