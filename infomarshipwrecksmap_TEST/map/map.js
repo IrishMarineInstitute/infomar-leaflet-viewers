@@ -7,7 +7,7 @@
 		});
 
 		var isTouchDevice = 'ontouchstart' in document.documentElement;
-
+        var myshipwreckObject = new Array();
 			if ($(window).width() < 480 ||isTouchDevice == true) {
 			map.setView([53.5, -8.5],6);
 		}
@@ -16,6 +16,7 @@
 		}
 			var shipwreckPts = L.geoJson (shipwrecks, {
 			pointToLayer: function (feature, latlng) {
+                myshipwreckObject.push(feature);
 				var wreckMarker;
 				var vesselTitle = "Unidentified Vessel";
 				if (typeof feature.properties.VESSEL_NAM != 'undefined' && feature.properties.VESSEL_NAM != " ") {
@@ -38,7 +39,10 @@
 				}
 				return wreckMarker;
 			},
-			onEachFeature:  createWreckPopup,
+			onEachFeature: function(feature, layer){
+                var popupContent = createWreckPopup(feature, layer);
+                layer.bindPopup(popupContent);                
+            },
             attribution: '<a href="http://www.infomar.ie">INFOMAR</a>'    
 				});
 		

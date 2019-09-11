@@ -14,68 +14,25 @@
 					map.setView([53.5, -8.5],7);
 		}
 			
-/*  var surveyURL =  'https://maps.marine.ie/arcgis/rest/services/SurveyCoverage_TEST/MapServer';
+  var surveyURL =  'https://maps.marine.ie/arcgis/rest/services/SurveyCoverage_TEST/MapServer';
   var surveyID = L.esri.dynamicMapLayer({
       url: surveyURL, 
       layers: [0], 
       opacity: 0.7 
-  }).addTo(map); */
+  }).addTo(map); 
 
-/* var surveyTiles = L.esri.tiledMapLayer({
-    url: 'https://maps.marine.ie/arcgis/rest/services/SurveyCoverage_TEST/MapServer/'
-  }).addTo(map);
-
-
-map.on('click', function(e){
-       L.esri.query({
-       url: 'https://maps.marine.ie/arcgis/rest/services/SurveyCoverage_TEST/MapServer/0'
-       }).intersects(e.latlng).run(function(error, SURVEY){
-        if(error){
-            alert('No Surveys in this area');
-        }else{
-            alert('Survey Name' + SURVEY);   
-        }
-       });   
-       });*/
-
-var surveypoly = L.esri.featureLayer({
-    url: 'https://maps.marine.ie/arcgis/rest/services/SurveyCoverage_TEST/MapServer/0',
-    simplifyFactor: 1,
-	precision: 5
-   // renderer: L.canvas()
-  //  onEachFeature: popupSurveys,
-  /*  style: function(feature) {
-        return {
-            opacity: 0.1, 
-            //fillOpacity: 0.1,
-            fill: false,
-            fillrule: "non-zero"
-        };*/
-          /*      if (feature.properties.YEAR >=1996 && feature.properties.YEAR <= 2000){
-            return {color: "#7fb3d5",'weight': 1, opacity: 1};
-        }else if (feature.properties.YEAR >=2001 && feature.properties.YEAR <= 2005){
-            return {color: "#d98880",'weight': 1, opacity: 0.5};
-        }else if (feature.properties.YEAR >=2006 && feature.properties.YEAR <= 2010){
-            return {color: "#f7dc6f",'weight': 1, opacity: 0.5};
-        }else if (feature.properties.YEAR >=2011 && feature.properties.YEAR <= 2015){
-            return {color: "#7dcea0",'weight': 1, opacity: 0.5};
-        }else if (feature.properties.YEAR >=2016 && feature.properties.YEAR <= 2020){
-            return {color: "#FF6F00",'weight': 1, opacity: 0.5};
-        }*/
-  //  }
-});
-
-//function popupSurveys(feature, layer){
- surveypoly.bindPopup(function (layer){
-     var props = layer.feature.properties;
-         if(props.SURVEY == 'undefined' || props.SURVEY == ""){
+ surveyID.bindPopup(
+     function (err, featureCollection, response){
+         if(featureCollection.features.length == 0){
               return false;
          }else{
         	var baseLink = "//maps.marine.ie/infomarData/surveysmap/reports";
 			var surveyRepLink = "Explorer";
+			var props = featureCollection.features["0"].properties;
 			var downloadType = 'Report';
-			
-             var popupHTML ="<div id=\"popupText\"><table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">" + props.SURVEY + "</th></tr><tr><td class=\"tg-9hbo\">Project</td><td class=\"tg-yw4l\">"+ props.PROJECT+ "</td></tr><tr><td class=\"tg-9hbo\">Vessel</td><td class=\"tg-yw4l\">" + props.VesselName  +"</td></tr><tr><td class=\"tg-9hbo\">Start Date</td><td class=\"tg-yw4l\">"+  props.Start_Date + "</td></tr><tr><td class=\"tg-9hbo\">End Date</td><td class=\"tg-yw4l\">"+  props.End_Date + "</td></tr><tr><td class=\"tg-9hbo\">Multibeam System</td><td class=\"tg-yw4l\">"+  props.SYSTEM + "</td></tr>";
+    
+		if (featureCollection.features.length > 0) { 
+			 var popupHTML ="<div id=\"popupText\"><table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">" + props.SURVEY + "</th></tr><tr><td class=\"tg-9hbo\">Project</td><td class=\"tg-yw4l\">"+ props.PROJECT+ "</td></tr><tr><td class=\"tg-9hbo\">Vessel</td><td class=\"tg-yw4l\">" + props.VesselName  +"</td></tr><tr><td class=\"tg-9hbo\">Start Date</td><td class=\"tg-yw4l\">"+  props.Start_Date + "</td></tr><tr><td class=\"tg-9hbo\">End Date</td><td class=\"tg-yw4l\">"+  props.End_Date + "</td></tr><tr><td class=\"tg-9hbo\">Multibeam System</td><td class=\"tg-yw4l\">"+  props.SYSTEM + "</td></tr>";
             
              if (props.IHO_Stand !='undefined' && props.IHO_Stand!=""){
              popupHTML += "<tr><td class=\"tg-9hbo\">IHO Standard Data</td><td class=\"tg-yw4l\">"+  props.IHO_Stand + "</td></tr>";
@@ -115,6 +72,7 @@ var surveypoly = L.esri.featureLayer({
 				 popupHTML +=  "<tr><td class=\"tg-9hbo\">Full Report</td><td class=\"tg-yw4l\"><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+props.SurveyRep + "\");' target='blank' href=\'" + baseLink + "/SurveyReport/"+surveyRepLink+"/"+ props.SurveyRep+"'>"+ props.SURVEY + "</a></td></tr>";
 			 }
 			popupHTML +="</table></div>";
+            
                    
             var stats =[];
    
@@ -149,17 +107,15 @@ var surveypoly = L.esri.featureLayer({
             if(stats.length> 0){
                 popupHTML += "<div id=\"divPopup\"><i class=\"arrow down\"></i><a href='#' onClick=\'pieChart(\"" + stats + "\");return false;\'>View Survey Statistics</a></div><div><canvas id=\"chartContainer\" width=\"260\" height=\"400\"></canvas></div>";
                }
-          
-         return L.Util.template(popupHTML, layer.feature.properties);     
+        }
+         return popupHTML;
     }
- });
-
-
+     });
 
 function popupPlanned (feature, layer){
 			var popupHTML = "<table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">Planned Survey Area " + feature.properties.Year + "</th></tr><tr><td class=\"tg-9hbo\">Survey Platform</td><td class=\"tg-yw4l\">"+ feature.properties.Vessel+ "</td></tr></table>";
 			layer.bindPopup(popupHTML);
-}
+};
 	
 		var plannedSurveyAreas = L.geoJson (plannedSurveys, {
 		onEachFeature: popupPlanned,
@@ -175,8 +131,8 @@ function popupPlanned (feature, layer){
 		var overlays = {
 		"Bathymetry" : 	bathy_Contours,
 		"Backscatter": backscatter_int,
-	//	"Surveys": surveyTiles,
-        "Surveys Test" : surveypoly,    
+		//"Surveys": surveyTiles,
+        "Surveys Test" : surveyID,    
 		"Planned Surveys": plannedSurveyAreas,
 		"Tracklines" : tracklines
 		};

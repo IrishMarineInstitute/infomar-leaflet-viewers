@@ -1,26 +1,33 @@
-function pieChart(nameVals, timeVals){	
-    sectorValues = timeVals.split(",");  
-    sectorNames = nameVals.split(","); 
+function pieChart(stats){	
+    var statsAll = stats.split(",");
+   
+    var sectorStats = [];
+    sectorStats.push([statsAll[0],statsAll[1],statsAll[2]]);
     
-    var sortedArray = sortArray(sectorNames, sectorValues);
-    
-    var sortSectorNames = [];
-    var sortSectorValues = [];
-    for(i=0; i<sortedArray.length;i++){
-        sortSectorNames.push(sortedArray[i][0]);
-        sortSectorValues.push(sortedArray[i][1]);
+    for(i=3; i<statsAll.length;i+=3){
+        sectorStats.push([statsAll[i],statsAll[i+1], statsAll[i+2]]);  
     }  
     
-        var ctx =  document.getElementById('chartContainer').getContext('2d');
-        var pieColors = ["#009245", "#612F90","#0193D9", "#0C04ED","#F8931F", "#FFFF01", "#C2272D", "#65c994" ]
-        
+    var sortedArray = sortArray(sectorStats);
+       
+    var sortSectorNames = [];
+    var sortSectorValues = [];
+	var sortSectorColours = [];
+    for(i=0; i<sortedArray.length;i++){
+        sortSectorNames.push(sortedArray[i][0][0]);
+        sortSectorValues.push(sortedArray[i][0][1]);
+		sortSectorColours.push(sortedArray[i][0][2]);
+    }  
+
+    var ctx =  document.getElementById('chartContainer').getContext('2d');
+
 	var myPieChart = new Chart('chartContainer', { 
         type: 'pie',
         data: {
             labels: sortSectorNames,
             datasets: [{
                 data: sortSectorValues,
-                backgroundColor: pieColors
+                backgroundColor: sortSectorColours
          }]
         },
          options: {
@@ -59,22 +66,22 @@ function pieChart(nameVals, timeVals){
 
     $("#chartContainer").css("display","block");
     $("table.tg").css("display","none");
-    $("div#divPopup").html("<div id=\"divPopup\"><i class=\"arrow up\"></i><a href='#' onClick=\'closePieChart(\""+sectorNames + "\",\""+ sectorValues+ "\");return false;\'>Hide Survey Statistics</a></div>");
+    $("div#divPopup").html("<div id=\"divPopup\"><i class=\"arrow up\"></i><a href='#' onClick=\'closePieChart(\""+stats + "\");return false;\'>Hide Survey Statistics</a></div>");
 }                                                                                       
 
-function closePieChart(names, times){
+function closePieChart(stats){
     $("#chartContainer").css("display","none");
     $("table.tg").css("display","block");
-    $("div#divPopup").html("<div id=\"divPopup\"><i class=\"arrow down\"></i><a href='#' onClick=\'pieChart(\"" + names + "\",\"" + times + "\");return false;\'>View Survey Statistics</a></div>");
+    $("div#divPopup").html("<div id=\"divPopup\"><i class=\"arrow down\"></i><a href='#' onClick=\'pieChart(\"" + stats + "\");return false;\'>View Survey Statistics</a></div>");
 }
 
-function sortArray(names, times){
+function sortArray(sectorStats){
      var nameSectorArray = [];
    
-    for(i=0; i<names.length;i++){
-        var tempArray = [names[i], times[i]];
+    for(i=0; i<sectorStats.length;i++){
+	var tempArray = [sectorStats[i]];
         nameSectorArray.push(tempArray);
-        nameSectorArray.sort(function(a,b){return b[1]-a[1]});
+        nameSectorArray.sort(function(a,b){return b[0][1]-a[0][1]});
     }
         return(nameSectorArray);
     
