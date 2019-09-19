@@ -1,9 +1,9 @@
-//	<!-- var to initiate map only basmap is initiated -->
+//initiate map
 		var map = L.map('map', {
 			center: [53.5, -13.1],
 			zoom: 7,
 			layersControl: true
-		});
+        });
 	
 		var isTouchDevice = 'ontouchstart' in document.documentElement;
 
@@ -13,18 +13,10 @@
 			if ($(window).width() < 780 ||isTouchDevice == true) {
 					map.setView([53.5, -8.5],7);
 		}
-			
-var surveypoly = L.esri.featureLayer({
-    url: 'https://maps.marine.ie/arcgis/rest/services/SurveyCoverage_TEST/MapServer/0',
-    simplifyFactor: 2,
-	precision: 5
-});
 
+//build popup for survey layer
 function surveyPopup(layer){
         var props = layer.features[0].properties;
-  //       var startDate = formatDate(props.Start_Date);
-   //     var endDate = formatDate(props.End_Date);
-
          if(props.SURVEY == 'undefined' || props.SURVEY == ""){
               return false;
          }else{
@@ -32,7 +24,7 @@ function surveyPopup(layer){
 			var surveyRepLink = "Explorer";
 			var downloadType = 'Report';
 			
-             var popupHTML ="<div id=\"popupText\"><table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">" + props.SURVEY + "</th></tr><tr><td class=\"tg-9hbo\">Project</td><td class=\"tg-yw4l\">"+ props.Project+ "</td></tr><tr><td class=\"tg-9hbo\">Vessel</td><td class=\"tg-yw4l\">" + props.VesselName  +"</td></tr><tr><td class=\"tg-9hbo\">Start Date</td><td class=\"tg-yw4l\">"+  props.Start_Date + "</td></tr><tr><td class=\"tg-9hbo\">End Date</td><td class=\"tg-yw4l\">"+ props.End_Date + "</td></tr><tr><td class=\"tg-9hbo\">Multibeam System</td><td class=\"tg-yw4l\">"+  props.SYSTEM + "</td></tr>";
+             var popupHTML ="<div id=\"popupText\"><table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">" + props.SURVEY + "</th></tr><tr><td class=\"tg-9hbo\">Project</td><td class=\"tg-yw4l\">"+ props.PROJECT + "</td></tr><tr><td class=\"tg-9hbo\">Vessel</td><td class=\"tg-yw4l\">" + props.VesselName  +"</td></tr><tr><td class=\"tg-9hbo\">Start Date</td><td class=\"tg-yw4l\">"+  props.Start_Date + "</td></tr><tr><td class=\"tg-9hbo\">End Date</td><td class=\"tg-yw4l\">"+ props.End_Date + "</td></tr><tr><td class=\"tg-9hbo\">Multibeam System</td><td class=\"tg-yw4l\">"+  props.SYSTEM + "</td></tr>";
             
              if (props.IHO_Stand !='undefined' && props.IHO_Stand!=""){
              popupHTML += "<tr><td class=\"tg-9hbo\">IHO Standard Data</td><td class=\"tg-yw4l\">"+  props.IHO_Stand + "</td></tr>";
@@ -76,7 +68,7 @@ function surveyPopup(layer){
             var stats =[];
    
          if (props.Operations != 0){
-            stats.push('Operational', props.Operations, "#7dcea0");    
+            stats.push('Operational', props.Operation, "#7dcea0");    
             }
             if (props.Weather != 0){
             stats.push('Weather Downtime', props.Weather, "#d98880");    
@@ -87,47 +79,56 @@ function surveyPopup(layer){
             if (props.Mobilise != 0){
             stats.push('Mobilisation', props.Mobilise, "#7fb3d5");   
              }
+             if (props.SupportOps != 0){
+            stats.push('Support Operations', props.SupportOps, "#2E86C1");
+              }
            if (props.Transit != 0){
             stats.push('Transiting', props.Transit, "#f7dc6f");    
              }
+              if (props.Standby != 0){
+            stats.push('Standby', props.Standby, "#97ebdb");
+              }
              if (props.SurveyDown != 0){
             stats.push('Survey Down', props.SurveyDown, "#FF6F00");    
              }
             if (props.VesselDown != 0){
             stats.push('Vessel Down', props.VesselDown, "#E21B06");
             }
-            if (props.Standby != 0){
-            stats.push('Standby', props.Standby, "#F39C12");
-              }
-			if (props.SupportOps != 0){
-            stats.push('Support Operations', props.SupportOps, "#2E86C1");
-              }
+			
             
             if(stats.length> 0){
                 popupHTML += "<div id=\"divPopup\"><i class=\"arrow down\"></i><a href='#' onClick=\'pieChart(\"" + stats + "\");return false;\'>View Survey Statistics</a></div><div><canvas id=\"chartContainer\" width=\"260\" height=\"400\"></canvas></div>";
                }
          return popupHTML;
     }
- }
+}
 
+//load survey tiles
 var surveyTiles = L.esri.tiledMapLayer({
-    url: 'https://maps.marine.ie/arcgis/rest/services/SurveyCoverage_TEST/MapServer',
-    maxZoom: 13
-    }).addTo(map);
+    url: 'https://maps.marine.ie/arcgis/rest/services/Infomar/SurveyCoverage/MapServer',
+            maxZoom: 14,
+            minZoom: 5,
+            opacity: 0.8
+     }).addTo(map);
 
+//query survey coverage feature service
 map.on('click', function(e){
     L.esri.identifyFeatures({
-        url: 'https://maps.marine.ie/arcgis/rest/services/SurveyCoverage_TEST/MapServer'
+        url: 'https://maps.marine.ie/arcgis/rest/services/Infomar/SurveyCoverage/MapServer'
     }).on(this).at(e.latlng).run(function (error, featureCollection, response) {
         if (error) {
-            console.log(error);
-            return;
+            return false;
         }
+        if(response.results.length == 0) {
+            return false;
+        }else{
             var popupCont = surveyPopup(featureCollection);
             map.openPopup(popupCont, e.latlng);
+        }
     });
 });
 
+//load planned surveys and popup
 function popupPlanned (feature, layer){
 			var popupHTML = "<table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">Planned Survey Area " + feature.properties.Year + "</th></tr><tr><td class=\"tg-9hbo\">Survey Platform</td><td class=\"tg-yw4l\">"+ feature.properties.Vessel+ "</td></tr></table>";
 			layer.bindPopup(popupHTML);
@@ -143,7 +144,7 @@ var plannedSurveyAreas = L.geoJson (plannedSurveys, {
 		
 var tracklines = L.esri.dynamicMapLayer({url: 'https://maps.marine.ie/arcgis/rest/services/Infomar/Tracklines/MapServer'}); 
 		
-		<!-- var to load overlays into Layer Control -->
+//load overlays into Layer Control
 		var overlays = {
 		"Bathymetry" : 	bathy_Contours,
 		"Backscatter": backscatter_int,
@@ -165,12 +166,3 @@ var tracklines = L.esri.dynamicMapLayer({url: 'https://maps.marine.ie/arcgis/res
 		map.addLayer(base_EsriOceans);
 		map.addLayer(bathy_Contours);
 		
-function formatDate(dateF){
-    var d = new Date(dateF);
-     
-    var x = d.getDate();
-    var y = d.getMonth() + 1;
-    var z = d.getFullYear();
-    
-    return (x +"/" + y + "/" + z);
-}

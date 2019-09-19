@@ -1,3 +1,4 @@
+//create and display pie charts for survey statistics
 function pieChart(stats){	
     var statsAll = stats.split(",");
    
