@@ -12,42 +12,41 @@ var wreckIcon2 = L.icon({
     popupAnchor: [0, -46],
 });
 
-var myshipwreckObject = new Array();
+function createWreckPopup(feature, layer) { 
 
-function createWreckPopup(feature, layer) {
-	//myshipwreckObject.push(feature.properties);
-	myshipwreckObject.push(feature);
 	var props = feature.properties;
  	var downloadType = 'Wreck Sheet';
-        var vesselName = "Unidentified Vessel";
-        if (typeof props.VESSEL_NAM != 'undefined' && props.VESSEL_NAM != " ") {
+        var vesselName = "Unidentified Wreck";
+    
+        var popupHTML = "<table class=\"tg\">";
+        if (typeof props.VESSEL_NAM != 'undefined' && props.VESSEL_NAM != "") {
+            popupHTML += "<tr><th class=\"tg-topbottom\"  colspan=\"2\">" + props.VESSEL_NAM + "</th>";
             vesselName = props.VESSEL_NAM;
-        };
+        } else{
+            popupHTML += "<tr><th class=\"tg-topbottom\"  colspan=\"2\">" + vesselName + "</th>";
+        }
 
-        var popupHTML = "<label class='popupTitle'>" + vesselName + "</label><br/>";
-        popupHTML += "<div><label class='popupLabel'>Lat:</label>" +" "+ feature.geometry.coordinates[1].toFixed(2).toString() + " <label class='popupLabel'>Long:</label>"+" " + feature.geometry.coordinates[0].toFixed(2).toString() + "</div>";
-
-        popupHTML += "<div><label class='popupLabel'>Vessel Type: </label>"+" " + (props.VESSEL_TYP || "Unknown") + "</div>";
-        popupHTML += "<div><label class='popupLabel'>Wreck Length: </label>" +" "+ props.WRECK_LENG + " m</div>";
-        popupHTML += "<div><label class='popupLabel'>Wreck Width: </label>"+" " + props.WRECK_WIDT + " m</div>";
-        popupHTML += "<div><label class='popupLabel'>Depth: </label>"+" " + props.WATER_DEPT + " m</div>";
+        popupHTML += "<tr><td class=\"tg-9hbo\">Latitude</td><td class=\"tg-yw4l\">"+ feature.geometry.coordinates[1].toFixed(2).toString() + "</td></tr><tr><td class=\"tg-9hbo\">Longitude</td><td class=\"tg-yw4l\">"+ feature.geometry.coordinates[0].toFixed(2).toString() + "</td></tr><tr><td class=\"tg-9hbo\">Vessel Type </td><td class=\"tg-yw4l\">" + (props.VESSEL_TYP || "Unknown") + "</td></tr><tr><td class=\"tg-9hbo\">Wreck Length </td><td class=\"tg-yw4l\">"+ props.WRECK_LENG + " m</td></tr><tr><td class=\"tg-9hbo\">Wreck Width </td><td class=\"tg-yw4l\">" + props.WRECK_WIDT + " m</td></tr><tr><td class=\"tg-9hbo\">Depth </td><td class=\"tg-yw4l\">" + props.WATER_DEPT + " m</td></tr>";
 
         if (typeof props.IMAGE != 'undefined' && props.IMAGE != "") {
-			popupHTML += "<div><a class='pointer' onclick='showShipwreckImageWindow(\"" +props.IMAGE + "\",\""+vesselName + "\");'><img src='"+  props.IMAGE + "' width='100%' /></a></div>";
+			popupHTML += "<tr><td class=\"tg-img\" colspan=\"2\"><a class='pointer' onclick='showShipwreckImageWindow(\"" +props.IMAGE + "\",\""+vesselName + "\");'><img src='"+  props.IMAGE + "' width='100%' /></a></td></tr>";
 	        }		
         if (typeof props.LINK3DMODE != 'undefined' && props.LINK3DMODE != "") {
-            popupHTML += "<br/><div><a class='pointer' onclick='showShipwreckWindow(\"" + props.LINK3DMODE + "\",\""+vesselName + "\");'>View 3D Model</a></div>";
+            popupHTML += "<tr><td class=\"tg-9hbo\" colspan=\"2\"><a class='pointer' onclick='showShipwreckWindow(\"" + props.LINK3DMODE + "\",\""+vesselName + "\");'>View 3D Model</a></td></tr>";
         }
 		if (typeof props.PDF != 'undefined' && props.PDF != "No") {
-            popupHTML += "<br/><div><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+vesselName + "\");' href='"+ props.PDF + "' target='_blank'>View Wreck Report</a></div>";
+            popupHTML += "<tr><td class=\"tg-9hbo\" colspan=\"2\"><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+vesselName + "\");' href='"+ props.PDF + "' target='_blank'>View Wreck Report</a></td></tr>";
         } 
-      /*  if (typeof props.LinkEUsite != 'undefined' && props.LinkEUsite != "") {   
-            popupHTML += "<br/><div><a href='"+props.LinkEUsite+"' target='_blank');'>WreckSite.eu Report</a></div>";
-        }*/
-
-         layer.bindPopup(popupHTML);
-			 
-    }
+        if (typeof props.LinkEUsite != 'undefined' && props.LinkEUsite != "") { 
+                popupHTML += "<tr><td class=\"tg-9hbo\" colspan=\"2\"><div id=\"showLinks\"><i class=\"arrow down\"></i><a href='#' onCLick=\"showLinks();\">External Links  </a></div><div id=\"externalLinks\"><div class='popupDiv'><a href =\"https://www.archaeology.ie/underwater-archaeology\" target='_blank'>Underwater Archaeology Unit</a></div><div class='popupDiv'><a href='"+props.LinkEUsite+"' target='_blank');'>WreckSite.eu Report</a></div></div></td></tr>";
+            //<div class='popupDiv'><a href =\"//irishwrecks.ie/\" target='_blank'>Irish Wrecks Online </a></div>
+            } else {
+            popupHTML += "<tr><td class=\"tg-9hbo\" colspan=\"2\"><div id=\"showLinks\"><i class=\"arrow down\"></i><a href='#' onCLick=\"showLinks();\">External Links  </a></div><div id=\"externalLinks\"><div class='popupDiv'><a href =\"https://www.archaeology.ie/underwater-archaeology\" target='_blank'>Underwater Archaeology Unit</a></div><div class='popupDiv'><a href=\"https://wrecksite.eu\" target='_blank');'>WreckSite.eu</a></div></div></td></tr>";
+            }
+            popupHTML +="<tr><td class=\"tg-topbottom\" colspan=\"2\"><div id=\"disclaimer\"><i class=\"arrow down\"></i><a href='#' onClick=\"showDisclaimer();\">Wreck Legislation  </a></div><div id=\"wreckDisclaimer\"><div class='popupDiv'>Wrecks over 100 years old and archaeological objects found underwater are protected under the National Monuments (Amendment) Acts <a href =\"http://www.irishstatutebook.ie/eli/1987/act/17/enacted/en/html\" target='_blank'>1987 </a> and <a href =\"http://www.irishstatutebook.ie/eli/1994/act/17/enacted/en/html\" target='_blank'>1994 </a>. Significant wrecks less than 100 years old can be protected by Underwater Heritage Order. See <a href =\"https://www.archaeology.ie/underwater-archaeology\" target='_blank'> UAU </a> information leaflet on <a href =\"https://www.archaeology.ie/sites/default/files/media/publications/Protection-of-Wrecks.pdf\" target='_blank'> Protection of Wrecks.</a></div></div></td></tr>";
+            
+        return popupHTML;
+}
 
  function showShipwreckWindow(sketchfabID, name) {
 	if (isTouchDevice == true) {
@@ -77,9 +76,8 @@ function createWreckPopup(feature, layer) {
 function showShipwreckImageWindow(shipwreckimage, name) {
 			
 		 var imageIframe = "<div class=\"imgFrame\" style=\"text-align: center\"><img id=\"shipwreckimg\"src=\'"+ shipwreckimage + "\' width=\'100%\' height=\'100%\'/></div><div style=\"text-align: center\"><p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\">"+name+" <div><button id=\"btnCloseShipwreck\" type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; float:right;\" onclick=\"closeShipwreckWindow()\">Close</button></div>";	
-			
-			
-			 $('#shipwreckModal').html(imageIframe);
+						
+            $('#shipwreckModal').html(imageIframe);
             $("div#shipwreckModal").addClass("show");
             $("div#modalMask").addClass("show");
 
@@ -92,4 +90,25 @@ function showShipwreckImageWindow(shipwreckimage, name) {
             return false;
         }
 		
-		
+function showDisclaimer(){
+        $("div#wreckDisclaimer").addClass("show");
+         $("div#disclaimer").html("<div id=\"disclaimer\" class='popupDiv'><i class=\"arrow up\"></i><a href='#' onCLick=\"hideDisclaimer();\">Wreck Legislation  </a></div>");
+         }	
+
+function hideDisclaimer(){
+        $("div#wreckDisclaimer").removeClass("show");
+        $("div#disclaimer").html("<div id=\"disclaimer\" class='popupDiv'><i class=\"arrow down\"></i><a href='#' onCLick=\"showDisclaimer();\">Wreck Legislation  </a></div>");
+   
+}
+
+function showLinks(){
+        $("div#externalLinks").addClass("show");
+         $("div#showLinks").html("<div id=\"showLinks\" class='popupDiv'><i class=\"arrow up\"></i><a href='#' onCLick=\"hideLinks();\">External Links  </a></div>");
+         }	
+
+function hideLinks(){
+        $("div#externalLinks").removeClass("show");
+        $("div#showLinks").html("<div id=\"showLinks\" class='popupDiv'><i class=\"arrow down\"></i><a href='#' onCLick=\"showLinks();\">External Links  </a></div>");
+}
+
+   
