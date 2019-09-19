@@ -67,7 +67,7 @@ function surveyPopup(layer){
                    
             var stats =[];
    
-         if (props.Operations != 0){
+         if (props.Operation != 0){
             stats.push('Operational', props.Operation, "#7dcea0");    
             }
             if (props.Weather != 0){
@@ -95,8 +95,7 @@ function surveyPopup(layer){
             stats.push('Vessel Down', props.VesselDown, "#E21B06");
             }
 			
-            
-            if(stats.length> 0){
+       if(stats.length> 0){
                 popupHTML += "<div id=\"divPopup\"><i class=\"arrow down\"></i><a href='#' onClick=\'pieChart(\"" + stats + "\");return false;\'>View Survey Statistics</a></div><div><canvas id=\"chartContainer\" width=\"260\" height=\"400\"></canvas></div>";
                }
          return popupHTML;
