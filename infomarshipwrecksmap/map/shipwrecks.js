@@ -13,8 +13,8 @@ var wreckIcon2 = L.icon({
 });
 
 function createWreckPopup(feature, layer) { 
-
 	var props = feature.properties;
+    
  	var downloadType = 'Wreck Sheet';
         var vesselName = "Unidentified Wreck";
     
@@ -37,10 +37,9 @@ function createWreckPopup(feature, layer) {
 		if (typeof props.PDF != 'undefined' && props.PDF != "No") {
             popupHTML += "<tr><td class=\"tg-9hbo\" colspan=\"2\"><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+vesselName + "\");' href='"+ props.PDF + "' target='_blank'>View Wreck Report</a></td></tr>";
         } 
-        if (typeof props.LinkEUsite != 'undefined' && props.LinkEUsite != "") { 
-                popupHTML += "<tr><td class=\"tg-9hbo\" colspan=\"2\"><div id=\"showLinks\"><i class=\"arrow down\"></i><a href='#' onCLick=\"showLinks();\">External Links  </a></div><div id=\"externalLinks\"><div class='popupDiv'><a href =\"https://www.archaeology.ie/underwater-archaeology\" target='_blank'>Underwater Archaeology Unit</a></div><div class='popupDiv'><a href='"+props.LinkEUsite+"' target='_blank');'>WreckSite.eu Report</a></div></div></td></tr>";
-            //<div class='popupDiv'><a href =\"//irishwrecks.ie/\" target='_blank'>Irish Wrecks Online </a></div>
-            } else {
+        if (typeof props.LinkEUSite != 'undefined' && props.LinkEUSite != "") { 
+            popupHTML += "<tr><td class=\"tg-9hbo\" colspan=\"2\"><div id=\"showLinks\"><i class=\"arrow down\"></i><a href='#' onCLick=\"showLinks();\">External Links  </a></div><div id=\"externalLinks\"><div class='popupDiv'><a href =\"https://www.archaeology.ie/underwater-archaeology\" target='_blank'>Underwater Archaeology Unit</a></div><div class='popupDiv'><a href='"+props.LinkEUSite+"' target='_blank');'>WreckSite.eu Report</a></div></div></td></tr>";
+             } else {
             popupHTML += "<tr><td class=\"tg-9hbo\" colspan=\"2\"><div id=\"showLinks\"><i class=\"arrow down\"></i><a href='#' onCLick=\"showLinks();\">External Links  </a></div><div id=\"externalLinks\"><div class='popupDiv'><a href =\"https://www.archaeology.ie/underwater-archaeology\" target='_blank'>Underwater Archaeology Unit</a></div><div class='popupDiv'><a href=\"https://wrecksite.eu\" target='_blank');'>WreckSite.eu</a></div></div></td></tr>";
             }
             popupHTML +="<tr><td class=\"tg-topbottom\" colspan=\"2\"><div id=\"disclaimer\"><i class=\"arrow down\"></i><a href='#' onClick=\"showDisclaimer();\">Wreck Legislation  </a></div><div id=\"wreckDisclaimer\"><div class='popupDiv'>Wrecks over 100 years old and archaeological objects found underwater are protected under the National Monuments (Amendment) Acts <a href =\"http://www.irishstatutebook.ie/eli/1987/act/17/enacted/en/html\" target='_blank'>1987 </a> and <a href =\"http://www.irishstatutebook.ie/eli/1994/act/17/enacted/en/html\" target='_blank'>1994 </a>. Significant wrecks less than 100 years old can be protected by Underwater Heritage Order. See <a href =\"https://www.archaeology.ie/underwater-archaeology\" target='_blank'> UAU </a> information leaflet on <a href =\"https://www.archaeology.ie/sites/default/files/media/publications/Protection-of-Wrecks.pdf\" target='_blank'> Protection of Wrecks.</a></div></div></td></tr>";
