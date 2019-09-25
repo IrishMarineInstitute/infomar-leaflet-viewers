@@ -16,7 +16,7 @@
 
 //build popup for survey layer
 function surveyPopup(layer){
-        var props = layer.features[0].properties;
+         var props = layer.features[0].properties;
          if(props.SURVEY == 'undefined' || props.SURVEY == ""){
               return false;
          }else{
@@ -106,7 +106,7 @@ function surveyPopup(layer){
 
 //load survey tiles
 var surveyTiles = L.esri.tiledMapLayer({
-    url: 'https://maps.marine.ie/arcgis/rest/services/Infomar/SurveyCoverage/MapServer',
+            url: 'https://maps.marine.ie/arcgis/rest/services/Infomar/SurveyCoverage/MapServer',
             maxZoom: 14,
             minZoom: 5,
             opacity: 0.8
@@ -114,19 +114,17 @@ var surveyTiles = L.esri.tiledMapLayer({
 
 //query survey coverage feature service
 map.on('click', function(e){
-    L.esri.identifyFeatures({
-        url: 'https://maps.marine.ie/arcgis/rest/services/Infomar/SurveyCoverage/MapServer'
-    }).on(this).at(e.latlng).run(function (error, featureCollection, response) {
-        if (error) {
+ surveyTiles.identify().on(map).at(e.latlng).run(function(error, featureCollection){
+   if (error) {
             return false;
         }
-        if(response.results.length == 0) {
+        if(featureCollection.features.length == 0) {
             return false;
         }else{
             var popupCont = surveyPopup(featureCollection);
             map.openPopup(popupCont, e.latlng);
         }
-    });
+  });
 });
 
 //load planned surveys and popup
