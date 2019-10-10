@@ -114,6 +114,7 @@ var surveyTiles = L.esri.tiledMapLayer({
 
 //query survey coverage feature service
 map.on('click', function(e){
+if(map.hasLayer(surveyTiles)){    
  surveyTiles.identify().on(map).at(e.latlng).run(function(error, featureCollection){
    if (error) {
             return false;
@@ -125,6 +126,7 @@ map.on('click', function(e){
             map.openPopup(popupCont, e.latlng);
         }
   });
+}
 });
 
 //load planned surveys and popup

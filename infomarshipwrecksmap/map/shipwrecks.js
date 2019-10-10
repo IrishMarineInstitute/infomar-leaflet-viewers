@@ -2,14 +2,14 @@
     iconUrl: 'images/shipwreckMarker.png',
     iconSize: [24, 43],
     iconAnchor: [12, 42],
-    popupAnchor: [0, -46],
+    popupAnchor: [0, -46]
 });
 
 var wreckIcon2 = L.icon({
     iconUrl: 'images/shipwreckMarker3d.png',
     iconSize: [24, 43],
     iconAnchor: [12, 42],
-    popupAnchor: [0, -46],
+    popupAnchor: [0, -46]
 });
 
 function createWreckPopup(feature, layer) { 
@@ -28,10 +28,10 @@ function createWreckPopup(feature, layer) {
 
         popupHTML += "<tr><td class=\"tg-9hbo\">Latitude</td><td class=\"tg-yw4l\">"+ feature.geometry.coordinates[1].toFixed(2).toString() + "</td></tr><tr><td class=\"tg-9hbo\">Longitude</td><td class=\"tg-yw4l\">"+ feature.geometry.coordinates[0].toFixed(2).toString() + "</td></tr><tr><td class=\"tg-9hbo\">Vessel Type </td><td class=\"tg-yw4l\">" + (props.VESSEL_TYP || "Unknown") + "</td></tr><tr><td class=\"tg-9hbo\">Wreck Length </td><td class=\"tg-yw4l\">"+ props.WRECK_LENG + " m</td></tr><tr><td class=\"tg-9hbo\">Wreck Width </td><td class=\"tg-yw4l\">" + props.WRECK_WIDT + " m</td></tr><tr><td class=\"tg-9hbo\">Depth </td><td class=\"tg-yw4l\">" + props.WATER_DEPT + " m</td></tr>";
 
-        if (typeof props.IMAGE != 'undefined' && props.IMAGE != "") {
+        if (typeof props.IMAGE != 'undefined' && props.IMAGE != "" && props.IMAGE != "<Null>") {
 			popupHTML += "<tr><td class=\"tg-img\" colspan=\"2\"><a class='pointer' onclick='showShipwreckImageWindow(\"" +props.IMAGE + "\",\""+vesselName + "\");'><img src='"+  props.IMAGE + "' width='100%' /></a></td></tr>";
 	        }		
-        if (typeof props.LINK3DMODE != 'undefined' && props.LINK3DMODE != "") {
+        if (typeof props.LINK3DMODE != 'undefined' && props.LINK3DMODE != "" && props.LINK3DMODE != "<Null>") {
             popupHTML += "<tr><td class=\"tg-9hbo\" colspan=\"2\"><a class='pointer' onclick='showShipwreckWindow(\"" + props.LINK3DMODE + "\",\""+vesselName + "\");'>View 3D Model</a></td></tr>";
         }
 		if (typeof props.PDF != 'undefined' && props.PDF != "No") {
@@ -52,8 +52,9 @@ function createWreckPopup(feature, layer) {
 		var url = sketchfabID+ '?utm_medium=embed&utm_source=website&utm_campain=share-popup';
 			window.open(url, '_blank');
 	}else{
-	 var sketchfabIframe = "<div class=\"sketchfab-embed-wrapper\"><iframe class=\"3diframe\" width=\"100%;\" height=\"100%;\" src="+ sketchfabID +" frameborder=\"0\" allowvr allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" onmousewheel=\"\"></iframe><p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\"><a href="+ sketchfabID +"?utm_medium=embed&utm_source=website&utm_campain=share-popup\" target=\"_blank\" style=\"font-weight: bold; color: #1CAAD9;\">"+name+"</a>on <a href=\"https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campain=share-popup\" target=\"_blank\" style=\"font-weight: bold; color: #1CAAD9;\">Sketchfab</a></p><button id=\"btnCloseShipwreck\" type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; float:right;\" onclick=\"closeShipwreckWindow()\">Close</button></div>"; 
+	/* var sketchfabIframe = "<div class=\"sketchfab-embed-wrapper\"><iframe class=\"3diframe\" width=\"100%;\" height=\"100%;\" src="+ sketchfabID +" frameborder=\"0\" allowvr allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" onmousewheel=\"\"></iframe><p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\"><a href="+ sketchfabID +"?utm_medium=embed&utm_source=website&utm_campain=share-popup\" target=\"_blank\" style=\"font-weight: bold; color: #1CAAD9;\">"+name+"</a>on <a href=\"https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campain=share-popup\" target=\"_blank\" style=\"font-weight: bold; color: #1CAAD9;\">Sketchfab</a></p><button id=\"btnCloseShipwreck\" type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; float:right;\" onclick=\"closeShipwreckWindow()\">Close</button></div>"; */
 	 
+    var sketchfabIframe = "<div class=\"sketchfab-embed-wrapper\"><iframe class=\"3diframe\" width=\"100%;\" height=\"100%;\" src="+ sketchfabID +" frameborder=\"0\" allow=\"autoplay; fullscreen; vr\" mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\"></iframe><p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\"><a href="+ sketchfabID +"?utm_medium=embed&utm_source=website&utm_campain=share-popup\" target=\"_blank\" style=\"font-weight: bold; color: #1CAAD9;\">"+name+"</a>on <a href=\"https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campain=share-popup\" target=\"_blank\" style=\"font-weight: bold; color: #1CAAD9;\">Sketchfab</a></p><button id=\"btnCloseShipwreck\" type=\"button\" class=\"btn btn-digital\" style=\"margin-top: 10px; float:right;\" onclick=\"closeShipwreckWindow()\">Close</button></div>"; 
 	 
 	 $('#shipwreckModal').html(sketchfabIframe);
 	 

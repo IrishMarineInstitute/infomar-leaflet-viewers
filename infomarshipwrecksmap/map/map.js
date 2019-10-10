@@ -54,7 +54,7 @@
 			"Oceans": base_EsriOceans,
 			"Street Map": OpenStreetMap,
 			"Imagery": base_EsriImagery,
-		};	
+		};
 		map.addLayer(base_EsriOceans);
 		
 		var overlays = {
