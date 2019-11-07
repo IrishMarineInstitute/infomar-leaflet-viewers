@@ -36,7 +36,7 @@
     "grunt-contrib-jshint": "~0.5.4",
     "grunt-saucelabs": "~4.0.4",
     "grunt": "~0.4.1",
-    "uglify-js": "~2.3.6",
+    "uglify-js": "~3.6.8",
     "defs": "~0.4.1",
     "mocha": "~1.12.1",
     "grunt-mocha-phantomjs": "~0.3.0"
