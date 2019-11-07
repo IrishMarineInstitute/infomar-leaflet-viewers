@@ -4,6 +4,7 @@
 			zoom: 7,
 			layersControl: true
         });
+map.attributionControl.addAttribution("&copy; <a href=http://www.infomar.ie>INFOMAR</a>");		
 	
 		var isTouchDevice = 'ontouchstart' in document.documentElement;
 
@@ -141,7 +142,7 @@ var plannedSurveyAreas = L.geoJson (plannedSurveys, {
 		simplifyFactor: 5,
 		zIndex: 1000,
 		precision: 1
-		}).addTo(map);
+		});
 		
 var tracklines = L.esri.dynamicMapLayer({url: 'https://maps.marine.ie/arcgis/rest/services/Infomar/Tracklines/MapServer'}); 
 		

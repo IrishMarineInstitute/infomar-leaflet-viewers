@@ -5,6 +5,7 @@ var mapBY = L.map('mapBY', {
             maxZoom: 14,
             layersControl: true,
         });
+map.attributionControl.addAttribution("&copy; <a href=http://www.infomar.ie>INFOMAR</a>");		
 	
 var isTouchDevice = 'ontouchstart' in document.documentElement;
 

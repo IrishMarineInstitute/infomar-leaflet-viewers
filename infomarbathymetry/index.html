@@ -8,19 +8,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<link rel="shortcut icon" href="images/favicon.ico">
     <!-- Leaflet -->
-	<link rel="stylesheet" href="scripts/libs/leaflet-1.0.0-b1/leaflet.css" />
+	<!--<link rel="stylesheet" href="scripts/libs/leaflet-1.0.0-b1/leaflet.css" />-->
+    <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/leaflet-1.5.1/leaflet.css" />
 	<link rel="stylesheet" href="scripts/libs/leaflet-1.0.0-b1/myButtons.css" />
     <link rel="stylesheet" href="scripts/tools/opacityControl/lib/opacity/Control.Opacity.css" />
     <link rel="stylesheet" href="scripts/libs/jquery-ui-1.11.4/jquery-ui.css" />
     <link rel="stylesheet" href="scripts/tools/Leaflet.draw/dist/leaflet.draw.css" />
     <link rel="stylesheet" href="scripts/display/L.Control.Credits/dist/leaflet-control-credits.css" />
 	<link rel="stylesheet" href="scripts/tools/leaflet-measure/dist/leaflet-measure.css" />
-	
+	<script src="//maps.marine.ie/mapjslibs/colourscales.js" type="text/javascript"></script>
     <script src="scripts/libs/jquery/jquery-1.11.3.min.js"></script>
 	<script src="scripts/libs/jquery-ui-1.11.3/jquery-ui.min.js"></script>
-	
-	<script src="scripts/libs/leaflet-1.0.0-b1/leaflet-src.js" type="text/javascript"></script> 
+		
+	<!--<script src="scripts/libs/leaflet-1.0.0-b1/leaflet-src.js" type="text/javascript"></script> -->
+    <script src="//maps.marine.ie/mapjslibs/leaflet-1.5.1/leaflet-src.js" type="text/javascript"></script> 
 	<script src="scripts/libs/esri-leaflet-v2.0.0-beta.5/dist/esri-leaflet.js" type="text/javascript"></script>
+     	 	<script src="//maps.marine.ie/mapjslibs/config.js" type="text/javascript"></script>
 	<script src="scripts/tools/opacityControl/lib/opacity/Control.Opacity.js" type="text/javascript"></script>
     <script type="text/javascript" src="scripts/display/L.Control.Credits/dist/leaflet-control-credits-src.js"></script>
 	<script src="scripts/tools/leaflet-measure/dist/leaflet-measure.js" type="text/javascript"></script>
@@ -31,6 +34,8 @@
 <script src="scripts/tools/leaflet-workspace/leaflet-workspace-csv.js"></script>
 	<script src="scripts/display/style_template.js" type="text/javascript"></script>
 	<script src="scripts/tools/addcsv/leaflet.geoCSV.js" type="text/javascript"></script>
+    
+   
 	<script type="text/javascript"></script>
     <style>
          body {
@@ -89,7 +94,7 @@
             width: 215px;
             padding: 0.5em;
             background-color: #D4FFD4;
-            margin-right: 15px;
+            margin-right: 25px;
         }
 
             #depth-ranges input {
@@ -203,7 +208,7 @@
             position: relative;
             display: inline-block;
             top: 10px;
-            right: 51px;
+            right: 60px;
             z-index: 500;
             padding: 0.5em;
             background-color: #D2FEFF;
@@ -485,9 +490,9 @@ display: none;
 
 		<div id="form-Shading" class="leaflet-bar noPrint">
             <div id="toolbar_shaded" class="ui-widget-header ui-corner-all">
-                <span id="shadedlayerOnOff">
-                    <input type="radio" id="repeat0_Shaded" name="repeat_Shaded" checked="checked" autocomplete="off"><label for="repeat0_Shaded" id="shaded0Label">On</label>
-                    <input type="radio" id="repeat1_Shaded" name="repeat_Shaded" autocomplete="off"><label for="repeat1_Shaded" id="shaded1Label">Off</label>
+               <span id="shadedlayerOnOff">
+                    <input type="radio" id="repeat0_Shaded" name="repeat_Shaded" autocomplete="off"><label for="repeat0_Shaded" id="shaded0Label">On</label>
+                    <input type="radio" id="repeat1_Shaded" name="repeat_Shaded" checked="checked" autocomplete="off"><label for="repeat1_Shaded" id="shaded1Label">Off</label>
                 </span>
                 <button id="closeShadedForm"></button>
                 <button id="srbuttononform">Shaded Relief Settings</button>
@@ -519,14 +524,14 @@ display: none;
             </form>
 		<div id="srInfo">
                 <img src="images/SR_5.png" style="width: 220px; height: 125px; margin-top: 10px; border: solid; border-color: #808080; border-width: 1px;">
-                <p style="width: 215px; font-size: small; width: 230px; font-family: Verdana,Arial,sans-serif;">The shaded relief layer highlights features on the seabed using light and shade. Change the default altitude, azimuth and vertical exaggeration using form below.</p><a style="width: 100%" href="http://www.isde.ie/#/" target="blank">Open ISDE Data Catalogue </a>
+                <p style="width: 215px; font-size: small; width: 230px; font-family: Verdana,Arial,sans-serif;">The shaded relief layer highlights features on the seabed using light and shade. Change the default altitude, azimuth and vertical exaggeration using form below.</p><a style="width: 100%" href="//data.marine.ie/geonetwork/srv/eng/catalog.search#/metadata/ie.marine.data:dataset.858" target="blank">Open Data Catalogue </a>
             </div>
         </div>
         <div id="depth-ranges" draggable="true" class="leaflet-bar noPrint">
             <div id="toolbar" class="ui-widget-header ui-corner-all">
                 <span id="layerOnOff">
-                    <input type="radio" id="repeat0" name="repeat" checked="checked" autocomplete="off"><label for="repeat0" id="repeat0Label">On</label>
-                    <input type="radio" id="repeat1" name="repeat" autocomplete="off"><label for="repeat1" id="repeat1Label">Off</label>
+                    <input type="radio" id="repeat0" name="repeat" autocomplete="off"><label for="repeat0" id="repeat0Label">On</label>
+                    <input type="radio" id="repeat1" name="repeat" checked="checked" autocomplete="off"><label for="repeat1" id="repeat1Label">Off</label>
                 </span>
 	            <button id="closeBathyForm"></button>
                  <button id="bathybuttononform">Bathymetry Settings</button>
@@ -700,19 +705,12 @@ display: none;
                 </div>
                 <button type="button" value="ClipExtent" id="ClipExtent" title="Clip data to map extent" style="margin-top:5px;">Clip</button>
 		</div>
-         </div>
 		    <div id="BathyInfo">
                 <img src="images/BathyInfo8.png" style="width:200px; height:145px; margin-top:10px;">
-                <p style="font-size: small; font-family: Verdana,Arial,sans-serif;">The bathymetry shows the depth of the seabed using a graduated colour scale. Bathymetry values are negative and elevation values (from LiDAR surveys) are positive above sea level. Change the range of values displayed and colour scale using form above.</p><a style="width: 100%" href="http://www.isde.ie/#/" target="blank">Open ISDE Data Catalogue </a>
+                <p style="font-size: small; font-family: Verdana,Arial,sans-serif;">The bathymetry shows the depth of the seabed using a graduated colour scale. Bathymetry values are negative and elevation values (from LiDAR surveys) are positive above sea level. Change the range of values displayed and colour scale using form above.</p><a style="width: 100%" href="http://data.marine.ie/geonetwork/srv/eng/catalog.search#/metadata/ie.marine.data:dataset.858" target="blank">Open ISDE Data Catalogue </a>
             </div>
+        </div>
 		</div> 
-<!-- 		<div id="uploadCSV" class="leaflet-bar noPrint">
-		<button id="closeCSVUploadForm"></button>
-		<span>Upload a csv file of points with columns:<br> Latitude (WGS84), Longitude (WGS84), Name. <br>For example: <em>
-		  51.559, -9.7129, Sample 1</em></span><br><br>
-			<span><input type="file" id="upload"></span>
-		</div> -->
-    </div>
 	<script src="scripts/map/controls4.js" type="text/javascript"></script>
 	<script src="scripts/map/mapLayers.js" type="text/javascript"></script>
 	<script src="scripts/display/toggleBathy.js" type="text/javascript"></script>
@@ -737,8 +735,8 @@ function refreshLayers() {
     var refresh = setTimeout("refreshLayers()", timeout);
         }
 		
-		var spinner = new Spinner().spin();
-		container.appendChild(spinner.el);
+	//	var spinner = new Spinner().spin();
+	//	container.appendChild(spinner.el);
         </script>
     </div>	
 </body>

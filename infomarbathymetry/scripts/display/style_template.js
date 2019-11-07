@@ -83,11 +83,10 @@ $(function () {
               primary: "ui-icon-help"
           }
       })
-      .click(function (event) {
-		  $('#form').hide(); 
-		 $('#bathy-wrapper').hide();
-		 togglePanel('#BathyInfo');
-		
+      .click(function (event) {  
+        togglePanel('#BathyInfo');
+		  $('#form').hide("slow"); 
+		 $('#bathy-wrapper').hide(); 
       });
 });
 
@@ -120,7 +119,7 @@ function togglePanel(x) {
 
 $(document).ready(function () {
     var du = 4000;
-	refreshLayers();
+//	refreshLayers();
 	$('div.leaflet-credits-control').click();
     $(document).tooltip({
         track: true,
