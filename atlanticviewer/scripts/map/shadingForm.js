@@ -14,7 +14,7 @@ var minDepth = parseInt(endDepthInput.value);
 					"rasterFunctionArguments" : {
 					"Azimuth" : azimuthInput.value, 
 					"Altitude" : altitudeInput.value,
-					"ZFactor" : zfactorInput.value *(3),
+					"ZFactor" : zfactorInput.value,
 						"Raster" : {		
 							"rasterFunction" : "Mask",
 							"rasterFunctionArguments" : {

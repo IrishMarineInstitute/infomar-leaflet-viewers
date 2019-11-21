@@ -95,22 +95,20 @@ function iDepthClick(e) {
 
             Bathy.identify().at(e.latlng).run(function(error, results){
              depthPixelClick = results.pixel;   
-            
+            var depthMarkers = [];
+                
             if(depthPixelClick.properties.value == 'NoData'){    
-            depthPopup = depthPixelClick.properties.value;
-            var depthPoint = L.marker(e.latlng);
-			depthMarker.addLayer(depthPoint);
+                depthPopup = depthPixelClick.properties.value;
+                var depthPoint = L.marker(e.latlng).addTo(map).bindPopup("No Data").openPopup();
+                depthMarker.addLayer(depthPoint);
 			}
             else{
-            depthPixel = parseFloat(depthPixelClick.properties.value);  
-            depthPopup =  depthPixel.toFixed(2) + 'm'; 
-			 var depthPoint = L.marker(e.latlng);
-			 depthMarker.addLayer(depthPoint);
-            }
-               
-        depthPopupContainer.innerHTML = depthPopup;
+                depthPixel = parseFloat(depthPixelClick.properties.value);  
+                depthPopup =  depthPixel.toFixed(2) + 'm'; 
+                var depthPoint = L.marker(e.latlng).addTo(map).bindPopup(depthPopup).openPopup();
+                depthMarker.addLayer(depthPoint);
+            }          
         map.addLayer(depthMarker);
-		depthPoint.bindPopup(depthPopupContainer).openPopup();		
      });
  }
 

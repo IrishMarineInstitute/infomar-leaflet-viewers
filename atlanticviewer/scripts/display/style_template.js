@@ -120,6 +120,7 @@ $(function () {
       });
 });
 
+
 function togglePanel(x) {
     $(x).slideToggle(800);
 	base_EsriOceans.bringToBack();
@@ -147,7 +148,8 @@ $(document).ready(function () {
         }
     })
 		 .click(function (event) {
-		 $('#depth-ranges').hide("slow");
+        togglePanel('#depth-ranges');
+		// $('#depth-ranges').hide("slow");
 	 });
 	});
 	$(function () {
@@ -199,7 +201,7 @@ $(function () {
         }
     })
 	 .click(function (event) {
-		 $('#form-Shading').hide("slow");
+		 togglePanel('#form-Shading');
 	 });
 });
     $(function () {
@@ -283,3 +285,4 @@ if(!('ontouchstart' in window)){
     $('#depth-ranges input').tooltip('destroy');
 	$('#form-Shading input').tooltip('destroy');
 }
+

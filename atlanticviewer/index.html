@@ -8,7 +8,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<link rel="shortcut icon" href="images/favicon.ico">
     <!-- Leaflet -->
-	<link rel="stylesheet" href="scripts/libs/leaflet-1.0.0-b1/leaflet.css" />
+	<!-- <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/leaflet-1.0.0-b1/leaflet.css" />-->
+     <script src="//maps.marine.ie/mapjslibs/leaflet-1.5.1/leaflet-src.js" type="text/javascript"></script> 
+    <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/leaflet-1.5.1/leaflet.css" />
 	<link rel="stylesheet" href="scripts/libs/leaflet-1.0.0-b1/myButtons.css" />
     <link rel="stylesheet" href="scripts/tools/opacityControl/lib/opacity/Control.Opacity.css" />
     <link rel="stylesheet" href="scripts/libs/jquery-ui-1.11.4/jquery-ui.css" />
@@ -19,17 +21,22 @@
     <script src="scripts/libs/jquery/jquery-1.11.3.min.js"></script>
 	<script src="scripts/libs/jquery-ui-1.11.3/jquery-ui.min.js"></script>
 	
-	<script src="scripts/libs/leaflet-1.0.0-b1/leaflet-src.js" type="text/javascript"></script> 
+	<!--<script src="scripts/libs/leaflet-1.0.0-b1/leaflet-src.js" type="text/javascript"></script> -->
+    <script src="//maps.marine.ie/mapjslibs/leaflet-1.5.1/leaflet-src.js" type="text/javascript"></script>
 	<script src="scripts/libs/esri-leaflet-v2.0.0-beta.5/dist/esri-leaflet.js" type="text/javascript"></script>
 	<script src="scripts/tools/opacityControl/lib/opacity/Control.Opacity.js" type="text/javascript"></script>
 <!--     <script src="scripts/tools/Leaflet.draw/dist/leaflet.draw-src.js" type="text/javascript"></script> -->
     <script type="text/javascript" src="scripts/display/L.Control.Credits/dist/leaflet-control-credits-src.js"></script>
 	<script src="scripts/tools/leaflet-measure/dist/leaflet-measure.js" type="text/javascript"></script>
+    <script src="scripts/display/colourscales.js" type="text/javascript"></script> 
  	<script src="scripts/display/Spin.js" type="text/javascript"></script> 
 	<script src="scripts/display/leaflet.spin.js" type="text/javascript"></script>
 	<script src="scripts/display/style_template.js" type="text/javascript"></script>
 	<script src="scripts/tools/addcsv/leaflet.geoCSV.js" type="text/javascript"></script>
-	    <script type="text/javascript"></script>
+    
+    <!--Test Layers for download function-->
+  <!--  <script src="//infomarweb/infomardata/AtlanticTiles/CE15_to_CE18_AtlanticSurveys_100mRes_WM.js" type="text/javascript"></script>  -->
+    <script type="text/javascript"></script>
     <style>
          body {
             margin: 0;
@@ -75,7 +82,7 @@
 		padding: 0.5em;
 		position: absolute;
 		float: left;
-		width: 180px;
+		width: 160px;
 		left:60px;
 		top:10px;
 		z-index: 800;
@@ -98,8 +105,8 @@
             width: 215px;
             padding: 0.5em;
             background-color: #D4FFD4;
-            margin-right: 15px;
-        }
+            margin-right: 25px;
+         }
 
             #depth-ranges input {
                 display: inline-block;
@@ -212,7 +219,7 @@
             position: relative;
             display: inline-block;
             top: 10px;
-            right: 51px;
+            right: 60px;
             z-index: 500;
             padding: 0.5em;
             background-color: #D2FEFF;
@@ -362,8 +369,8 @@
 		<div id="form-Shading" class="leaflet-bar">
             <div id="toolbar_shaded" class="ui-widget-header ui-corner-all">
                 <span id="shadedlayerOnOff">
-                    <input type="radio" id="repeat0_Shaded" name="repeat_Shaded" checked="checked" autocomplete="off"><label for="repeat0_Shaded" id="shaded0Label">On</label>
-                    <input type="radio" id="repeat1_Shaded" name="repeat_Shaded" autocomplete="off"><label for="repeat1_Shaded" id="shaded1Label">Off</label>
+                    <input type="radio" id="repeat0_Shaded" name="repeat_Shaded" autocomplete="off"><label for="repeat0_Shaded" id="shaded0Label">On</label>
+                    <input type="radio" id="repeat1_Shaded" name="repeat_Shaded" checked="checked" autocomplete="off"><label for="repeat1_Shaded" id="shaded1Label">Off</label>
                 </span>
                 <button id="closeShadedForm"></button>
                 <button id="srbuttononform">Shaded Relief Settings</button>
@@ -380,13 +387,13 @@
                     <p style="margin-top: 6px; margin-bottom: 0px;">
                         <label for="azimuth">
                             Azimuth (Value 0 - 360):
-                            <input id='azimuth' type="text" value='215' name='azimuth' title="Orientation the of the sun over the surface">
+                            <input id='azimuth' type="text" value='315' name='azimuth' title="Orientation the of the sun over the surface">
                         </label>
                     </p>
                     <p style="margin-top: 6px; margin-bottom: 8px;">
                         <label for="zfactor">
                             Vertical Exaggeration:
-                            <input id='zfactor' type="text" value='5' name='zfactor' style="margin-left:16px;" title="Value by which the depth/elevation values will be multiplied to exaggerate seabed topography">
+                            <input id='zfactor' type="text" value='4' name='zfactor' style="margin-left:16px;" title="Value by which the depth/elevation values will be multiplied to exaggerate seabed topography">
                         </label>
                     </p>
                     <input style="margin-left:10px" id='shadedAppChanges' type="submit" value="Apply Changes">
@@ -401,8 +408,8 @@
         <div id="depth-ranges" draggable="true" class="leaflet-bar">
             <div id="toolbar" class="ui-widget-header ui-corner-all">
                 <span id="layerOnOff">
-                    <input type="radio" id="repeat0" name="repeat" checked="checked" autocomplete="off"><label for="repeat0" id="repeat0Label">On</label>
-                    <input type="radio" id="repeat1" name="repeat" autocomplete="off"><label for="repeat1" id="repeat1Label">Off</label>
+                    <input type="radio" id="repeat0" name="repeat" autocomplete="off"><label for="repeat0" id="repeat0Label">On</label>
+                    <input type="radio" id="repeat1" name="repeat" checked="checked" autocomplete="off"><label for="repeat1" id="repeat1Label">Off</label>
                 </span>
 	            <button id="closeBathyForm"></button>
                  <button id="bathybuttononform">Bathymetry Settings</button>
@@ -598,6 +605,7 @@
                             </select>
 		</div>	
     </div>
+    <script src="//maps.marine.ie/mapjslibs/config.js" type="text/javascript"></script>
 	<script src="scripts/map/controls4.js" type="text/javascript"></script>
 	<script src="scripts/map/mapLayers.js" type="text/javascript"></script>
 	<script src="scripts/display/toggleBathy.js" type="text/javascript"></script>

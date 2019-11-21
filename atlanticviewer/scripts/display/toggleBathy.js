@@ -1,14 +1,14 @@
 ﻿$('#repeat1').on('click', function bathyClick(e){
-    Bathy.setOpacity(0);
+    map.removeLayer(Bathy);
 });
 $('#repeat0').on('click', function bathyunClick(e) {
-    Bathy.setOpacity(0.75);
+    map.addLayer(Bathy);
 });
 
 $('#repeat1_Shaded').on('click', function shadedreliefClick(e) {
-    BathyShaded.setOpacity(0);
+    map.removeLayer(BathyShaded);
 });
 
 $('#repeat0_Shaded').on('click',function shadedreliefunClick(e) {
-    BathyShaded.setOpacity(0.75);
+    map.addLayer(BathyShaded);
 });

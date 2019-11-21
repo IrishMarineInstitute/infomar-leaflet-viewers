@@ -14,7 +14,6 @@ onAdd: function (map) {
 		
         var controlUI = L.DomUtil.create('a', 'bathyButton', controlDiv);
         controlUI.title = 'Edit Bathymetry display';
-		//controlUI.text = 'Bathymetry'
         controlUI.href = '#';
 		return controlDiv;
 },		
@@ -131,8 +130,8 @@ L.Control.idDepth = L.Control.extend({
     options: {
         position: 'topleft',
 		popupOptions: { 
-      className: 'leaflet-measure-resultpopup',
-      autoPanPadding: [10, 10]
+        className: 'leaflet-measure-resultpopup',
+        autoPanPadding: [10, 10]
 	}
     },
 
@@ -159,6 +158,7 @@ onAdd: function (map) {
 			depthMarker.clearLayers();
 			map.off('click', iDepthClick);
 			controlUIClear.style.display = 'none';
+            $('.leaflet-container').css('cursor','grab');
 		});		
 			return controlDiv;	
 		}
@@ -176,25 +176,23 @@ var depthMarker = new L.FeatureGroup();
 var depthPopupContainer = L.DomUtil.create('div', '');
 
 function iDepthClick(e) {
-	
+
             Bathy.identify().at(e.latlng).run(function(error, results){
              depthPixelClick = results.pixel;   
-            
+            var depthMarkers = [];
+                
             if(depthPixelClick.properties.value == 'NoData'){    
-            depthPopup = depthPixelClick.properties.value;
-            var depthPoint = L.marker(e.latlng);
-			depthMarker.addLayer(depthPoint);
+                depthPopup = depthPixelClick.properties.value;
+                var depthPoint = L.marker(e.latlng).addTo(map).bindPopup("No Data").openPopup();
+                depthMarker.addLayer(depthPoint);
 			}
             else{
-            depthPixel = parseFloat(depthPixelClick.properties.value);  
-            depthPopup =  depthPixel.toFixed(2) + 'm'; 
-			 var depthPoint = L.marker(e.latlng);
-			 depthMarker.addLayer(depthPoint);
-            }
-               
-        depthPopupContainer.innerHTML = depthPopup;
+                depthPixel = parseFloat(depthPixelClick.properties.value);  
+                depthPopup =  depthPixel.toFixed(2) + 'm'; 
+                var depthPoint = L.marker(e.latlng).addTo(map).bindPopup(depthPopup).openPopup();
+                depthMarker.addLayer(depthPoint);
+            }          
         map.addLayer(depthMarker);
-		depthPoint.bindPopup(depthPopupContainer).openPopup();		
      });
  }
 
@@ -215,7 +213,7 @@ onAdd: function (map) {
             .addListener(controlDiv, 'click', L.DomEvent.stopPropagation)
             .addListener(controlDiv, 'click', L.DomEvent.preventDefault)
         var controlUI = L.DomUtil.create('a','locateMeButtonWatch myButton', controlDiv);
-        controlUI.title = 'Show my Location';
+        controlUI.title = 'Show my location (For use on devices with GPS, like a smartphone).';
         controlUI.href = '#';
 		L.DomEvent.addListener(controlUI, 'click', function(){
 		checkGeolocationWatch();
@@ -242,18 +240,18 @@ onAdd: function (map) {
 });
 
 function checkGeolocationWatch() {
-	if (/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
+/*	if (/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
 			alert('Chrome does not support Geolocation functionality');
 			map.spin(false);	
-	}else if('geolocation' in navigator){
+	}else */
+        if('geolocation' in navigator){
 		var options = {
 		enableHighAccuracy: true, 
 		timeout: 5000,  
 		maximumAge: 0 
 		};
 		id = navigator.geolocation.watchPosition(onSuccessWatch, onErrorWatch, options); 
-		
-		map.spin(true);
+		  map.spin(true);
 	}else{
 		alert('Your device does not support this function');
 }
@@ -320,34 +318,12 @@ function onSuccessWatch(e){
 }
 }		
 
-//function onLocationError(e) {
-function onErrorWatch(e){
-		if(err.code==1)
-			{
-				alert("User denied geolocation.");
-				navigator.geolocation.clearWatch(id);
-				map.spin(false);
-			}
-			else if(err.code==2)
-			{
-				alert("Position unavailable.");
-				navigator.geolocation.clearWatch(id);
-				map.spin(false);
-			}
-			else if(err.code==3)
-			{
-				alert("Timeout expired.");
-				navigator.geolocation.clearWatch(id);
-				map.spin(false);
-			}
-			else
-			{
-				alert("ERROR:"+ err.message);
-				navigator.geolocation.clearWatch(id);
-				map.spin(false);
-			}
-		}
+function onErrorWatch(err){
+        if(e.code >=1 || e.code<=3){
+        alert("Error in finding your location:" +e.message);
+        navigator.geolocation.clearWatch(id);
+        map.spin(false);
+    }
+}
 		
-
-
 	
