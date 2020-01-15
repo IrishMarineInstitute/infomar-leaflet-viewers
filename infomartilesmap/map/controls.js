@@ -228,11 +228,11 @@ var base_EsriOceans2 = L.tileLayer('//services.arcgisonline.com/ArcGIS/rest/serv
 		attribution: '<a href="//www.esri.com">ESRI</a>'
 		});
 	
-var backscatter_split = L.tileLayer('https://maps.marine.ie/INFOMAR_Tiles/backscatter/{z}/{x}/{y}.png', {
+var backscatter_split = L.tileLayer('//maps.marine.ie/INFOMAR_Tiles/backscatter/{z}/{x}/{y}.png', {
             maxZoom: 14,
             minZoom: 6,
             opacity: 1,
-            attribution: '<a href="http://www.infomar.ie">INFOMAR</a>'
+            attribution: '<a href="https://www.infomar.ie">INFOMAR</a>'
         });
  	
 	var mapBK = L.map('mapleft', {
@@ -263,3 +263,44 @@ function hideMapBK(){
 	document.getElementById('mapBK').innerHTML = "";
 	mapBY.invalidateSize(true);
 }
+
+L.Control.sedimentLegend = L.Control.extend({
+    options: {
+        position: 'topright',
+        popupOptions: {
+            className: 'leaflet-measure-resultpopup',
+            autoPanPadding: [10, 10]
+        }
+    },
+
+    onAdd: function (map) {
+        var controlDiv = L.DomUtil.create('div', 'myButton leaflet-bar noPrint');
+        L.DomEvent
+            .addListener(controlDiv, 'click', L.DomEvent.stopPropagation)
+            .addListener(controlDiv, 'click', L.DomEvent.preventDefault)
+        var controlUI = L.DomUtil.create('a', 'myButton', controlDiv);
+        controlUI.title = 'Show Sediment Colour Legend';
+        controlUI.href = '#';
+		controlUI.style.width = "35px";
+        controlUI.style.height = "35px";
+        controlUI.innerHTML = "<div><img style=\"padding: 5px;\" src=\'//maps.marine.ie/mapjslibs/sedimentData/marker-icon.png'/></div>"
+			
+        L.DomEvent.addListener(controlUI, 'mouseover', function () {
+               controlUIClear.style.display = 'block';
+            controlUI.style.display = 'none';
+        });
+        
+
+        var controlUIClear = L.DomUtil.create('div', 'psaLegend myButton', controlDiv);
+        controlUIClear.title = 'Particle Size Analysis';
+        controlUIClear.style.display = 'none';
+        controlUIClear.innerHTML = "<div><img height=220px width=250px src=\'//maps.marine.ie/mapjslibs/sedimentData/PSA.png'/></div><div>INFOMAR Sediment Classification Scheme</div>"
+
+         L.DomEvent.addListener(controlUIClear, 'mouseout', function () {
+               controlUIClear.style.display = 'none';
+            controlUI.style.display = 'block';
+        });
+        
+        return controlDiv;
+    }
+});

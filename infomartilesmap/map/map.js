@@ -5,7 +5,6 @@ var mapBY = L.map('mapBY', {
             maxZoom: 14,
             layersControl: true,
         });
-mapBY.attributionControl.addAttribution("&copy; <a href=http://www.infomar.ie>INFOMAR</a>");		
 	
 var isTouchDevice = 'ontouchstart' in document.documentElement;
 
@@ -17,41 +16,85 @@ var isTouchDevice = 'ontouchstart' in document.documentElement;
 }
 	
 var samplePoints = L.geoJson(samplePts, {
+            pointToLayer: function (feature, latlng) {
+				var sampleMarker;
+                var iconName;
+                var props = feature.properties;
+                
+                if(props.FOLK_CLASS =='Sand'){
+                    iconName = sandIcon;
+                }else if (props.FOLK_CLASS =='Mud'){
+                    iconName =mudIcon;
+                }else if (props.FOLK_CLASS =='Gravel' || props.FOLK_CLASS =='Gravelly sand' || props.FOLK_CLASS =='Sandy gravel'|| props.FOLK_CLASS =='Slightly gravelly sand'){
+                    iconName = gravelIcon;
+                }else if (props.FOLK_CLASS =='Sandy mud'|| props.FOLK_CLASS =='Muddy sand'){
+                    iconName = mudSandIcon;
+                }else if (props.FOLK_CLASS =='Gravelly mud' || props.FOLK_CLASS =='Gravelly muddy sand' || props.FOLK_CLASS =='Muddy gravel'|| props.FOLK_CLASS =='Gravelly sandy mud' || props.FOLK_CLASS =='Muddy sandy gravel'){
+                    iconName = mixedSedIcon;
+                }else {
+                    iconName = noPSAIcon;
+                }
+            
+               sampleMarker = L.marker(latlng, { 
+					icon: iconName, 
+					title: feature.properties.FOLK_CLASS,
+					riseOnHover: true
+					}); 
+              
+				return sampleMarker;
+			},
 			onEachFeature: function (feature, layer) {
-				var imageLink = "//maps.marine.ie/infomar/" + feature.properties.IMG_URL;
-						
-				if (feature.properties && feature.properties.VESSELYEAR) {
-				 var popupHTML ="<table class=\"tg\"><tr><th class=\"tg-9hbo\">Vessel Year</th><th class=\"tg-yw4l\">" + feature.properties.VESSELYEAR + "</th></tr>"
-				 if(feature.properties.LABEL != 'undefined' && feature.properties.LABEL != ""){
-				 popupHTML += "<tr><td class=\"tg-9hbo\">Label</td><td class=\"tg-yw4l\">"+ feature.properties.LABEL+ "</td></tr>"
-				}
-				 if(feature.properties.DATE != 'undefined' && feature.properties.DATE != ""){
-				 popupHTML += "<tr><td class=\"tg-9hbo\">Date</td><td class=\"tg-yw4l\">" + feature.properties.DATE +"</td></tr>"
-				 }
-				 popupHTML += "<tr><td class=\"tg-9hbo\">Latitude</td><td class=\"tg-yw4l\">"+ Math.round(feature.properties.LAT * 100)/100+ "</td></tr><tr><td class=\"tg-9hbo\">Longitude</td><td class=\"tg-yw4l\">"+ Math.round(feature.properties.LONG * 100)/100 + "</td></tr>"
-				 
-				 	if(feature.properties.DEPTH != 'undefined' && feature.properties.DEPTH != "" && feature.properties.DEPTH != "0"){
-					popupHTML +=  "<tr><td class=\"tg-9hbo\">Depth</td><td class=\"tg-yw4l\">"+ feature.properties.DEPTH + "m</td></tr>";
-					}
-					if(feature.properties.DESCRIPT != 'undefined' && feature.properties.DESCRIPT != ""){
-						popupHTML += "<tr><td class=\"tg-9hbo\">Description</td><td class=\"tg-dddd\">"+ feature.properties.DESCRIPT + "</td></tr>";
-				 }
-					if(feature.properties.COMMENT != 'undefined' && feature.properties.COMMENT != ""){
-				 		popupHTML += "<tr><td class=\"tg-9hbo\">Comment</td><td class=\"tg-dddd\">"+ feature.properties.COMMENT + "</td></tr>";
-					}
-				 	if(feature.properties.IMG_URL != 'undefined' && feature.properties.IMG_URL != ""){
-						popupHTML += "<tr><td class=\"tg-img\" colspan=\"2\"><img src='" + imageLink + "' width='100%' /></td></tr>";
-				  }
-					popupHTML +="</table>"
-				}
-			layer.bindPopup(popupHTML);		
+				//var imageLink = "//maps.marine.ie/infomar/" + year +"/"+ feature.properties.IMG_URL +"jpg";
+				var props = feature.properties;
+                               
+                if (props && props.SAMPLE_ID) {
+				 var popupHTML ="<div id=popupTitle><table class=\"tg\"><tr><th class=\"tg-9hbo\">Sample ID</th><td class=\"tg-yw4l\">" + props.SAMPLE_ID + "</td></tr>";
+                }
+                if(props.VESSEL != 'undefined' && props.VESSEL != ""){
+				    popupHTML += "<tr><th class=\"tg-9hbo\">Vessel</th><td class=\"tg-yw4l\">" + props.VESSEL +"</td></tr></table></div>";
+				    }
+                    popupHTML += sampleInfo(props); 
+                                
+                if(props.FOLK_CLASS != 'undefined' && props.FOLK_CLASS != ""){
+                    popupHTML += "<div id=\"divPopup\"><table class=\"tg\"><tr><th class=\"tg-9hbo\">Folk Classification:</th><td class=\"tg-yw4l\">"+ props.FOLK_CLASS + "</td></tr>";
+		            popupHTML += "<tr><th class=\"tg-9hbo\">Description:</th><td class=\"tg-yw4l\">"+ props.PSA_DSCRPT + "</td></tr></table><i class=\"arrow up\"></i><canvas id=\"chartContainer\"></canvas><a href='#' onclick=\"$('#popupContent').show().fadeIn(1000);$('#divPopup').hide();\">Show Sample Collection Details</a></div>";
+                    } 
+
+			     layer.bindPopup(popupHTML);		
 			}
 		});
 		
-		var markers = L.markerClusterGroup();
+		var markers = L.markerClusterGroup({disableClusteringAtZoom:14});
 		markers.addLayer(samplePoints);
 		mapBY.addLayer(markers);
-	
+
+markers.on("click", function(e){
+    var props = e.layer.feature.properties;
+    
+    setTimeout(function(){
+        if(props.FOLK_CLASS != "" && props.FOLK_CLASS!='undefined'){
+                    var sedClasses =[];
+                    var sedValues = [];
+
+                 if (props.MUD != 0){
+                    sedClasses.push('Mud');    
+                    sedValues.push(props.MUD);
+                    }
+                    if (props.SAND != 0){
+                    sedClasses.push('Sand');    
+                    sedValues.push(props.SAND);
+                      }
+                    if (props.GRAVEL != 0){
+                    sedClasses.push('Gravel');    
+                    sedValues.push(props.GRAVEL);
+                    }
+                pieChart(sedClasses, sedValues, props.FOLK_CLASS, props.PSA_DSCRPT);
+        }else {
+             $('#popupContent').css("display","block").hide().fadeIn();
+        }
+    }, 200)    
+});
+
 function style200(feature) {
     return {
         weight: 2,
@@ -85,14 +128,14 @@ var DesigArea_bdry = L.geoJson(DesigArea, {
 		precision: 1
 }); 
 
-var seabedClassOut = L.geoJson(INF_Sub, {
+/*var seabedClassOut = L.geoJson(INF_Sub, {
  		style: {weight: 0, fillOpacity: 0, stroke : 0},		
 		simplifyFactor: 5,
 		zIndex: 0,
 		precision: 1
 }); 
 
-seabedClass.on('add', function(e){
+seabedClassFolk.on('add', function(e){
 	setTimeout(function(){seabedClassOut.addTo(mapBY);}, 500)
 });
 
@@ -100,15 +143,16 @@ mapBY.on('layerremove', function(e){
 	if (e.layer.options.id == 'seabedClassID'){
 		setTimeout(function(){mapBY.removeLayer(seabedClassOut);}, 500)
 	}
-});
+});*/
 
 mapBY.on('click', function(e){
-	if(mapBY.hasLayer(seabedClass)){
-	seabedClass.identify().on(mapBY).at(e.latlng).returnGeometry(false)
+	if(mapBY.hasLayer(seabedClassFolk)){
+	seabedClassFolk.identify().on(mapBY).at(e.latlng).returnGeometry(false)
 	 .run(function(error, featureCollection, response){
 		if (featureCollection.features.length > 0) { 
+            console.log(featureCollection.features[0].properties);
 		var popupSeabed = L.popup().setLatLng(e.latlng)
-		.setContent("<table class=\"tg\"><tr><td class=\"tg-9hbo\">Substrate Class</td><td>" + featureCollection.features[0].properties.INF_Class + "</td></tr><tr><td class=\"tg-9hbo\">Area</td><td>" + featureCollection.features[0].properties.Area + "</td></tr><tr></td></tr></table>")
+		.setContent("<table class=\"tg\"><tr><td class=\"tg-9hbo\">Folk Substrate Class</td><td>" + featureCollection.features[0].properties.Folk_5 + "</td></tr><tr><td class=\"tg-9hbo\">Data Source</td><td>" + featureCollection.features[0].properties.Source + "</td></tr><tr></td></tr><tr><td class=\"tg-9hbo\">Data Resolution</td><td>" + featureCollection.features[0].properties.Resolution + "</td></tr><tr></td></tr></table>")
 		.openOn(mapBY); 
 		mapBY.flyTo(e.latlng, 10);
 	}	});
@@ -125,7 +169,7 @@ var baseMap = {
 	 'Bathymetry' : bathy_Contours,
 	 'Backscatter' : backscatter_int,
 	 'Sample Points' : markers,
-	 'Sediment Classification' : seabedClass,
+	 'Sediment Classification' : seabedClassFolk,
 	 'EEZ Boundary' : EEZ_bdry,
 	 'Designated Area Boundary' : DesigArea_bdry
  }
@@ -134,13 +178,9 @@ var baseMap = {
 	L.control.layers(baseMap, Overlays).addTo(mapBY);
 	L.control.scale().addTo(mapBY);
 	L.control.mousePosition().addTo(mapBY);
-	mapBY.addControl(new L.Control.syncMap());
-	
-/* 	if (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0)){
-		mapBY.addControl(new L.Control.locateMeWatch());	
-		mapBY.addControl(new L.Control.Compass());
-	 } */
-
+	mapBY.addControl(new L.Control.syncMap());  
+    mapBY.addControl(new L.Control.sedimentLegend());
+    
 function highlightFeature(e) {
     var layer = e.target;
 

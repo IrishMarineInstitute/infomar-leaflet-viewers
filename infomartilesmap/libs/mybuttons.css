@@ -178,5 +178,9 @@ background-image: url(images/redmymarker-icon_x.png);
 }	
 .splitScreenDiv a,
 
-
+.psaLegend {
+	text-align: center;
+	background-color: white;
+	padding: 5px;
+	}
 	
