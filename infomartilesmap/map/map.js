@@ -19,17 +19,18 @@ var samplePoints = L.geoJson(samplePts, {
             pointToLayer: function (feature, latlng) {
 				var sampleMarker;
                 var iconName;
-                var props = feature.properties;
+                var propsfolk = feature.properties.FOLK_CLASS;
+                var strFolk = propsfolk.toUpperCase();
                 
-                if(props.FOLK_CLASS =='Sand'){
+                if(strFolk =='SAND'){
                     iconName = sandIcon;
-                }else if (props.FOLK_CLASS =='Mud'){
+                }else if (strFolk =='MUD'){
                     iconName =mudIcon;
-                }else if (props.FOLK_CLASS =='Gravel' || props.FOLK_CLASS =='Gravelly sand' || props.FOLK_CLASS =='Sandy gravel'|| props.FOLK_CLASS =='Slightly gravelly sand'){
+                }else if (strFolk =='GRAVEL' || strFolk =='GRAVELLY SAND' || strFolk =='SANDY GRAVEL'){
                     iconName = gravelIcon;
-                }else if (props.FOLK_CLASS =='Sandy mud'|| props.FOLK_CLASS =='Muddy sand'){
+                }else if (strFolk =='SANDY MUD'|| strFolk =='MUDDY SAND'){
                     iconName = mudSandIcon;
-                }else if (props.FOLK_CLASS =='Gravelly mud' || props.FOLK_CLASS =='Gravelly muddy sand' || props.FOLK_CLASS =='Muddy gravel'|| props.FOLK_CLASS =='Gravelly sandy mud' || props.FOLK_CLASS =='Muddy sandy gravel'){
+                }else if (strFolk =='GRAVELLY MUD' || strFolk =='GRAVELLY MUDDY SAND' || strFolk =='MUDDY GRAVEL' || strFolk =='MUDDY SANDY GRAVEL'){
                     iconName = mixedSedIcon;
                 }else {
                     iconName = noPSAIcon;
@@ -150,9 +151,8 @@ mapBY.on('click', function(e){
 	seabedClassFolk.identify().on(mapBY).at(e.latlng).returnGeometry(false)
 	 .run(function(error, featureCollection, response){
 		if (featureCollection.features.length > 0) { 
-            console.log(featureCollection.features[0].properties);
 		var popupSeabed = L.popup().setLatLng(e.latlng)
-		.setContent("<table class=\"tg\"><tr><td class=\"tg-9hbo\">Folk Substrate Class</td><td>" + featureCollection.features[0].properties.Folk_5 + "</td></tr><tr><td class=\"tg-9hbo\">Data Source</td><td>" + featureCollection.features[0].properties.Source + "</td></tr><tr></td></tr><tr><td class=\"tg-9hbo\">Data Resolution</td><td>" + featureCollection.features[0].properties.Resolution + "</td></tr><tr></td></tr></table>")
+		.setContent("<table class=\"tg\"><tr><td class=\"tg-9hbo\">Folk Substrate Class</td><td>" + featureCollection.features[0].properties.Folk_5 + "</td></tr><tr><td class=\"tg-9hbo\">Sediment Classification Source</td><td>" + featureCollection.features[0].properties.Source + "</td></tr><tr></td></tr><tr><td class=\"tg-9hbo\">Sediment Classification Resolution</td><td>" + featureCollection.features[0].properties.Resolution + "</td></tr><tr></td></tr></table>")
 		.openOn(mapBY); 
 		mapBY.flyTo(e.latlng, 10);
 	}	});
@@ -178,8 +178,9 @@ var baseMap = {
 	L.control.layers(baseMap, Overlays).addTo(mapBY);
 	L.control.scale().addTo(mapBY);
 	L.control.mousePosition().addTo(mapBY);
+    mapBY.addControl(new L.Control.mapLegend());
 	mapBY.addControl(new L.Control.syncMap());  
-    mapBY.addControl(new L.Control.sedimentLegend());
+   
     
 function highlightFeature(e) {
     var layer = e.target;
