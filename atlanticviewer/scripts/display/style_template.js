@@ -75,16 +75,17 @@ $(function () {
       .button({
           text: false,
           icons: {
-              primary: "ui-icon-help"
+              primary: "ui-icon-arrowthickstop-1-s"
           }
       })
       .click(function (event) {
-		  $('#form').hide(); 
-		 $('#bathy-wrapper').hide();
-		 togglePanel('#BathyInfo');
-		
+		 // $('#form').hide(); 
+		// $('#bathy-wrapper').hide();
+		// togglePanel('#BathyInfo');
+		window.open("//www.isde.ie/geonetwork/srv/eng/catalog.search#/metadata/ie.marine.data:dataset.3978");
       });
 });
+
 
 $(function () {
     $('#closeCSVUploadForm')

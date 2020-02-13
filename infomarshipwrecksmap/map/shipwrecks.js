@@ -1,12 +1,28 @@
-	var wreckIcon = L.icon({
-    iconUrl: 'images/shipwreckMarker.png',
+var baseURL = '//maps.marine.ie/mapjslibs/images/shipwrecks/';
+    
+var wreckIcon = L.icon({
+    iconUrl: baseURL + 'shipwreckMarkerNoImg.png',
     iconSize: [24, 43],
     iconAnchor: [12, 42],
     popupAnchor: [0, -46]
 });
 
 var wreckIcon2 = L.icon({
-    iconUrl: 'images/shipwreckMarker3d.png',
+    iconUrl: baseURL + 'shipwreckMarker3d.png',
+    iconSize: [24, 43],
+    iconAnchor: [12, 42],
+    popupAnchor: [0, -46]
+});
+
+var wreckIcon3 = L.icon({
+    iconUrl: baseURL + 'shipwreckMarkerImg.png',
+    iconSize: [24, 43],
+    iconAnchor: [12, 42],
+    popupAnchor: [0, -46]
+});
+
+var wreckIcon4 = L.icon({
+    iconUrl: baseURL + 'shipwreckMarkerPDF.png',
     iconSize: [24, 43],
     iconAnchor: [12, 42],
     popupAnchor: [0, -46]

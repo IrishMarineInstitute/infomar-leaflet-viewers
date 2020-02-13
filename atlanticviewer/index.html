@@ -33,9 +33,6 @@
 	<script src="scripts/display/leaflet.spin.js" type="text/javascript"></script>
 	<script src="scripts/display/style_template.js" type="text/javascript"></script>
 	<script src="scripts/tools/addcsv/leaflet.geoCSV.js" type="text/javascript"></script>
-    
-    <!--Test Layers for download function-->
-  <!--  <script src="//infomarweb/infomardata/AtlanticTiles/CE15_to_CE18_AtlanticSurveys_100mRes_WM.js" type="text/javascript"></script>  -->
     <script type="text/javascript"></script>
     <style>
          body {
@@ -413,8 +410,8 @@
                 </span>
 	            <button id="closeBathyForm"></button>
                  <button id="bathybuttononform">Bathymetry Settings</button>
-				 <button id="bathyLayerInfo">Layer Info</button>
-				<button id="tools">Analysis Tools</button>
+				 <button id="tools">Analysis Tools</button>
+                <button id="bathyLayerInfo">Info/Download</button>
             </div>
 
             <form action="#" id="form" autocomplete="off">
@@ -585,7 +582,7 @@
          </div>
 		    <div id="BathyInfo">
                 <img src="images/BathyInfo8.png" style="width:200px; height:145px; margin-top:10px;">
-                <p style="font-size: small; font-family: Verdana,Arial,sans-serif;">The bathymetry shows the depth of the seabed using a graduated colour scale. Bathymetry values are negative and elevation values (from LiDAR surveys) are positive above sea level. Change the range of values displayed and colour scale using form above.</p><a style="width: 100%" href="http://www.isde.ie/#/" target="blank">Open ISDE Data Catalogue </a>
+                <p style="font-size: small; font-family: Verdana,Arial,sans-serif;">The bathymetry shows the depth of the seabed using a graduated colour scale. Bathymetry values are negative and elevation values (from LiDAR surveys) are positive above sea level. Change the range of values displayed and colour scale using form above.</p><a style="width: 100%" href="http://www.isde.ie/geonetwork/srv/eng/catalog.search#/metadata/ie.marine.data:dataset.3978" target="blank">Download Data </a>
             </div>
 		</div> 
 		<div id="uploadCSV" class="leaflet-bar">

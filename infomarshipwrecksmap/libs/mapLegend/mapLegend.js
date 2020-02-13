@@ -1,4 +1,3 @@
-// Split Screen View///
 L.Control.mapLegend = L.Control.extend({
     options: {
         position: 'topright',
@@ -15,13 +14,13 @@ L.Control.mapLegend = L.Control.extend({
             .addListener(controlDiv, 'click', L.DomEvent.preventDefault)
         var controlUI = L.DomUtil.create('a', 'legendButton myButton', controlDiv);
         controlUI.title = 'Map Legend';
-         controlUI.id = 'legendButton';
+        controlUI.id = 'legendButton';
         controlUI.href = '#';
         controlUI.style.width = "35px";
 		controlUI.style.height = "35px";
 		
         var mapLegend = L.DomUtil.create('div', 'mapLegend', controlDiv);
-        L.DomEvent
+         L.DomEvent
             .addListener(mapLegend, 'click', L.DomEvent.stopPropagation)
             .addListener(mapLegend, 'click', L.DomEvent.preventDefault)
         mapLegend.title = 'Map Legend';
@@ -30,42 +29,45 @@ L.Control.mapLegend = L.Control.extend({
         var layers =[];
         
         L.DomEvent.addListener(controlUI, 'click', function () {
-            layers = checkLayers();
+                layers = checkLayers();
                 if(layers.length == 0){
                     mapLegend.innerHTML = "<div id=\"content\"><div class=\"textbox\">No layers displayed on the map.</div></div>";
                     controlUI.style.display = 'none';
                     mapLegend.style.display = 'block';
                     return false;
                 }
-              $('#content').load("libs/mapLegend/mapLegend.html", function(){
-                   $('h3').hide();
+                $('#content').load("libs/mapLegend/mapLegend.html", function(){
+                    $('h3').hide();
                     for(i=0;i<layers.length; i++){
                     $('#'+ layers[i]).show()
                 }
                     legendExpand(layers);
                     map.on("zoomend", refreshZoom);
             });
-            
+                
             setTimeout(function(){
                 controlUI.style.display = 'none';
                 mapLegend.style.display = 'block';
-            }, 200);
+            }, 200);      
             
-              $('input.leaflet-control-layers-selector').click(function(e){
+ 
+                $('input.leaflet-control-layers-selector').click(function(e){
+                  //  e.preventDefault();
                      if($('#legendButton').css("display") == "none"){
                             $('#legendButton')[0].click();
                         }
                     });
+    
         });
-                
-        L.DomEvent.addListener(mapBY, 'click', function () {
+        
+            L.DomEvent.addListener(map, 'click', function () {
             mapLegend.style.display = 'none';
 			controlUI.style.display = 'block';  
-            mapBY.off("zoomend", refreshZoom);
+            map.off("zoomend", refreshZoom);
          });
-		
+     
         return controlDiv;
-    }
+        }
 });
 
 function legendExpand(layers){
@@ -75,31 +77,32 @@ function legendExpand(layers){
                     $( "#accordion" ).accordion({ active: firstH3ID, heightStyle: "content", animate: 500 });
                     return;
                    }
-            }
+                }
+    
 }
 
 function checkLayers(){
         var layersDisplayed = [];
-        for (key in Overlays){
-            if(mapBY.hasLayer(Overlays[key])){
-                layersDisplayed.push(key.replace(/ /g,''));
+        for (key in overlays){
+            if(map.hasLayer(overlays[key])){
+                layersDisplayed.push(key);
             }
         }
     if (layersDisplayed.indexOf('Bathymetry') != -1){
         layersDisplayed.splice(layersDisplayed.indexOf('Bathymetry'), 1 );
-                    if (mapBY.getZoom()<=12){
+                    if (map.getZoom()<=12){
                             layersDisplayed.unshift('bathyLeg');
-                    }if (mapBY.getZoom()>=13){
+                    }if (map.getZoom()>=13){
                             layersDisplayed.unshift('bathyShallowLeg');
                              }  
     }
-      return layersDisplayed;
+    return layersDisplayed;
 }
-
+    
 var refreshZoom = function zoomBathy(){
-         if (mapBY.hasLayer(bathy_Contours) == true){
+         if (map.hasLayer(bathy_Contours) == true){
              if(($('#bathyShallowLeg').next().css('display') == 'block')||($('#bathyLeg').next().css('display') == 'block')){
-                    if(mapBY.getZoom()<=12){
+                    if(map.getZoom()<=12){
                                $('#bathyShallowLeg').hide().next().slideUp();
                                 $('#bathyLeg').show().next().slideDown();
                         }else {
@@ -107,7 +110,7 @@ var refreshZoom = function zoomBathy(){
                                 $('#bathyShallowLeg').show().next().slideDown();
                             }
                     }else{
-                         if(mapBY.getZoom()<=12){
+                         if(map.getZoom()<=12){
                                $('#bathyShallowLeg').hide();
                                 $('#bathyLeg').show();
                         }else {
@@ -117,3 +120,5 @@ var refreshZoom = function zoomBathy(){
                     }
            }
 }
+
+   

@@ -21,12 +21,24 @@ map.attributionControl.addAttribution("&copy; <a href=http://www.infomar.ie>INFO
 				var wreckMarker;
 				var vesselTitle = "Unidentified Vessel";
 				if (typeof feature.properties.VESSEL_NAM != 'undefined' && feature.properties.VESSEL_NAM != " ") {
-				vesselTitle = feature.properties.VESSEL_NAM;
+                    vesselTitle = feature.properties.VESSEL_NAM;
 				};
 			
 				if (typeof feature.properties.LINK3DMODE != 'undefined' && feature.properties.LINK3DMODE != "") {
 					wreckMarker = L.marker(latlng, { 
 					icon: wreckIcon2, 
+					title: vesselTitle,
+					riseOnHover: true
+					});
+				}else if (typeof feature.properties.PDF != 'undefined' && feature.properties.PDF != "" && feature.properties.PDF != "No") {
+					wreckMarker = L.marker(latlng, { 
+					icon: wreckIcon4, 
+					title: vesselTitle,
+					riseOnHover: true
+					});
+				}else if (typeof feature.properties.IMAGE != 'undefined' && feature.properties.IMAGE != "") {
+					wreckMarker = L.marker(latlng, { 
+					icon: wreckIcon3, 
 					title: vesselTitle,
 					riseOnHover: true
 					});
@@ -47,9 +59,9 @@ map.attributionControl.addAttribution("&copy; <a href=http://www.infomar.ie>INFO
             attribution: '<a href="http://www.infomar.ie">INFOMAR</a>'    
 				});
 		
-		var markers = L.markerClusterGroup();
-		markers.addLayer(shipwreckPts);
-		map.addLayer(markers);
+		var shipMarkers = L.markerClusterGroup();
+		shipMarkers.addLayer(shipwreckPts);
+		map.addLayer(shipMarkers);
 		
 		var baseMap = {
 			"Oceans": base_EsriOceans,
@@ -60,12 +72,17 @@ map.attributionControl.addAttribution("&copy; <a href=http://www.infomar.ie>INFO
 		
 		var overlays = {
 		"Bathymetry": bathy_Contours,	
-		"Shipwrecks": markers
+		"Shipwrecks": shipMarkers
 		};
-		
+		map.addLayer(bathy_Contours);
+
 		L.control.layers(baseMap, overlays, {
 		collapsed: true
 		}).addTo(map);	
-
+        map.addControl(new L.Control.mapLegend());
 		L.control.scale().addTo(map);
 		L.control.mousePosition().addTo(map);
+
+    
+
+

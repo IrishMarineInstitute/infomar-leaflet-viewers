@@ -10,18 +10,15 @@
     <script src="//maps.marine.ie/mapjslibs/jquery-ui-1.11.3/jquery-ui.min.js"></script>
 
   <script>
-  $( function() {
-    $( "#accordion" ).accordion({collapsible: true, heightStyle: "content", active: false, animate: 500});
-  } );
           $('span.ui-icon-info').click(function(e) {
              if ($(this).attr("name") == "bathyInfo"){
-                window.open("//data.marine.ie/geonetwork/srv/eng/catalog.search#/metadata/ie.marine.data:dataset.858");
+                window.open("//www.isde.ie/geonetwork/srv/eng/catalog.search#/metadata/ie.marine.data:dataset.858");
              }
               if ($(this).attr("name") == "backInfo"){
-                window.open("//data.marine.ie/geonetwork/srv/eng/catalog.search#/metadata/ie.marine.data:dataset.860");
+                window.open("//www.isde.ie/geonetwork/srv/eng/catalog.search#/metadata/ie.marine.data:dataset.860");
              }
               if ($(this).attr("name") == "sampleInfo"){
-                window.open("//data.marine.ie/geonetwork/srv/eng/catalog.search#/metadata/ie.marine.data:dataset.901");
+                window.open("//www.isde.ie/geonetwork/srv/eng/catalog.search#/metadata/f2607bfe-00d5-4b59-bdd0-920c09608900");
              }
               if ($(this).attr("name") == "sedClassInfo"){
                 window.open("//data.marine.ie/geonetwork/srv/eng/catalog.search#/metadata/ie.marine.data:dataset.4005");
@@ -30,57 +27,6 @@
         e.stopPropagation();
     });
   </script>
-  <style>
-  /* Style the buttons that are used to open and close the accordion panel */
-.accordion {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  text-align: left;
-  border: none;
-  outline: none;
-  transition: 0.4s;
-}
-      
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .accordion:hover {
-  background-color: #ccc;
-}
-.ui-accordion .ui-accordion-icons {
-padding-right: 2.2em;    
-      }  
-.ui-accordion-header span.ui-icon-info {
-    position: absolute;
-    right: .10em;
-    top: 50%;
-    margin-top: -8px;      
-      }     
-/* Style the accordion panel. Note: hidden by default */
-.panel {
-  padding: 0 18px;
-  background-color: white;
-  display: none;
-  overflow: hidden;
-}
-.legend-block {
-    display: inline-block;
-	width: 20px;
-    height: 10px;
-    border: #bbb solid 1px;
-    background-color: #D3D3D3;
-    border-radius: 2px;
-}
-.p-legend-block{
-    display: inline;
-    margin-left: 8px;  
-      }      
-.ptlegend-block {
-    display: inline-block;
-}
-    
-    </style>
 </head>
 <body>
  
@@ -99,7 +45,21 @@ padding-right: 2.2em;
           <div><div class="legend-block" style="background-color: rgb(0,37,115);"></div><p class="p-legend-block">-4000m</p></div>
       </div>
   </div>
-  <h3 id="backscatterLeg">Backscatter Intensity<span name="backInfo" title="Info" class="ui-icon ui-icon-info"/></h3>
+<h3 id="bathyShallowLeg">Bathymetry<span name="bathyShallowInfo" title="Layer Info" class="ui-icon ui-icon-info"/></h3>
+  <div>
+      <div class="legendDiv">
+          <div><div class="legend-block" style="background-color: rgb(33,132,146);"></div><p class="p-legend-block">60m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(255,255,191);"></div><p class="p-legend-block">40m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(156,84,31);"></div><p class="p-legend-block">20m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(241 208 184);"></div><p class="p-legend-block">0m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(255,227,170);"></div><p class="p-legend-block">-25m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(255,255,170);"></div><p class="p-legend-block">-50m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(0,168,130);"></div><p class="p-legend-block">-100m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(0,167,230);"></div><p class="p-legend-block">-150m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(0,37,115);"></div><p class="p-legend-block">-200m</p></div>
+      </div>
+  </div>        
+  <h3 id="Backscatter">Backscatter Intensity<span name="backInfo" title="Info" class="ui-icon ui-icon-info"/></h3>
     <div>
       <div class="legendDiv">
           <div><div class="legend-block" style="background-color: rgb(0,0,0);"></div><p class="p-legend-block">High</p></div>
@@ -107,7 +67,7 @@ padding-right: 2.2em;
           <div><div class="legend-block" style="background-color: rgb(240,240,240);"></div><p class="p-legend-block">Low</p></div>
       </div>
     </div>
-  <h3 id="samplePtsLeg">Sample Points<span name="sampleInfo" title="Info" class="ui-icon ui-icon-info"/></h3>
+  <h3 id="SamplePoints">Sample Points<span name="sampleInfo" title="Info" class="ui-icon ui-icon-info"/></h3>
   <div>
 <div><div class="ptlegend-block"><img src='//maps.marine.ie/mapjslibs/mapLegend/images/marker-icon-G.png'/></div><p class="p-legend-block">Coarse Sediment</p></div>
     <div><div class="ptlegend-block"><img src='//maps.marine.ie/mapjslibs/mapLegend/images/marker-icon-gM.png'/></div><p class="p-legend-block">Mixed Sediment</p></div>
@@ -116,7 +76,7 @@ padding-right: 2.2em;
       <div><div class="ptlegend-block"><img src='//maps.marine.ie/mapjslibs/mapLegend/images/marker-icon-M.png'/></div><p class="p-legend-block">Mud</p></div>
       <div><div class="ptlegend-block"><img src='//maps.marine.ie/mapjslibs/mapLegend/images/marker-icon-blue.png'/></div><p class="p-legend-block">Unclassified</p></div>
   </div>
-  <h3 id="sedClassLeg">Sediment Classification<span name="sedClassInfo" title="Info" class="ui-icon ui-icon-info"/></h3>
+  <h3 id="SedimentClassification">Sediment Classification<span name="sedClassInfo" title="Info" class="ui-icon ui-icon-info"/></h3>
     <div>
       <div class="legendDiv">
           <div><div class="legend-block" style="background-color: rgb(219,107,105);"></div><p class="p-legend-block">Rock</p></div>
