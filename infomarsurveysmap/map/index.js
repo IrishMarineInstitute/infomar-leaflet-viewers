@@ -18,6 +18,7 @@ map.attributionControl.addAttribution("&copy; <a href=http://www.infomar.ie>INFO
 //build popup for survey layer
 function surveyPopup(layer){
          var props = layer.features[0].properties;
+    
          if(props.SURVEY == 'undefined' || props.SURVEY == ""){
               return false;
          }else{
@@ -25,26 +26,26 @@ function surveyPopup(layer){
 			var surveyRepLink = "Explorer";
 			var downloadType = 'Report';
 			
-             var popupHTML ="<div id=\"popupText\"><table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">" + props.SURVEY + "</th></tr><tr><td class=\"tg-9hbo\">Project</td><td class=\"tg-yw4l\">"+ props.PROJECT + "</td></tr><tr><td class=\"tg-9hbo\">Vessel</td><td class=\"tg-yw4l\">" + props.VesselName  +"</td></tr><tr><td class=\"tg-9hbo\">Start Date</td><td class=\"tg-yw4l\">"+  props.Start_Date + "</td></tr><tr><td class=\"tg-9hbo\">End Date</td><td class=\"tg-yw4l\">"+ props.End_Date + "</td></tr><tr><td class=\"tg-9hbo\">Multibeam System</td><td class=\"tg-yw4l\">"+  props.SYSTEM + "</td></tr>";
+             var popupHTML ="<div id=\"popupText\"><table class=\"tg\"><tr><th class=\"tg-9hbo\">Survey</th><th class=\"tg-yw4l\">" + props.SURVEY + "</th></tr><tr><td class=\"tg-9hbo\">Project</td><td class=\"tg-yw4l\">"+ props.PROJECT + "</td></tr><tr><td class=\"tg-9hbo\">Vessel</td><td class=\"tg-yw4l\">" + props.VESSELNAME  +"</td></tr><tr><td class=\"tg-9hbo\">Start Date</td><td class=\"tg-yw4l\">"+  props.START_DATE + "</td></tr><tr><td class=\"tg-9hbo\">End Date</td><td class=\"tg-yw4l\">"+ props.END_DATE + "</td></tr><tr><td class=\"tg-9hbo\">Multibeam System</td><td class=\"tg-yw4l\">"+  props.SYSTEM + "</td></tr>";
             
-             if (props.IHO_Stand !='undefined' && props.IHO_Stand!=""){
-             popupHTML += "<tr><td class=\"tg-9hbo\">IHO Standard Data</td><td class=\"tg-yw4l\">"+  props.IHO_Stand + "</td></tr>";
+             if (props.IHO_STAND !='undefined' && props.IHO_STAND!=""){
+             popupHTML += "<tr><td class=\"tg-9hbo\">IHO Standard Data</td><td class=\"tg-yw4l\">"+  props.IHO_STAND + "</td></tr>";
              }
-             if (props.Samples !='undefined' && props.Samples!="0"){
-				popupHTML +=  "<tr><td class=\"tg-9hbo\">Samples</td><td class=\"tg-yw4l\">"+  props.Samples + "</td></tr>";
+             if (props.SAMPLES !='undefined' && props.SAMPLES!="0"){
+				popupHTML +=  "<tr><td class=\"tg-9hbo\">Samples</td><td class=\"tg-yw4l\">"+  props.SAMPLES + "</td></tr>";
 			 }
-            if (props.Shipwrecks !='undefined' && props.Shipwrecks!="0"){
-				popupHTML +=  "<tr><td class=\"tg-9hbo\">Shipwrecks</td><td class=\"tg-yw4l\">"+  props.Shipwrecks + "</td></tr>";
+            if (props.SHIPWRECKS !='undefined' && props.SHIPWRECKS!="0"){
+				popupHTML +=  "<tr><td class=\"tg-9hbo\">Shipwrecks</td><td class=\"tg-yw4l\">"+  props.SHIPWRECKS + "</td></tr>";
 			 }
             
             var otherD =[];
-            if (props.Maggy == 1){
+            if (props.MAGGY == 1){
                 otherD.push("Magnetometer");
             }
-            if (props.Subbottom ==1){
+            if (props.SUBBOTTOM ==1){
                 otherD.push(" Subbottom");
             }
-            if (props.Gravity ==1){
+            if (props.GRAVITY ==1){
                 otherD.push(" Gravity");
             }
             
@@ -52,50 +53,50 @@ function surveyPopup(layer){
             popupHTML +="<tr><td class=\"tg-9hbo\">Other Datasets Acquired</td><td class=\"tg-yw4l\">"+  otherD + "</td></tr>";
             }
             
-			 if(props.VesselName == "RV Celtic Voyager"){ 
+			 if(props.VESSELNAME == "RV Celtic Voyager"){ 
 				    surveyRepLink = "Voyager";
-				}else if (props.VesselName == "RV Keary" || props.VesselName == "RV Geo" || props.VesselName == "RV Tonn" || props.VesselName == "Cosantoir Bradan"){
+				}else if (props.VESSELNAME == "RV Keary" || props.VESSELNAME == "RV Geo" || props.VESSELNAME == "RV Tonn" || props.VESSELNAME == "Cosantoir Bradan"){
 				    surveyRepLink = "KRYGeoCBTonn";
-				} else if (props.VesselName == "LADS" || props.VesselName == "BLOMS" || props.VesselName == "PELYDRYN Hawk Eye II"){
+				} else if (props.VESSELNAME == "LADS" || props.VESSELNAME == "BLOMS" || props.VESSELNAME == "PELYDRYN Hawk Eye II"){
                     surveyRepLink = "Lidar";
                 } 
 				
-			  if (props.ExecutiveS !='undefined' && props.ExecutiveS!=""){
-				popupHTML +=  "<tr><td class=\"tg-9hbo\">Summary Report</td><td class=\"tg-yw4l\"><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+props.ExecutiveS + "\");'target='blank' href=\'" + baseLink + "/ExecutiveReport/"+ props.ExecutiveS+"'>"+ props.SURVEY + "</a></td></tr>";
+			  if (props.SUMMARYREP !='undefined' && props.SUMMARYREP!=""){
+				popupHTML +=  "<tr><td class=\"tg-9hbo\">Summary Report</td><td class=\"tg-yw4l\"><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+props.SUMMARYREP + "\");'target='blank' href=\'" + baseLink + "/ExecutiveReport/"+ props.SUMMARYREP+"'>"+ props.SURVEY + "</a></td></tr>";
 			 }
-			  if (props.SurveyRep !='undefined' && props.SurveyRep!=""){
-				 popupHTML +=  "<tr><td class=\"tg-9hbo\">Full Report</td><td class=\"tg-yw4l\"><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+props.SurveyRep + "\");' target='blank' href=\'" + baseLink + "/SurveyReport/"+surveyRepLink+"/"+ props.SurveyRep+"'>"+ props.SURVEY + "</a></td></tr>";
+			  if (props.SURVEYREP !='undefined' && props.SURVEYREP!=""){
+				 popupHTML +=  "<tr><td class=\"tg-9hbo\">Full Report</td><td class=\"tg-yw4l\"><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+props.SURVEYREP + "\");' target='blank' href=\'" + baseLink + "/SurveyReport/"+surveyRepLink+"/"+ props.SURVEYREP+"'>"+ props.SURVEY + "</a></td></tr>";
 			 }
 			popupHTML +="</table></div>";
                    
             var stats =[];
    
-         if (props.Operation != 0){
-            stats.push('Operational', props.Operation, "#7dcea0");    
+         if (props.OPERATION != 0){
+            stats.push('Operational', props.OPERATION, "#7dcea0");    
             }
-            if (props.Weather != 0){
-            stats.push('Weather Downtime', props.Weather, "#d98880");    
+            if (props.WEATHER != 0){
+            stats.push('Weather Downtime', props.WEATHER, "#d98880");    
 			}
-            if (props.Port_Call != 0){
-            stats.push('Port Call', props.Port_Call, "#c39bd3");    
+            if (props.PORT_CALL != 0){
+            stats.push('Port Call', props.PORT_CALL, "#c39bd3");    
             }
-            if (props.Mobilise != 0){
-            stats.push('Mobilisation', props.Mobilise, "#7fb3d5");   
+            if (props.MOBILISE != 0){
+            stats.push('Mobilisation', props.MOBILISE, "#7fb3d5");   
              }
-             if (props.SupportOps != 0){
-            stats.push('Support Operations', props.SupportOps, "#2E86C1");
+             if (props.SUPPORTOPS != 0){
+            stats.push('Support Operations', props.SUPPORTOPS, "#2E86C1");
               }
-           if (props.Transit != 0){
-            stats.push('Transiting', props.Transit, "#f7dc6f");    
+           if (props.TRANSIT != 0){
+            stats.push('Transiting', props.TRANSIT, "#f7dc6f");    
              }
-              if (props.Standby != 0){
-            stats.push('Standby', props.Standby, "#97ebdb");
+              if (props.STANDBY != 0){
+            stats.push('Standby', props.STANDBY, "#97ebdb");
               }
-             if (props.SurveyDown != 0){
-            stats.push('Survey Down', props.SurveyDown, "#FF6F00");    
+             if (props.SURVEYDOWN != 0){
+            stats.push('Survey Down', props.SURVEYDOWN, "#FF6F00");    
              }
-            if (props.VesselDown != 0){
-            stats.push('Vessel Down', props.VesselDown, "#E21B06");
+            if (props.VESSELDOWN != 0){
+            stats.push('Vessel Down', props.VESSELDOWN, "#E21B06");
             }
 			
        if(stats.length> 0){
@@ -142,7 +143,7 @@ var plannedSurveyAreas = L.geoJson (plannedSurveys, {
 		simplifyFactor: 5,
 		zIndex: 1000,
 		precision: 1
-		});
+		}).addTo(map);
 		
 var tracklines = L.esri.dynamicMapLayer({url: 'https://maps.marine.ie/arcgis/rest/services/Infomar/Tracklines/MapServer'}); 
 		
