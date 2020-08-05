@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+	   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Map Legend</title>
+  <script>
+/*  $( function() {
+    $( "#accordion" ).accordion({collapsible: true, heightStyle: "content", active: false, animate: 500});
+  } );*/
+          $('span.ui-icon-info').click(function(e) {
+                if ($(this).attr("name") == "bathyInfo"){
+                window.open("//www.isde.ie/geonetwork/srv/eng/catalog.search#/metadata/ie.marine.data:dataset.858");
+             }
+                if ($(this).attr("name") == "backInfo"){
+                window.open("http://www.isde.ie/geonetwork/srv/eng/catalog.search#/metadata/ie.marine.data:dataset.860");
+             }
+                if ($(this).attr("name") == "surveysInfo"){
+                window.open("http://www.isde.ie/geonetwork/srv/eng/catalog.search#/metadata/95f0d479-48f9-4789-944c-a190a30c62fb");
+             }
+        e.preventDefault();
+        e.stopPropagation();
+    });
+  </script>
+</head>
+<body>
+ <div id="accordion">
+  <h3 id="Surveys">Surveys<span name="surveysInfo" title="Layer Info" class="ui-icon ui-icon-info"/></h3>
+  <div>
+<div class="legendDiv">
+          <div><div class="legend-block" style="background-color: rgb(252,222,146);"></div><p class="p-legend-block">1996 - 2001</p></div>
+          <div><div class="legend-block" style="background-color: rgb(255,167,127);"></div><p class="p-legend-block">2002 - 2006</p></div>
+          <div><div class="legend-block" style="background-color: rgb(194,158,215);"></div><p class="p-legend-block">2007 - 2011</p></div>
+          <div><div class="legend-block" style="background-color: rgb(159,182,224);"></div><p class="p-legend-block">2012 - 2016</p></div>
+          <div><div class="legend-block" style="background-color: rgb(136,186,169);"></div><p class="p-legend-block">2017 - 2020</p></div>
+          <div><div class="legend-block" style="background: repeating-linear-gradient(#e66465, #e66465 1px, #ffffff 2px);"></div><p class="p-legend-block">Surveys being processed.</p></div>
+      </div>
+  </div> 
+     <!--<span name="plannedSurveysInfo" title="Layer Info" class="ui-icon ui-icon-info"/>-->
+       <h3 id="PlannedSurveys">Planned Surveys</h3>
+  <div>
+<div class="legendDiv">
+          <div><div class="legend-block" style="opacity: 0.7; border-color: rgba(137, 7, 5, 1); border-style: dashed; border-width: 2px; background-color: #A94442;"></div><p class="p-legend-block">Planned Surveys</p></div>
+      </div>
+  </div> 
+       <h3 id="bathyLeg">Bathymetry<span name="bathyInfo" title="Layer Info" class="ui-icon ui-icon-info"/></h3>
+  <div>
+      <div class="legendDiv">
+          <div><div class="legend-block" style="background-color: rgb(33,132,146);"></div><p class="p-legend-block">60m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(255,255,191);"></div><p class="p-legend-block">40m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(156,84,31);"></div><p class="p-legend-block">20m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(241 208 184);"></div><p class="p-legend-block">0m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(255,227,170);"></div><p class="p-legend-block">-250m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(255,255,170);"></div><p class="p-legend-block">-500m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(0,168,130);"></div><p class="p-legend-block">-1000m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(0,167,230);"></div><p class="p-legend-block">-2000m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(0,37,115);"></div><p class="p-legend-block">-4000m</p></div>
+      </div>
+  </div>
+  <h3 id="bathyShallowLeg">Bathymetry<span name="bathyShallowInfo" title="Layer Info" class="ui-icon ui-icon-info"/></h3>
+  <div>
+      <div class="legendDiv">
+          <div><div class="legend-block" style="background-color: rgb(33,132,146);"></div><p class="p-legend-block">60m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(255,255,191);"></div><p class="p-legend-block">40m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(156,84,31);"></div><p class="p-legend-block">20m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(241 208 184);"></div><p class="p-legend-block">0m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(255,227,170);"></div><p class="p-legend-block">-25m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(255,255,170);"></div><p class="p-legend-block">-50m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(0,168,130);"></div><p class="p-legend-block">-100m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(0,167,230);"></div><p class="p-legend-block">-150m</p></div>
+          <div><div class="legend-block" style="background-color: rgb(0,37,115);"></div><p class="p-legend-block">-200m</p></div>
+      </div>
+  </div>
+  <h3 id="Backscatter">Backscatter Intensity<span name="backInfo" title="Info" class="ui-icon ui-icon-info"/></h3>
+    <div>
+      <div class="legendDiv">
+          <div><div class="legend-block" style="background-color: rgb(0,0,0);"></div><p class="p-legend-block">High</p></div>
+          <div><div class="legend-block" style="background-color: rgb(125,125,125);"></div><p class="p-legend-block">Medium</p></div>
+          <div><div class="legend-block" style="background-color: rgb(240,240,240);"></div><p class="p-legend-block">Low</p></div>
+      </div>
+    </div>
+</div>
+</body>
+</html>

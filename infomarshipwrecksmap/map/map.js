@@ -7,15 +7,15 @@
 		});
 map.attributionControl.addAttribution("&copy; <a href=http://www.infomar.ie>INFOMAR</a>");
 
-		var isTouchDevice = 'ontouchstart' in document.documentElement;
-        var myshipwreckObject = new Array();
+var isTouchDevice = 'ontouchstart' in document.documentElement;
+var myshipwreckObject = new Array();
 			if ($(window).width() < 480 ||isTouchDevice == true) {
 			map.setView([53.5, -8.5],6);
 		}
 			if ($(window).width() < 780 ||isTouchDevice == true) {
 			map.setView([53.5, -8.5],7);
 		}
-			var shipwreckPts = L.geoJson (shipwrecks, {
+var shipwreckPts = L.geoJson (shipwrecks, {
 			pointToLayer: function (feature, latlng) {
                 myshipwreckObject.push(feature);
 				var wreckMarker;
@@ -84,5 +84,4 @@ map.attributionControl.addAttribution("&copy; <a href=http://www.infomar.ie>INFO
 		L.control.mousePosition().addTo(map);
 
     
-
 

@@ -1,28 +1,33 @@
 var iconbaseURL = '//maps.marine.ie/mapjslibs/sedimentData/';
 
-var mudIcon = L.icon({
-    className: 'psa-icon-base',
+var psaIcon = L.Icon.extend({
+    options: {
+        iconSize:     [25, 41],
+        iconAnchor:   [13, 40],
+        popupAnchor:  [-3, -35],
+        shadowUrl: '//maps.marine.ie/mapjslibs/leaflet-1.3.1/images/marker-shadow.png',
+        shadowSize:   [20, 40],
+        shadowAnchor: [5, 40]    
+    }
+});
+
+var mudIcon = new psaIcon({
     iconUrl: iconbaseURL + 'marker-icon-M.png',
 });
-var mixedSedIcon = L.icon({
+var mixedSedIcon = new psaIcon({
     iconUrl: iconbaseURL +'marker-icon-gM.png',
-    className: 'psa-icon-base'
 });
-var sandIcon = L.icon({
-    className: 'psa-icon-base',
+var sandIcon = new psaIcon({
     iconUrl: iconbaseURL + 'marker-icon-S.png',
 });
-var gravelIcon = L.icon({
+var gravelIcon = new psaIcon({
     iconUrl: iconbaseURL + 'marker-icon-G.png',
-    className: 'psa-icon-base'
 });
-var mudSandIcon = L.icon({
+var mudSandIcon = new psaIcon({
     iconUrl: iconbaseURL + 'marker-icon-mS.png',
-    className: 'psa-icon-base'
 });
-var noPSAIcon = L.icon({
+var noPSAIcon = new psaIcon({
     iconUrl: iconbaseURL + 'marker-icon-blue.png',
-    className: 'psa-icon-base'
 });
 
 //Create Pie Charts
@@ -38,8 +43,8 @@ function pieChart(nameVals, sedVals, Folk, PSA_Des){
         sortSectorNames.push(sortedArray[i][0]);
         sortSectorValues.push(parseFloat(sortedArray[i][1]).toFixed(2));
     }  
-
-    var colourP = [];
+    
+        var colourP = [];
             for(var i=0; i<sortSectorNames.length;i++){
                 if (sortSectorNames[i] == "Sand"){
                     colourP.push("#ffff70");

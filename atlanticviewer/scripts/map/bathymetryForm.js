@@ -16,7 +16,10 @@ $('#BlueGreenScale').hide();
 $('#OrangeGreenBlueScale').show();
 
 depthForm.addEventListener('submit', function depthbyRangeClick(e) {
-
+if(isNaN(startDepthInput.value)|| isNaN(endDepthInput.value)){
+        alert("Please enter a numeric value.");
+        return false;
+}else{   
 	var colorRamp = colorRamps(colorScaleDrop.value);
 	var outValues = [];
     
@@ -116,7 +119,7 @@ if(zfactorInput.value<0){
 	BathyShaded.bringToBack();
 	colorRampsLegend(colorScaleDrop.value);
 	e.preventDefault();
-	
+}
   });
   
   function colorRamps(color) {

@@ -192,7 +192,7 @@ L.Control.searchSurveys = L.Control.extend({
 
 function getData() {
 	 
-var query ="//maps.marine.ie/arcgis/rest/services/Infomar/SurveyCoverage/MapServer/0/query?where=YEAR%3E1990&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelContains&relationParam=&outFields=SURVEY%2CYEAR%2CPROJECT%2C+Nearest_co&returnGeometry=false&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=SURVEY&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&f=pjson";
+var query = "//maps.marine.ie/arcgis/rest/services/Infomar/SurveyCoverage/MapServer/0/query?where=YEAR%3E1990&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelContains&relationParam=&outFields=SURVEY%2CYEAR%2CPROJECT%2C+LOCATION&returnGeometry=false&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=SURVEY&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&f=pjson";    
 
 		$.getJSON(query, function(data) {
 				
@@ -201,7 +201,7 @@ var query ="//maps.marine.ie/arcgis/rest/services/Infomar/SurveyCoverage/MapServ
 				
 				//$('#surveysList').append('<div style="padding:8px;">' + survey + ',\t ' +data.features[i].attributes.Nearest_Co +', \t '+ data.features[i].attributes.PROJECT + ', \t ' + data.features[i].attributes.YEAR +' \t<button onclick="showOnMap(\'' +survey +'\')">Show</button></div>');
 				
-				$('#surveysList').append('<button class=\"linkbtn\" style=\"padding-bottom: 8px;\" onclick="showOnMap(\'' +survey +'\')">' + survey + ',\t ' +data.features[i].attributes.Nearest_Co +', \t '+ data.features[i].attributes.PROJECT + ', \t ' + data.features[i].attributes.YEAR +'</button>');
+				$('#surveysList').append('<button class=\"linkbtn\" style=\"padding-bottom: 8px;\" onclick="showOnMap(\'' +survey +'\')">' + survey + ',\t ' +data.features[i].attributes.LOCATION +', \t '+ data.features[i].attributes.PROJECT + ', \t ' + data.features[i].attributes.YEAR +'</button>');
 								
 				$('#surveysListDiv').append($('#surveysList'));
 			}

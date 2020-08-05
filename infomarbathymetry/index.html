@@ -7,31 +7,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<link rel="shortcut icon" href="images/favicon.ico">
-    <!-- Leaflet -->
-	<!--<link rel="stylesheet" href="scripts/libs/leaflet-1.0.0-b1/leaflet.css" />-->
-    <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/leaflet-1.5.1/leaflet.css" />
-	<link rel="stylesheet" href="scripts/libs/leaflet-1.0.0-b1/myButtons.css" />
+    <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/myButtons/myButtons.css" />
     <link rel="stylesheet" href="scripts/tools/opacityControl/lib/opacity/Control.Opacity.css" />
-    <link rel="stylesheet" href="scripts/libs/jquery-ui-1.11.4/jquery-ui.css" />
-    <link rel="stylesheet" href="scripts/tools/Leaflet.draw/dist/leaflet.draw.css" />
+     <link rel="stylesheet" href="scripts/tools/Leaflet.draw/dist/leaflet.draw.css" />
     <link rel="stylesheet" href="scripts/display/L.Control.Credits/dist/leaflet-control-credits.css" />
 	<link rel="stylesheet" href="scripts/tools/leaflet-measure/dist/leaflet-measure.css" />
 	<script src="//maps.marine.ie/mapjslibs/colourscales.js" type="text/javascript"></script>
-    <script src="scripts/libs/jquery/jquery-1.11.3.min.js"></script>
-	<script src="scripts/libs/jquery-ui-1.11.3/jquery-ui.min.js"></script>
-		
-	<!--<script src="scripts/libs/leaflet-1.0.0-b1/leaflet-src.js" type="text/javascript"></script> -->
-    <script src="//maps.marine.ie/mapjslibs/leaflet-1.5.1/leaflet-src.js" type="text/javascript"></script> 
-	<script src="scripts/libs/esri-leaflet-v2.0.0-beta.5/dist/esri-leaflet.js" type="text/javascript"></script>
-     	 	<script src="//maps.marine.ie/mapjslibs/config.js" type="text/javascript"></script>
+    
+    <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/jquery-ui-1.12.1/jquery-ui.css" />
+    <script src="//maps.marine.ie/mapjslibs/jquery-3.5.0/jquery3.5.0.min.js"></script>
+    <script src="//maps.marine.ie/mapjslibs/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/leaflet-1.6.0/leaflet.css" />
+    <script src="//maps.marine.ie/mapjslibs/leaflet-1.6.0/leaflet-src.js" type="text/javascript"></script>
+    <script src="scripts/libs/esri-leaflet-v2.1.1/dist/esri-leaflet.js" type="text/javascript"></script>
+   
+    <script src="//maps.marine.ie/mapjslibs/config.js" type="text/javascript"></script>
+     <script src="//maps.marine.ie/mapjslibs/MousePosition/L.Control.MousePosition.js" type="text/javascript"></script>
 	<script src="scripts/tools/opacityControl/lib/opacity/Control.Opacity.js" type="text/javascript"></script>
     <script type="text/javascript" src="scripts/display/L.Control.Credits/dist/leaflet-control-credits-src.js"></script>
 	<script src="scripts/tools/leaflet-measure/dist/leaflet-measure.js" type="text/javascript"></script>
  	<script src="scripts/display/Spin.js" type="text/javascript"></script> 
-<script src='scripts/tools/leaflet-workspace/jam/require_edited.js'></script>
-<script src='scripts/tools/leaflet-workspace/js/leaflet.spin.js'></script>
-<script src="scripts/tools/leaflet-workspace/leaflet-workspace-edited.js"></script>
-<script src="scripts/tools/leaflet-workspace/leaflet-workspace-csv.js"></script>
+    <script src='scripts/tools/leaflet-workspace/jam/require_edited.js'></script>
+    <script src='scripts/tools/leaflet-workspace/js/leaflet.spin.js'></script>
+    <script src="scripts/tools/leaflet-workspace/leaflet-workspace-edited.js"></script>
+    <script src="scripts/tools/leaflet-workspace/leaflet-workspace-csv.js"></script>
 	<script src="scripts/display/style_template.js" type="text/javascript"></script>
 	<script src="scripts/tools/addcsv/leaflet.geoCSV.js" type="text/javascript"></script>
     
@@ -173,7 +172,17 @@
         * + html #toolbar {
             display: inline;
         }
-
+        .ui-checkboxradio-icon {
+            visibility: hidden;
+        }
+        .ui-checkboxradio-radio-label .ui-icon-background {
+            width: 0;
+            border: none;  
+        }
+        .ui-checkboxradio-radio-label.ui-checkboxradio-checked .ui-icon{
+            width: 0;
+             border: none;  
+        }
         #repeat0Label.ui-state-active {
             background: #15b007;
         }
@@ -717,7 +726,7 @@ display: none;
 	<script src="scripts/map/bathymetryForm.js" type="text/javascript"></script>	
 	<script src="scripts/map/shadingForm.js" type="text/javascript"></script>
 	<script src="scripts/tools/bathyTools.js" type="text/javascript"></script>
-    <script src="scripts/tools/MousePosition/L.Control.MousePosition.js" type="text/javascript"></script>
+   
 
     <div id="latlng" class="leaflet-bar noPrint">
         <script>

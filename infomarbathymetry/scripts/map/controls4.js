@@ -278,17 +278,17 @@ onAdd: function (map) {
 	
 		L.DomEvent.disableClickPropagation(controlDiv);
 		L.DomEvent.disableScrollPropagation(controlDiv);
-		L.DomEvent.addListener(controlDiv, 'click', function () {
+ 
+		
+        var controlUI = L.DomUtil.create('a', 'printButton myButton', controlDiv);
+         controlUI.href = '#';
+    L.DomEvent.addListener(controlUI, 'click', function () {
 				printMap();
 				resetMap();
-				L.DomEvent.addListener(map, 'click', function(){
+            L.DomEvent.addListener(map, 'click', function(){
 						resetMap();
 				});
 	         });
-	         
-		
-        var controlUI = L.DomUtil.create('a', 'printButton', controlDiv);
-        controlUI.href = '#';
 		return controlDiv;
 }
 });
@@ -347,7 +347,11 @@ onAdd: function (map) {
 		uploadDiv.style.display = 'none';
 		uploadDiv.style.backgroundColor = 'white'; 
 		
-		uploadDiv.innerHTML = "<div style=\"padding:15px;\">Upload Files to the map and layer control: \n<hr style=\"width:90%\"><ul class=\"myList\"><li><img src=\"scripts/tools/leaflet-measure/dist/images/start.png\" /><button class=\"myUpButton\" onclick='uploadCSVFile();'>Add markers from CSV Text File</button><br><span style=\"padding:15px;\">Marker Format: Latitude, Longitude, Name<br></span></li><hr style=\"width:90%\"><li> <img src= \"scripts/tools/leaflet-measure/dist/images/start.png\" /><button class=\"myUpButton\" onclick='uploadGeoFile()'>Add GeoJSON, TopoJSON,or <br>or a Zipped Shapefile</button>\n</li></ul> <\div>";
+    
+    uploadDiv.innerHTML = "<div style=\"padding:15px;\"><button class=\"myUpButton\" onclick='uploadCSVFile();'>Add markers from CSV Text File</button><br><span style=\"padding:15px;\">(Format: Latitude, Longitude, Name)<br></span><br><button class=\"myUpButton\" onclick='uploadGeoFile()'>Add GeoJSON, TopoJSON,or <br>or a Zipped Shapefile</button><\div>";
+    
+    
+    
 		L.DomEvent.disableClickPropagation(controlDiv);
 		L.DomEvent.disableScrollPropagation(controlDiv);
 			

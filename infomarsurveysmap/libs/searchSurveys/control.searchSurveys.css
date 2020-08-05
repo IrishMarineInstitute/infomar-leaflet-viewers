@@ -1,0 +1,30 @@
+.searchInfomar a {
+	background-image: url(images/SearchInfomar.png);
+	background-repeat: no-repeat;
+	display: block;
+    border: 1px #999;
+    background-color: white;
+    width: 36px;
+    height: 36px;
+}
+
+.leaflet-touch .searchInfomar a {
+	width: 35px;
+	height: 36px;
+    background-color: white;
+}
+
+.searchInfomar .searchInfomar-form,
+.searchInfomar-expanded .searchInfomar-toggle {
+	display: none;
+}
+
+.searchInfomar-expanded .searchInfomar-form {
+	display: block;
+	position: relative;
+    background-color: white;
+}
+
+.searchInfomar-expanded .searchInfomar-form {
+	padding: 5px;
+}

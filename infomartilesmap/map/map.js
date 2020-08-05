@@ -129,22 +129,6 @@ var DesigArea_bdry = L.geoJson(DesigArea, {
 		precision: 1
 }); 
 
-/*var seabedClassOut = L.geoJson(INF_Sub, {
- 		style: {weight: 0, fillOpacity: 0, stroke : 0},		
-		simplifyFactor: 5,
-		zIndex: 0,
-		precision: 1
-}); 
-
-seabedClassFolk.on('add', function(e){
-	setTimeout(function(){seabedClassOut.addTo(mapBY);}, 500)
-});
-
-mapBY.on('layerremove', function(e){
-	if (e.layer.options.id == 'seabedClassID'){
-		setTimeout(function(){mapBY.removeLayer(seabedClassOut);}, 500)
-	}
-});*/
 
 mapBY.on('click', function(e){
 	if(mapBY.hasLayer(seabedClassFolk)){
@@ -154,7 +138,7 @@ mapBY.on('click', function(e){
 		var popupSeabed = L.popup().setLatLng(e.latlng)
 		.setContent("<table class=\"tg\"><tr><td class=\"tg-9hbo\">Folk Substrate Class</td><td>" + featureCollection.features[0].properties.Folk_5 + "</td></tr><tr><td class=\"tg-9hbo\">Sediment Classification Source</td><td>" + featureCollection.features[0].properties.Source + "</td></tr><tr></td></tr><tr><td class=\"tg-9hbo\">Sediment Classification Resolution</td><td>" + featureCollection.features[0].properties.Resolution + "</td></tr><tr></td></tr></table>")
 		.openOn(mapBY); 
-		mapBY.flyTo(e.latlng, 10);
+	//	mapBY.flyTo(e.latlng, 10);
 	}	});
 }
 });  
@@ -180,7 +164,7 @@ var baseMap = {
 	L.control.mousePosition().addTo(mapBY);
     mapBY.addControl(new L.Control.mapLegend());
 	mapBY.addControl(new L.Control.syncMap());  
-   
+    mapBY.addControl(new L.Control.queryTool());
     
 function highlightFeature(e) {
     var layer = e.target;

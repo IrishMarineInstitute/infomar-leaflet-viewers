@@ -5,9 +5,9 @@
 	   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <title>Map Legend</title>
-  <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/jquery-ui-1.11.4/jquery-ui.css" />
+<!--  <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/jquery-ui-1.11.4/jquery-ui.css" />
     <script src="//maps.marine.ie/mapjslibs/jquery/jquery-1.11.3.min.js"></script>
-    <script src="//maps.marine.ie/mapjslibs/jquery-ui-1.11.3/jquery-ui.min.js"></script>
+    <script src="//maps.marine.ie/mapjslibs/jquery-ui-1.11.3/jquery-ui.min.js"></script>-->
 
   <script>
           $('span.ui-icon-info').click(function(e) {
@@ -31,7 +31,7 @@
 <body>
  
 <div id="accordion">
-  <h3 id="bathyLeg">Bathymetry<span name="bathyInfo" title="Info" class="ui-icon ui-icon-info"/></h3>
+  <h3 id="bathyLeg" class='legend'>Bathymetry<span name="bathyInfo" title="Info" class="ui-icon ui-icon-info"/></h3>
   <div>
       <div class="legendDiv">
           <div><div class="legend-block" style="background-color: rgb(33,132,146);"></div><p class="p-legend-block">60m</p></div>
@@ -45,7 +45,7 @@
           <div><div class="legend-block" style="background-color: rgb(0,37,115);"></div><p class="p-legend-block">-4000m</p></div>
       </div>
   </div>
-<h3 id="bathyShallowLeg">Bathymetry<span name="bathyShallowInfo" title="Layer Info" class="ui-icon ui-icon-info"/></h3>
+<h3 id="bathyShallowLeg" class='legend'>Bathymetry<span name="bathyShallowInfo" title="Layer Info" class="ui-icon ui-icon-info"/></h3>
   <div>
       <div class="legendDiv">
           <div><div class="legend-block" style="background-color: rgb(33,132,146);"></div><p class="p-legend-block">60m</p></div>
@@ -59,7 +59,7 @@
           <div><div class="legend-block" style="background-color: rgb(0,37,115);"></div><p class="p-legend-block">-200m</p></div>
       </div>
   </div>        
-  <h3 id="Backscatter">Backscatter Intensity<span name="backInfo" title="Info" class="ui-icon ui-icon-info"/></h3>
+  <h3 id="Backscatter" class='legend'>Backscatter Intensity<span name="backInfo" title="Info" class="ui-icon ui-icon-info"/></h3>
     <div>
       <div class="legendDiv">
           <div><div class="legend-block" style="background-color: rgb(0,0,0);"></div><p class="p-legend-block">High</p></div>
@@ -67,7 +67,7 @@
           <div><div class="legend-block" style="background-color: rgb(240,240,240);"></div><p class="p-legend-block">Low</p></div>
       </div>
     </div>
-  <h3 id="SamplePoints">Sample Points<span name="sampleInfo" title="Info" class="ui-icon ui-icon-info"/></h3>
+  <h3 id="SamplePoints" class='legend'>Sample Points<span name="sampleInfo" title="Info" class="ui-icon ui-icon-info"/></h3>
   <div>
 <div><div class="ptlegend-block"><img src='//maps.marine.ie/mapjslibs/mapLegend/images/marker-icon-G.png'/></div><p class="p-legend-block">Coarse Sediment</p></div>
     <div><div class="ptlegend-block"><img src='//maps.marine.ie/mapjslibs/mapLegend/images/marker-icon-gM.png'/></div><p class="p-legend-block">Mixed Sediment</p></div>
@@ -76,7 +76,16 @@
       <div><div class="ptlegend-block"><img src='//maps.marine.ie/mapjslibs/mapLegend/images/marker-icon-M.png'/></div><p class="p-legend-block">Mud</p></div>
       <div><div class="ptlegend-block"><img src='//maps.marine.ie/mapjslibs/mapLegend/images/marker-icon-blue.png'/></div><p class="p-legend-block">Unclassified</p></div>
   </div>
-  <h3 id="SedimentClassification">Sediment Classification<span name="sedClassInfo" title="Info" class="ui-icon ui-icon-info"/></h3>
+  <h3 id="SamplePointsFolk" class='legend'>Sample Points (Folk Classification)<span name="sampleFolkInfo" title="Info" class="ui-icon ui-icon-info"/></h3>
+  <div>
+<div><div class="ptlegend-block"><img src='../queryTool/icons/marker-icon-G.png'/></div><p class="p-legend-block">Gravel</p></div>
+    <div><div class="ptlegend-block"><img src='../queryTool/icons/marker-icon-gM.png'/></div><p class="p-legend-block">Mixed Sediment</p></div>
+      <div><div class="ptlegend-block"><img src='../queryTool/icons/marker-icon-S.png'/></div><p class="p-legend-block">Sand</p></div>
+  <div><div class="ptlegend-block"><img src='../queryTool/icons/marker-icon-mS.png'/></div><p class="p-legend-block">sandy Mud/muddy Sand</p></div>
+      <div><div class="ptlegend-block"><img src='../queryTool/icons/marker-icon-M.png'/></div><p class="p-legend-block">Mud</p></div>
+      <div><div class="ptlegend-block"><img src='../queryTool/icons/marker-icon-blue.png'/></div><p class="p-legend-block">Unclassified</p></div>
+  </div>    
+  <h3 id="SedimentClassification" class='legend'>Sediment Classification<span name="sedClassInfo" title="Info" class="ui-icon ui-icon-info"/></h3>
     <div>
       <div class="legendDiv">
           <div><div class="legend-block" style="background-color: rgb(219,107,105);"></div><p class="p-legend-block">Rock</p></div>

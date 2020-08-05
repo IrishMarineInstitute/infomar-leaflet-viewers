@@ -107,3 +107,4 @@ function style200(feature) {
 		 	
 		L.control.scale().addTo(map);
 		L.control.mousePosition().addTo(map);
+       map.addControl(new L.Control.mapLegend());

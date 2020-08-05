@@ -5,21 +5,27 @@
 	   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>INFOMAR Survey Map</title>
-    <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/jquery-ui-1.11.4/jquery-ui.css" />
+     <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/jquery-ui-1.12.1/jquery-ui.css" />
+    <script src="//maps.marine.ie/mapjslibs/jquery-3.5.0/jquery3.5.0.min.js"></script>
+    <script src="//maps.marine.ie/mapjslibs/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/leaflet-1.6.0/leaflet.css" />
+    <script src="//maps.marine.ie/mapjslibs/leaflet-1.6.0/leaflet-src.js" type="text/javascript"></script>
+    <script src="//maps.marine.ie/mapjslibs/esri-leaflet-v2.4.1/esri-leaflet.js" type="text/javascript"></script>
+    
+<!--    <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/jquery-ui-1.11.4/jquery-ui.css" />
     <script src="//maps.marine.ie/mapjslibs/jquery/jquery-1.11.3.min.js"></script>
     <script src="//maps.marine.ie/mapjslibs/jquery-ui-1.11.3/jquery-ui.min.js"></script>
-    
-   
     <link rel="stylesheet" href="//maps.marine.ie/mapjslibs/leaflet-1.0.3/leaflet.css" />
     <script src="//maps.marine.ie/mapjslibs/leaflet-1.0.3/leaflet-src.js" type="text/javascript"></script>
-   <script src="//maps.marine.ie/mapjslibs/esri-leaflet-v2.0.8/esri-leaflet.js" type="text/javascript"></script>
+   <script src="//maps.marine.ie/mapjslibs/esri-leaflet-v2.0.8/esri-leaflet.js" type="text/javascript"></script>-->
     
      <link rel="stylesheet" href="libs/mybuttons.css" />
     <script src="libs/Spin.js" type="text/javascript"></script> 
-    
+    <script src="libs/mapLegend/mapLegend.js" type="text/javascript"></script> 
+     <script src="libs/searchSurveys/control.searchSurveys.js" type="text/javascript"></script> 
+    <link rel="stylesheet" href="libs/searchSurveys/control.searchSurveys.css" />
 	<script src="//maps.marine.ie/mapjslibs/config.js" type="text/javascript"></script>
- 	<!--<script src="//maps.marine.ie/infomarData/surveysmap/geojson/PlannedSurveyAreas.js" type="text/javascript"></script> -->
-    <script src="//maps.marine.ie/infomarData/surveysmap/geojson/PlannedSurveyAreas.js" type="text/javascript"></script> 
+    <script src="//maps.marine.ie/infomarData/surveysmap/geojson/PlannedSurveyAreas_v2.js" type="text/javascript"></script> 
 	
 	<link rel="stylesheet" href="//maps.marine.ie/mapjslibs/infomarStyles.css" />
     
@@ -51,14 +57,57 @@ a.leaflet-control-measure-toggle{width:32px  !important;height:32px  !important;
 div.leafletcontrol{width:28px  !important;height:28px  !important;}            
 }
 @media screen and (max-width: 378px) {
-.tg th {padding: 5px 5px;font-size: 12px;}
-.tg td{padding: 5px 5px;font-size: 12px;}
+.tg th {padding: 5px 5px;font-size: 10px;}
+.tg td{padding: 5px 5px;font-size: 10px;}
 }
+    #surveysListDiv{
+    position: absolute;
+    top: 130px;
+    left: 150px;
+    z-index: 1000;
+    background: white;
+    padding: 1em;
+	display: none;
+	width: 350px;
+	height: 300px;
+  }
+  #surveysList{
+   z-index: 1000;
+    background: white;
+    padding: 1em;
+	width: 90%;
+	height: 80%;
+	overflow-y: scroll;
+  }
+    #surveysError{
+    position: absolute;
+    top: 130px;
+    left: 150px;
+    z-index: 1000;
+    background: white;
+    padding: 1em;
+	display: none;
+	max-width: 310px;
+  }
+  #surveysListClose {
+  margin-bottom:5px;
+  float: right;
+  }
+ 
 </style>
 </head> 
-<body > 
+<body >   
     <div id="container">
         <div id="map"></div>
+            <div id ="surveysListDiv" class="leaflet-bar noPrint">
+			     <div id ="surveysList" class="leaflet-bar noPrint"></div>
+		          <button id="surveysListClose">Close</button>
+		    </div>
+		<div id ="surveysError" class="leaflet-bar noPrint">
+		      <div>Survey not found.  Would you like to view a list of all INFOMAR/INSS surveys</div>
+		      <div><button id="viewList">View List</button><button class="close">Cancel</button></div>
+		</div>
+        <div id="selectedFeatures" class="leaflet-bar map-text ">Hover for Survey Information </div>
     </div>
         <script src="map/pieCharts.js"> </script> 
         <script src="map/index.js"> </script>

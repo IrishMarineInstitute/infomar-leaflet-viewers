@@ -16,6 +16,10 @@ $('#BlueGreenScale').hide();
 $('#OrangeGreenBlueScale').show();
 
 depthForm.addEventListener('submit', function depthbyRangeClick(e) {
+if(isNaN(startDepthInput.value)|| isNaN(endDepthInput.value)){
+        alert("Please enter a numeric value.");
+        return false;
+}else{    
 	var colorRamp = colorRamps(colorScaleDrop.value);
 	var outValues = [];
     
@@ -31,7 +35,7 @@ var inpRange = [];
 var maxDepth = parseFloat(startDepthInput.value);
 var minDepth = parseFloat(endDepthInput.value);
 var interval = (maxDepth-minDepth)/100;
-
+    
 	if(maxDepth>minDepth){
 		alert("The highest point must be greater then the lowest point.  Please use the minus sign to denote values below sea level.");
 	}
@@ -115,7 +119,7 @@ if(zfactorInput.value<0){
 	BathyShaded.bringToBack();
 	colorRampsLegend(colorScaleDrop.value);
 	e.preventDefault();
-	
+}
   });
   
   function colorRamps(color) {

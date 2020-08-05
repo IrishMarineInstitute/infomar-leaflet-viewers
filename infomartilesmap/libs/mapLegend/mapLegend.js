@@ -38,7 +38,7 @@ L.Control.mapLegend = L.Control.extend({
                     return false;
                 }
               $('#content').load("libs/mapLegend/mapLegend.html", function(){
-                   $('h3').hide();
+                   $  ('h3.legend').hide();
                     for(i=0;i<layers.length; i++){
                     $('#'+ layers[i]).show()
                 }

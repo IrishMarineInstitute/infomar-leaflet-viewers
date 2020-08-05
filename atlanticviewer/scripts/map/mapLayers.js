@@ -71,7 +71,7 @@ var Bathy = L.esri.imageMapLayer({
 	zIndex: 5,
 	opacity: 0.75,
 	updateWhenIdle: true,
-	unloadInvisibleTiles: true
+	unloadInvisibleTiles: true,
 });
 
 var BathyShaded = L.esri.imageMapLayer({

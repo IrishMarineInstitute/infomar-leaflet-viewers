@@ -1,0 +1,104 @@
+.queryToolButton {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+	border-radius: 4px;
+	}
+.queryToolButton a,
+.queryToolButton a:hover {
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+	line-height: 26px;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	width: 54px;
+	height: 54px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	}
+.queryToolDiv {
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+	border-radius: 4px;
+    background-color: #fff;
+}
+.formDiv {
+    padding: 5px;
+}
+.disableLabel {
+    color: #989898;
+}
+#query2 {
+    display: none;
+}
+.hidemklegend {
+    display: none;
+}
+.hideQuerybtn2{
+   opacity: 30%;
+}
+.queryBtn{
+    box-shadow: 0 1px 4px rgba(0,0,0,0.60);
+    border-style: solid;
+    border-color: rgba(0,0,0,0.50);
+    border-width: 1px;
+    border-radius: 3px;
+}
+.addQuery{
+    position:relative;
+    margin-left: 10px;
+    margin-top: 2px;
+    float: right;
+    display: inline;
+}
+
+#submitPSAQuery{
+    margin: 7px;
+}
+.formText {
+    margin: 0px;
+}
+.formDiv input select { 
+    z-index: 1000;
+}
+.help {display: none;justify-content: space-between; font-family:Helvetica Neue, Arial, sans-serif;font-size:14px;color:#555555;margin-top:20px;overflow:hidden;word-break:normal;max-width: 410px;}
+
+.queryBtnDiv{display:flex;width:80%;justify-content: space-between; padding:10px;}
+.queryButton {
+            display: inline-block; border: #bbb solid 1px; background-color: #e6e6e6; border-radius: 2px;font-family:Helvetica Neue, Arial, sans-serif;font-size:14px;color:#555555; padding:5px;margin-right:10px;margin-left:10px;overflow:hidden;word-break:normal;border-bottom-width:1px;border-color:#ccc;
+        }
+.defbtn {
+            margin-left:15px;margin-top: 10px; align-items: flex-end;
+        }
+span.ui-icon-close{position: absolute; right:10px;}
+span.ui-icon-help {position: absolute; right: 26px;} 
+.clusterbtn{
+    font-weight: bold;
+    text-align: center;
+}
+.radioBtnsClass{
+     text-align: center;
+        padding: 2px;
+    margin: 5px;
+}
+.radioBtnsHighlight {
+    box-shadow: 0 1px 4px rgba(0,0,0,0.60);
+    border-style: solid;
+    border-color: rgba(0,0,0,0.50);
+    border-width: 1px;
+    border-radius: 3px;
+}
+.refresh {
+      margin-right: 5px;
+}
+@media screen and (max-width: 700px){
+    #accordionQ {
+        font-family:Helvetica Neue, Arial, sans-serif;font-size:11px;
+        max-width: 320px;
+    }
+@media screen and (max-width: 420px) {
+    #accordionQ {
+        font-family:Helvetica Neue, Arial, sans-serif;font-size:10px;
+        max-width: 240px;
+    }
+    
+    
+}

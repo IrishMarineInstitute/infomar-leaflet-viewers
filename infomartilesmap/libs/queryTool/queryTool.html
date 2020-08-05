@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="libs/queryTool/formExec.js" type="text/javascript"></script> 
+    <link rel="stylesheet" href="libs/queryTool/queryTool.css" /> 
+    
+</head> 
+<body >     
+<div id="accordionQ">
+    <h3 id="singleQuery">Query Percentage Sand / Gravel / Mud<span name="singleQueryHelp" title="Help" class="ui-icon ui-icon-help"></span><span name="closeForm" title="Close Form" class="ui-icon ui-icon-close"></span></h3>
+  <div>
+      <div class="legendDiv">
+              <form id="queryPSA" autocomplete="off">
+                  <div class="formDiv"><p class="formText">Show samples where the percentage:</p>
+                  <div class = "formDiv">
+                    <select name="selectSediment"  id="selectSediment">
+                            <option value="dummy">Sediment type</option>
+                            <option value="GRAVEL">GRAVEL</option>
+                            <option value="SAND">SAND</option>
+                            <option value="MUD">MUD</option>
+                    </select> is 
+                    <select name="selectOperator" id="selectOperator">
+                        <option value="dummy">Choose an operator</option>
+                        <option value="Greater">Greater than or Equal to (&gt;=)</option>
+                        <option value="Less">Less than or Equal to (&lt;=)</option>
+                          <option value="Equal">Equal to</option>
+                    </select> 
+                    <input style="width : 20px;" type="text" id="Percent" /> % <span id="addQuery2" title="Add a 2nd constraint" class="ui-icon ui-icon-plus addQuery queryBtn"/>
+                        </div>
+                    <div id="query2">
+                        AND
+                    <div class = "formDiv">
+                    <select id="selectSediment1" name="sedSelect">
+                            <option value="dummy">Sediment type</option>
+                            <option value="GRAVEL">GRAVEL</option>
+                            <option value="SAND">SAND</option>
+                            <option value="MUD">MUD</option>
+                    </select> is 
+                    <select id="selectOperator1" name="selectOperator1">
+                        <option value="dummy">Choose an operator</option>
+                        <option value="Greater">Greater than or Equal to (&gt;=)</option>
+                        <option value="Less">Less than or Equal to (&lt;=)</option>
+                        <option value="Equal">Equal to</option>
+                    </select> 
+                    <input style="width : 20px;" type="text" id="Percent1" />% <span id="removeQuery2" title="Remove 2nd constraint" class="ui-icon ui-icon-minus addQuery queryBtn"/>
+                    </div>
+                  </div>
+                  <div><button id="submitPSAQuery">Submit Query</button><!--<span title="Refresh Sample Points Layer " class="queryBtn refresh ui-icon ui-icon-arrowrefresh-1-e"></span>--></div>
+                  <div>
+                    <input type="checkbox" name="QueryPSAMarkers" id="QueryPSAMarkers"  value="QueryPSAMarkers" disabled=true checked/>
+                    <label for="QueryPSAMarkers" class="disableLabel">Display selected samples</label><br>
+                    <input type="radio" name="toggleQueryMkrs" id="clusterQueryMkrs" value="clusterQueryMkrs" disabled=true checked/>
+                    <label for="clusterQueryMkrs" class="disableLabel">Cluster Markers</label>  
+                    <input type="radio" name="toggleQueryMkrs" id="unclusterQueryMkrs" value="unclusterQueryMkrs" disabled=true />
+                    <label for="unclusterQueryMkrs" class="disableLabel">Uncluster Markers</label>
+                      <span title="Refresh form and Sample Points" class="refresh queryBtn addQuery ui-icon ui-icon-arrowrefresh-1-e"></span>
+                  </div>
+                  </div>
+                </form>  
+      </div>
+      <div class="help" id="singleQueryHelp">This tool can be used to query the percentage sand, mud or gravel in sediment samples where particle size analysis has been carried out. E.g. to select all sediment samples that have more than 70% sand, select the following in the dropdown menus:<br> <b>SAND</b> is <b>Greater than or Equal to 70</b>% </div>
+  </div>  
+  <h3 id="folkClassification">Change Marker Display<span name="folkQueryHelp" title="Help" class="ui-icon ui-icon-help"/></h3>
+    <div>
+      <div>
+          <form id="changeMarkers">
+              <div id="radioMakers">
+                <input type="radio" name="mapMarkers" id="INFMarkers"  value="INFMarkers" />
+                <label for="INFMarkers">Display only samples with Particle Size Analysis</label><br>  
+                <input type="radio" name="mapMarkers" id="folkClassMarkers" value="folkClassMarkers" />
+                <label for="folkClassMarkers">Display samples using BGS Modified Folk Classification</label><br>    
+                <input type="radio" name="mapMarkers" id="displaySelectFolk" value="displaySelectFolk" disabled=true /><label for="displaySelectFolk"></label>
+                      Display only:
+                        <select id="selectFolk">
+                                    <option value ='dummy'>Choose a Folk Class</option>
+                                    <option>Gravel</option>
+                                    <option>gravelly Mud</option>
+                                    <option>gravelly muddy Sand</option>
+                                    <option>gravelly Sand</option>
+                                    <option>Mud</option>
+                                    <option>muddy Gravel</option>              
+                                    <option>muddy Sand</option>
+                                    <option>muddy sandy Gravel</option>
+                                    <option>Sand</option>
+                                    <option>sandy Gravel</option>
+                                    <option>sandy Mud</option>                   
+                        </select><br>
+                <input type="radio" name="mapMarkers" id="origSamples"  value="origSamples" disabled=true /><label for="origSamples" class="disableLabel">Restore original sample layer containing all samples collected</label><br>
+                </div> 
+                  <div id="radioBtns" class="radioBtnsClass">  
+                <input type="radio" name="toggleMarkers" id="cluster" value="cluster" disabled=true checked/>
+                <label for="cluster" class="disableLabel">Cluster Markers</label>  
+                <input type="radio" name="toggleMarkers" id="uncluster" value="uncluster" disabled=true />
+                <label for="uncluster" class="disableLabel">Uncluster Markers</label>
+                 </div>
+  
+          </form> 
+      </div>      
+      <div class="help" id="folkQueryHelp">This form can be used to display the sample points according to 2 different Folk Classification schemes where particle size analysis has been completed. The markers can be colour coded according to INFOMAR modified Folk Classification, the legend for this scheme is displayed in the Map Legend window below. They can also be displayed according to a modified Folk classification used by the British Geological Survey for their 1:250,000 scale seabed sediments map series and DigSBS250 digital dataset, further adjusted by Flemming as described in Geo-Seas publication <a href="https://www.geo-seas.eu/documents/geoseas/html_page/d10-5A_gs_wp10_seabed-habitat-mapping_part-Sediment_final.pdf" target="_blank">Standards for seabed habitat mapping (Part A: Sediment)</a>.</div>
+    </div>
+     <h3 id="querylegend">Markers Legend<span name="folkQueryLegend" title="Help" class="ui-icon ui-icon-help"/></h3>
+    <div>
+    <div id='INF_Legend'>  
+                        <div><p class="p-legend-block">Modified Folk - INFOMAR Colour Code</p><br>
+                        <img src='libs/queryTool/icons/INFOMAR_FOLK.png'/></div>
+        </div>
+    <div id='Folk_Legend' class="hidemklegend"> 
+                    <div><p class="p-legend-block">Modified Folk - BGS Colour Code</p><br>
+                  <div><img src='libs/queryTool/icons/BGS_ModifiedFolk.png'/></div>
+        </div>
+        </div>
+        <div class="help" id="folkQueryLegend">This shows the colours applied to the markers of the map according to either the INFOMAR Modified Folk classification scheme or the British Geological Survey's (BGS) modified Folk classification scheme depending on which scheme is currently displayed on the map.  The BGS Colour Code shows the colours applied to the markers on using a modified Folk classification used by the BGS for their 1:250,000 scale seabed sediments map series and DigSBS250 digital dataset, further adjusted by Flemming as described in GeoSeas publication <a href="https://www.geo-seas.eu/documents/geoseas/html_page/d10-5A_gs_wp10_seabed-habitat-mapping_part-Sediment_final.pdf" target="_blank">Standards for seabed habitat mapping (Part A: Sediment)</a>.</div>
+    </div> 
+    </div>
+    </body > 
+</html >

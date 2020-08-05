@@ -190,6 +190,13 @@ background-image: url(images/redmymarker-icon_x.png);
 	height: 35px;
 	}
 
+.queryPSAButton {
+	background-image: url(queryTool/queryPSA.png);
+	background-repeat: no-repeat;
+	width: 35px;
+	height: 35px;
+	}
+
 .accordion {
   background-color: #eee;
   color: #444;

@@ -3,7 +3,7 @@ if (isTouchDevice == true) {
 //	$('#lookupFeature').css('display', 'none');
 } else {	 
 //autogenerate dropdown list from shipwrecks geojson file
-var lookupContent = "<div>Select from the list  of identified shipwrecks:<div><select name=\"lookupFeature\" id=\"lookupFeature\">	<option value=\"dummy\">Clear Map</option>";
+var lookupContent = "<div>Select from the list  of identified shipwrecks:</div><div><select name=\"lookupFeature\" id=\"lookupFeature\">	<option value=\"dummy\">Clear Map</option></select><img src=\"//maps.marine.ie/mapjslibs/images/shipwrecks/shipwreckMarker5.png\" style=\"height: 25px;width:20px;margin-right:5px;position:relative;float:left;\" /></div>";
 document.getElementById('lookup').innerHTML = lookupContent;
 
 for(var i=0; i<myshipwreckObject.length; i++){
@@ -34,7 +34,8 @@ var downloadType = 'Wreck Sheet';
     for(i=0; i<myshipwreckObject.length; i++){
         if(myshipwreckObject[i].properties.VESSEL_NAM == marker){
             var popupContent = createWreckPopup(myshipwreckObject[i], shipwreckPts);
-            shipwreckmarker = new L.marker([myshipwreckObject[i].geometry.coordinates[1].toFixed(6).toString(), myshipwreckObject[i].geometry.coordinates[0].toFixed(6).toString()], {opacity:1, icon: wreckIcon2}).addTo(map).bindPopup(popupContent);
+            shipwreckmarker = new L.marker([myshipwreckObject[i].geometry.coordinates[1].toFixed(6).toString(), //myshipwreckObject[i].geometry.coordinates[0].toFixed(6).toString()], {opacity:1, icon: wreckIcon5}).addTo(map).bindPopup(popupContent);
+            myshipwreckObject[i].geometry.coordinates[0].toFixed(6).toString()], {opacity:1, icon: wreckIcon5}).bindPopup(popupContent);
             }
         }
     
@@ -42,6 +43,7 @@ var downloadType = 'Wreck Sheet';
 	map.flyTo([mapCenterlat, shipwreckmarker._latlng.lng], 12);
 		
 	map.once("zoomend", function(e){
+        shipwreckmarker.addTo(map);
 		shipwreckmarker.openPopup();
 		});
 });
