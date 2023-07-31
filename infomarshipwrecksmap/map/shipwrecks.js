@@ -43,23 +43,23 @@ function createWreckPopup(feature, layer) {
         var vesselName = "Unidentified Wreck";
     
         var popupHTML = "<table class=\"tg\">";
-        if (typeof props.VESSEL_NAM != 'undefined' && props.VESSEL_NAM != "") {
-            popupHTML += "<tr><th class=\"tg-topbottom\"  colspan=\"2\">" + props.VESSEL_NAM + "</th>";
-            vesselName = props.VESSEL_NAM;
+        if (typeof props.VESSELNAME != 'undefined' && props.VESSELNAME != "") {
+            popupHTML += "<tr><th class=\"tg-topbottom\"  colspan=\"2\">" + props.VESSELNAME + "</th>";
+            vesselName = props.VESSELNAME;
         } else{
             popupHTML += "<tr><th class=\"tg-topbottom\"  colspan=\"2\">" + vesselName + "</th>";
         }
 
-        popupHTML += "<tr><td class=\"tg-9hbo\">Latitude</td><td class=\"tg-yw4l\">"+ feature.geometry.coordinates[1].toFixed(2).toString() + "</td></tr><tr><td class=\"tg-9hbo\">Longitude</td><td class=\"tg-yw4l\">"+ feature.geometry.coordinates[0].toFixed(2).toString() + "</td></tr><tr><td class=\"tg-9hbo\">Vessel Type </td><td class=\"tg-yw4l\">" + (props.VESSEL_TYP || "Unknown") + "</td></tr><tr><td class=\"tg-9hbo\">Wreck Length </td><td class=\"tg-yw4l\">"+ props.WRECK_LENG + " m</td></tr><tr><td class=\"tg-9hbo\">Wreck Width </td><td class=\"tg-yw4l\">" + props.WRECK_WIDT + " m</td></tr><tr><td class=\"tg-9hbo\">Depth </td><td class=\"tg-yw4l\">" + props.WATER_DEPT + " m</td></tr>";
+        popupHTML += "<tr><td class=\"tg-9hbo\">Latitude</td><td class=\"tg-yw4l\">"+ feature.geometry.coordinates[1].toFixed(5).toString() + "</td></tr><tr><td class=\"tg-9hbo\">Longitude</td><td class=\"tg-yw4l\">"+ feature.geometry.coordinates[0].toFixed(5).toString() + "</td></tr><tr><td class=\"tg-9hbo\">Vessel Type </td><td class=\"tg-yw4l\">" + (props.VESSELTYPE || "Unknown") + "</td></tr><tr><td class=\"tg-9hbo\">Wreck Length </td><td class=\"tg-yw4l\">"+ props.WRECKLEN_M + " m</td></tr><tr><td class=\"tg-9hbo\">Wreck Width </td><td class=\"tg-yw4l\">" + props.WRECKWID_M + " m</td></tr><tr><td class=\"tg-9hbo\">Depth </td><td class=\"tg-yw4l\">" + props.H2ODEPTH_M + " m</td></tr>";
 
-        if (typeof props.IMAGE != 'undefined' && props.IMAGE != "" && props.IMAGE != "<Null>") {
-			popupHTML += "<tr><td class=\"tg-img\" colspan=\"2\"><a class='pointer' onclick='showShipwreckImageWindow(\"" +props.IMAGE + "\",\""+vesselName + "\");'><img src='"+  props.IMAGE + "' width='100%' /></a></td></tr>";
+        if (typeof props.URL_IMAGE != 'undefined' && props.URL_IMAGE != "" && props.URL_IMAGE != "<Null>") {
+			popupHTML += "<tr><td class=\"tg-img\" colspan=\"2\"><a class='pointer' onclick='showShipwreckImageWindow(\"" +props.URL_IMAGE + "\",\""+vesselName + "\");'><img src='"+  props.URL_IMAGE + "' width='100%' /></a></td></tr>";
 	        }		
-        if (typeof props.LINK3DMODE != 'undefined' && props.LINK3DMODE != "" && props.LINK3DMODE != "<Null>") {
-            popupHTML += "<tr><td class=\"tg-9hbo\" colspan=\"2\"><a class='pointer' onclick='showShipwreckWindow(\"" + props.LINK3DMODE + "\",\""+vesselName + "\");'>View 3D Model</a></td></tr>";
+        if (typeof props.URL3DMODEL != 'undefined' && props.URL3DMODEL != "" && props.URL3DMODEL != "<Null>") {
+            popupHTML += "<tr><td class=\"tg-9hbo\" colspan=\"2\"><a class='pointer' onclick='showShipwreckWindow(\"" + props.URL3DMODEL + "\",\""+vesselName + "\");'>View 3D Model</a></td></tr>";
         }
-		if (typeof props.PDF != 'undefined' && props.PDF != "No") {
-            popupHTML += "<tr><td class=\"tg-9hbo\" colspan=\"2\"><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+vesselName + "\");' href='"+ props.PDF + "' target='_blank'>View Wreck Report</a></td></tr>";
+		if (typeof props.URL_PDF != 'undefined' && props.URL_PDF != "No" && props.URL_PDF != "") {
+            popupHTML += "<tr><td class=\"tg-9hbo\" colspan=\"2\"><a onclick='googleAnalyticsDownload(\"" + downloadType + "\",\""+vesselName + "\");' href='"+ props.URL_PDF + "' target='_blank'>View Wreck Report</a></td></tr>";
         } 
         if (typeof props.LinkEUSite != 'undefined' && props.LinkEUSite != "") { 
             popupHTML += "<tr><td class=\"tg-9hbo\" colspan=\"2\"><div id=\"showLinks\"><i class=\"arrow down\"></i><a href='#' onCLick=\"showLinks();\">External Links  </a></div><div id=\"externalLinks\"><div class='popupDiv'><a href =\"https://www.archaeology.ie/underwater-archaeology\" target='_blank'>Underwater Archaeology Unit</a></div><div class='popupDiv'><a href='"+props.LinkEUSite+"' target='_blank');'>WreckSite.eu Report</a></div></div></td></tr>";

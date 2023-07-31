@@ -7,7 +7,7 @@ var lookupContent = "<div>Select from the list  of identified shipwrecks:</div><
 document.getElementById('lookup').innerHTML = lookupContent;
 
 for(var i=0; i<myshipwreckObject.length; i++){
-	var shipwreckName =  JSON.stringify(myshipwreckObject[i].properties.VESSEL_NAM);
+	var shipwreckName =  JSON.stringify(myshipwreckObject[i].properties.VESSELNAME);
 	var shipwreckNameClean = shipwreckName.substring(1, shipwreckName.length-1);
 	
 	if (shipwreckNameClean !==""){
@@ -32,7 +32,7 @@ var marker = $('#lookupFeature').val();
 var downloadType = 'Wreck Sheet';
 
     for(i=0; i<myshipwreckObject.length; i++){
-        if(myshipwreckObject[i].properties.VESSEL_NAM == marker){
+        if(myshipwreckObject[i].properties.VESSELNAME == marker){
             var popupContent = createWreckPopup(myshipwreckObject[i], shipwreckPts);
             shipwreckmarker = new L.marker([myshipwreckObject[i].geometry.coordinates[1].toFixed(6).toString(), //myshipwreckObject[i].geometry.coordinates[0].toFixed(6).toString()], {opacity:1, icon: wreckIcon5}).addTo(map).bindPopup(popupContent);
             myshipwreckObject[i].geometry.coordinates[0].toFixed(6).toString()], {opacity:1, icon: wreckIcon5}).bindPopup(popupContent);

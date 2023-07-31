@@ -20,23 +20,23 @@ var shipwreckPts = L.geoJson (shipwrecks, {
                 myshipwreckObject.push(feature);
 				var wreckMarker;
 				var vesselTitle = "Unidentified Vessel";
-				if (typeof feature.properties.VESSEL_NAM != 'undefined' && feature.properties.VESSEL_NAM != " ") {
-                    vesselTitle = feature.properties.VESSEL_NAM;
+				if (typeof feature.properties.VESSELNAME != 'undefined' && feature.properties.VESSELNAME != " ") {
+                    vesselTitle = feature.properties.VESSELNAME;
 				};
-			
-				if (typeof feature.properties.LINK3DMODE != 'undefined' && feature.properties.LINK3DMODE != "") {
+		
+				if (typeof feature.properties.URL3DMODEL != 'undefined' && feature.properties.URL3DMODEL != "") {
 					wreckMarker = L.marker(latlng, { 
 					icon: wreckIcon2, 
 					title: vesselTitle,
 					riseOnHover: true
 					});
-				}else if (typeof feature.properties.PDF != 'undefined' && feature.properties.PDF != "" && feature.properties.PDF != "No") {
+				}else if (typeof feature.properties.URL_PDF != 'undefined' && feature.properties.URL_PDF != "" && feature.properties.URL_PDF != "No") {
 					wreckMarker = L.marker(latlng, { 
 					icon: wreckIcon4, 
 					title: vesselTitle,
 					riseOnHover: true
 					});
-				}else if (typeof feature.properties.IMAGE != 'undefined' && feature.properties.IMAGE != "") {
+				}else if (typeof feature.properties.URL_IMAGE != 'undefined' && feature.properties.URL_IMAGE != "") {
 					wreckMarker = L.marker(latlng, { 
 					icon: wreckIcon3, 
 					title: vesselTitle,
