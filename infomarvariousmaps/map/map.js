@@ -120,10 +120,10 @@ function style500(feature) {
 		"Google Earth Coastal KMZ" : kmzOutline,	
 		"Google Earth Overview KMZ" : kmzOverview,
 		"Greyscale Maps": greyscaleMaps,
-		"Survey Coverage Map": surveyCoveragePoly,
+		//"Survey Coverage Map": surveyCoveragePoly,
 		"Real Map of Ireland" : realMapIrePoly,
-		"Small Area 3d Maps" :	realMapSmallPoly,
-		"PAD INSS INFOMAR Map": PADINSSINFOMARmaps
+		"Small Area 3d Maps" :	realMapSmallPoly
+		//"PAD INSS INFOMAR Map": PADINSSINFOMARmaps
 		};
 		
 		map.addLayer(base_EsriOceans);
