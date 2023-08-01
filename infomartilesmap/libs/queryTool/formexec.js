@@ -299,7 +299,7 @@ showOrig.addEventListener("change", function(e){
 function makeMarkers(feature, latlng){
 				var sampleMarker;
                 var iconName;
-                var propsfolk = feature.properties.FOLK_CLASS;
+                var propsfolk = feature.properties.FOLKCLASS;
                 var strFolk = propsfolk.toUpperCase();
 
                 if(strFolk =='SAND'){
@@ -318,7 +318,7 @@ function makeMarkers(feature, latlng){
             
                sampleMarker = L.marker(latlng, { 
 					icon: iconName, 
-					title: feature.properties.FOLK_CLASS,
+					title: feature.properties.FOLKCLASS,
 					riseOnHover: true
 					}); 
               
@@ -328,7 +328,7 @@ function makeMarkers(feature, latlng){
 function makeFolkMarkers(feature, latlng){
 				var sampleMarker;
                 var iconName;
-                var propsfolk = feature.properties.FOLK_CLASS;
+                var propsfolk = feature.properties.FOLKCLASS;
                 var strFolk = propsfolk.toUpperCase();
 
     
@@ -361,7 +361,7 @@ function makeFolkMarkers(feature, latlng){
             
                sampleMarker = L.marker(latlng, { 
 					icon: iconName, 
-					title: feature.properties.FOLK_CLASS,
+					title: feature.properties.FOLKCLASS,
 					riseOnHover: true
 					}); 
               
@@ -472,7 +472,7 @@ function filterQueryMarkers(feature, layer){
 function selectFolkClassMarkers(feature, layer){
    var markersClustFOLK = document.querySelector('#selectFolk').value;
     
-      return feature.properties.FOLK_CLASS == markersClustFOLK;
+      return feature.properties.FOLKCLASS == markersClustFOLK;
 }
 
 function markersClick(markers){
@@ -481,7 +481,7 @@ markers.on("click", function(e){
     var props = e.layer.feature.properties;
     
     setTimeout(function(){
-        if(props.FOLK_CLASS != "" && props.FOLK_CLASS!='undefined'){
+        if(props.FOLKCLASS != "" && props.FOLKCLASS!='undefined'){
                     var sedClasses =[];
                     var sedValues = [];
 
@@ -497,7 +497,7 @@ markers.on("click", function(e){
                     sedClasses.push('Gravel');    
                     sedValues.push(props.GRAVEL);
                     }
-                pieChart(sedClasses, sedValues, props.FOLK_CLASS, props.PSA_DSCRPT);
+                pieChart(sedClasses, sedValues, props.FOLKCLASS, props.PSADESC);
         }else {
              $('#popupContent').css("display","block").hide().fadeIn();
         }

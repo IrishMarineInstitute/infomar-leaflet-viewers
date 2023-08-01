@@ -123,34 +123,34 @@ function sortArray(names, times){
 }
 
 function sampleInfo(args){
-     var imageLink = "//maps.marine.ie/infomarData/tilesmap/SampleImages/Web_Images/" + Math.round(args.YEAR) + "/"+ args.SURVEY + "/";
+     var imageLink = "//maps.marine.ie/infomarData/tilesmap/SampleImages/Web_Images/" + Math.round(args.YEAR) + "/"+ args.SURVEYID + "/";
     
                     //hidden pane with sample information"
-                if(args.SURVEY != 'undefined' && args.SURVEY != ""){
-				var popupHTML = "<div id=popupContent style=\"display: none;\"><table class=\"tg\"><tr><td class=\"tg-9hbo\">Survey</td><td class=\"tg-yw4l\">" + args.SURVEY +"</td></tr>";
+                if(args.SURVEYID != 'undefined' && args.SURVEYID != ""){
+				var popupHTML = "<div id=popupContent style=\"display: none;\"><table class=\"tg\"><tr><td class=\"tg-9hbo\">Survey</td><td class=\"tg-yw4l\">" + args.SURVEYID +"</td></tr>";
 				    }    
-				if(args.DATE != 'undefined' && args.DATE != ""){
-				 popupHTML += "<tr><td class=\"tg-9hbo\">Date</td><td class=\"tg-yw4l\">" + (args.DATE).toString(); +"</td></tr>";
+				if(args.DATE_ != 'undefined' && args.DATE_ != ""){
+				 popupHTML += "<tr><td class=\"tg-9hbo\">Date</td><td class=\"tg-yw4l\">" + (args.DATE_).toString() +"</td></tr>";
 				    }
-				 popupHTML += "<tr><td class=\"tg-9hbo\">Latitude</td><td class=\"tg-yw4l\">"+ Math.round(args.LAT * 100)/100+ "</td></tr><tr><td class=\"tg-9hbo\">Longitude</td><td class=\"tg-yw4l\">"+ Math.round(args.LONG * 100)/100 + "</td></tr>";
+				 popupHTML += "<tr><td class=\"tg-9hbo\">Latitude</td><td class=\"tg-yw4l\">"+ Math.round(args.LATITUDE * 100)/100+ "</td></tr><tr><td class=\"tg-9hbo\">Longitude</td><td class=\"tg-yw4l\">"+ Math.round(args.LONGITUDE * 100)/100 + "</td></tr>";
 				 
 				if(args.DEPTH != 'undefined' && args.DEPTH != "" && args.DEPTH != "0"){
 					popupHTML +=  "<tr><td class=\"tg-9hbo\">Depth</td><td class=\"tg-yw4l\">"+ args.DEPTH + "m</td></tr>";
 					}
-                if(args.SAMPLER != 'undefined' && args.SAMPLER != ""){
-				 popupHTML += "<tr><td class=\"tg-9hbo\">Sampler</td><td class=\"tg-yw4l\">" + args.SAMPLER +"</td></tr>";
+                if(args.SENSOR != 'undefined' && args.SENSOR != ""){
+				 popupHTML += "<tr><td class=\"tg-9hbo\">Sampler</td><td class=\"tg-yw4l\">" + args.SENSOR +"</td></tr>";
 				    }
 				if(args.DSCRIPTION != 'undefined' && args.DSCRIPTION != ""){
 						popupHTML += "<tr><td class=\"tg-9hbo\">Description</td><td class=\"tg-ddddx\">"+ args.DSCRIPTION + "</td></tr>";
 				 }
-				if(args.COMMENT != 'undefined' && args.COMMENT != ""){
-				 		popupHTML += "<tr><td class=\"tg-9hbo\">Comment</td><td class=\"tg-ddddx\">"+ args.COMMENT + "</td></tr>";
+				if(args.COMMENT_ != 'undefined' && args.COMMENT_ != ""){
+				 		popupHTML += "<tr><td class=\"tg-9hbo\">Comment</td><td class=\"tg-ddddx\">"+ args.COMMENT_ + "</td></tr>";
 					}
-                if(args.IMAGE != 'undefined' && args.IMAGE != ""){
-						popupHTML += "<tr><td class=\"tg-img\" colspan=\"2\"><img src='" + imageLink + args.IMAGE + ".jpg' width=\'100%\' /></td></tr>";
-                    var test = imageLink + args.IMAGE + ".jpg";
+                if(args.IMAGEID != 'undefined' && args.IMAGEID != ""){
+						popupHTML += "<tr><td class=\"tg-img\" colspan=\"2\"><img src='" + imageLink + args.IMAGEID + ".jpg' width=\'100%\' /></td></tr>";
+                    var test = imageLink + args.IMAGEID + ".jpg";
 				  }
-                 if(args.FOLK_CLASS != 'undefined' && args.FOLK_CLASS != ""){
+                 if(args.FOLKCLASS != 'undefined' && args.FOLKCLASS != ""){
                         popupHTML += "<tr><td class=\"tg-img\" colspan=\"2\"><a href='#' onclick=\"$('#divPopup').show();$('#popupContent').hide();\">Hide Sample Collection Details</a></td></tr>";
                  }
 					   popupHTML +="</table></div>";

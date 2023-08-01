@@ -1,6 +1,6 @@
 var mapBY = L.map('mapBY', {
             center: [53.5, -10.397],
-			layers: [base_EsriOceans,bathy_Contours],
+			layers: [base_EsriOceans,seabedClassFolk],
             zoom: 7,
             maxZoom: 14,
             layersControl: true,
@@ -19,7 +19,7 @@ var samplePoints = L.geoJson(samplePts, {
             pointToLayer: function (feature, latlng) {
 				var sampleMarker;
                 var iconName;
-                var propsfolk = feature.properties.FOLK_CLASS;
+                var propsfolk = feature.properties.FOLKCLASS;
                 var strFolk = propsfolk.toUpperCase();
                 
                 if(strFolk =='SAND'){
@@ -38,7 +38,7 @@ var samplePoints = L.geoJson(samplePts, {
             
                sampleMarker = L.marker(latlng, { 
 					icon: iconName, 
-					title: feature.properties.FOLK_CLASS,
+					title: feature.properties.FOLKCLASS,
 					riseOnHover: true
 					}); 
               
@@ -48,17 +48,17 @@ var samplePoints = L.geoJson(samplePts, {
 				//var imageLink = "//maps.marine.ie/infomar/" + year +"/"+ feature.properties.IMG_URL +"jpg";
 				var props = feature.properties;
                                
-                if (props && props.SAMPLE_ID) {
-				 var popupHTML ="<div id=popupTitle><table class=\"tg\"><tr><th class=\"tg-9hbo\">Sample ID</th><td class=\"tg-yw4l\">" + props.SAMPLE_ID + "</td></tr>";
+                if (props && props.SAMPLEID) {
+				 var popupHTML ="<div id=popupTitle><table class=\"tg\"><tr><th class=\"tg-9hbo\">Sample ID</th><td class=\"tg-yw4l\">" + props.SAMPLEID + "</td></tr>";
                 }
-                if(props.VESSEL != 'undefined' && props.VESSEL != ""){
-				    popupHTML += "<tr><th class=\"tg-9hbo\">Vessel</th><td class=\"tg-yw4l\">" + props.VESSEL +"</td></tr></table></div>";
+                if(props.VESSELNAME != 'undefined' && props.VESSELNAME != ""){
+				    popupHTML += "<tr><th class=\"tg-9hbo\">Vessel</th><td class=\"tg-yw4l\">" + props.VESSELNAME +"</td></tr></table></div>";
 				    }
                     popupHTML += sampleInfo(props); 
                                 
-                if(props.FOLK_CLASS != 'undefined' && props.FOLK_CLASS != ""){
-                    popupHTML += "<div id=\"divPopup\"><table class=\"tg\"><tr><th class=\"tg-9hbo\">Folk Classification:</th><td class=\"tg-yw4l\">"+ props.FOLK_CLASS + "</td></tr>";
-		            popupHTML += "<tr><th class=\"tg-9hbo\">Description:</th><td class=\"tg-yw4l\">"+ props.PSA_DSCRPT + "</td></tr></table><i class=\"arrow up\"></i><canvas id=\"chartContainer\"></canvas><a href='#' onclick=\"$('#popupContent').show().fadeIn(1000);$('#divPopup').hide();\">Show Sample Collection Details</a></div>";
+                if(props.FOLKCLASS != 'undefined' && props.FOLKCLASS != ""){
+                    popupHTML += "<div id=\"divPopup\"><table class=\"tg\"><tr><th class=\"tg-9hbo\">Folk Classification:</th><td class=\"tg-yw4l\">"+ props.FOLKCLASS + "</td></tr>";
+		            popupHTML += "<tr><th class=\"tg-9hbo\">Description:</th><td class=\"tg-yw4l\">"+ props.PSADESC + "</td></tr></table><i class=\"arrow up\"></i><canvas id=\"chartContainer\"></canvas><a href='#' onclick=\"$('#popupContent').show().fadeIn(1000);$('#divPopup').hide();\">Show Sample Collection Details</a></div>";
                     } 
 
 			     layer.bindPopup(popupHTML);		
@@ -73,7 +73,7 @@ markers.on("click", function(e){
     var props = e.layer.feature.properties;
     
     setTimeout(function(){
-        if(props.FOLK_CLASS != "" && props.FOLK_CLASS!='undefined'){
+        if(props.FOLKCLASS != "" && props.FOLKCLASS!='undefined'){
                     var sedClasses =[];
                     var sedValues = [];
 
@@ -89,7 +89,7 @@ markers.on("click", function(e){
                     sedClasses.push('Gravel');    
                     sedValues.push(props.GRAVEL);
                     }
-                pieChart(sedClasses, sedValues, props.FOLK_CLASS, props.PSA_DSCRPT);
+                pieChart(sedClasses, sedValues, props.FOLKCLASS, props.PSADESC);
         }else {
              $('#popupContent').css("display","block").hide().fadeIn();
         }
