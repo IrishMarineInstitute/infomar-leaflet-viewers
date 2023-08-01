@@ -120,24 +120,24 @@ var OSI_Key = '7i5Ue9b371Sz2r943FIm0EejItZFwq5cUKZOsw_2M5bCCBPK5OLxykPpk4GE0J5Zq
 var OSI_URL = 'https://mapgenie.osi.ie/arcgis/rest/services/WM/';
 
 var OSI_Discovery = L.esri.dynamicMapLayer({
-    url: OSI_URL + 'discovery/MapServer/',
+    url: OSI_URL + 'discovery/MapServer',
     token: OSI_Key,
     f: 'json',
     client: 'referer',
-    referer: 'https://maps.marine.ie/infomar_surveyplanning/',
+    referer: 'https://maps.marine.ie/infomar_surveyplanning',
     pane: 'OSIPane',
     opacity: 0.75,
     attribution: '<a href="//www.osi.ie">Ordinance Survey Ireland</a>'
 }).addTo(map);
 
 var OSI_DigitalGlobe = L.esri.dynamicMapLayer({
-    url: OSI_URL + 'digitalglobe/MapServer/',
+    url: OSI_URL + 'digitalglobe/MapServer',
     token: OSI_Key,
     f: 'json',
     client: 'referer',
     pane: 'OSIPane',
     opacity: 0.75,
-    referer: 'https://maps.marine.ie/infomar_surveyplanning/',
+    referer: 'https://maps.marine.ie/infomar_surveyplanning',
     attribution: '<a href="//www.osi.ie">Ordinance Survey Ireland</a>'
 });
 
@@ -150,7 +150,7 @@ var Admiralty_S57_300k = L.tileLayer('//maps.marine.ie/INFOMAR_Tiles/UKHO/{z}/{x
     attribution: '<a href="http://www.infomar.ie">INFOMAR</a>'
 }).addTo(map);
 
-var serviceURL = '//maps.marine.ie/arcgis/rest/services/Infomar/All_Surveys_shft/ImageServer/';
+var serviceURL = '//image.marine.ie/arcgis/rest/services/INFOMAR/AllSurvey/ImageServer/';
 
 //infomar data
 var surveys = L.esri.featureLayer({
