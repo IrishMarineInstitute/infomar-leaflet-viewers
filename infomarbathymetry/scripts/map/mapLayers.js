@@ -64,12 +64,14 @@ var renderingRule = {
     "variableName": "DEM"
 };
 
-var serviceURL = '//maps.marine.ie/arcgis/rest/services/Infomar/All_Surveys_shft/ImageServer/'
-	
+//var serviceURL = '//maps.marine.ie/arcgis/rest/services/Infomar/All_Surveys_shft/ImageServer/'
+//var serviceURL = '//image.marine.ie/arcgis/rest/services/INFOMAR/AllSurvey_Bathymetry/ImageServer/'
+var serviceURL = '//image.marine.ie/arcgis/rest/services/INFOMAR/AllSurvey/ImageServer/'
 var Bathy = L.esri.imageMapLayer({
 	url: serviceURL,
 	renderingRule: colourRendering,
 //	zIndex: 5,
+	maxZoom: 14,
 	opacity: 0.75,
 	updateInterval: 500,
 	updateWhenIdle: true,
@@ -80,6 +82,7 @@ var BathyShaded = L.esri.imageMapLayer({
     url: serviceURL,
 	renderingRule: renderingRule,
 //    zIndex: 1,
+	maxZoom: 14,
 	updateInterval: 500,
 	updateWhenIdle: true,
 	unloadInvisibleTiles: true
